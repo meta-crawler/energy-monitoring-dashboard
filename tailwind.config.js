@@ -28,7 +28,7 @@ module.exports = {
           main: '#00AB55',
           dark: '#007B55',
           darker: '#005249',
-          contrastText: '#fff',
+          contrastText: '#ffffff',
         },
         secondary: {
           lighter: '#D6E4FF',
@@ -36,7 +36,7 @@ module.exports = {
           main: '#3366FF',
           dark: '#1939B7',
           darker: '#091A7A',
-          contrastText: '#fff',
+          contrastText: '#ffffff',
         },
         info: {
           lighter: '#CAFDF5',
@@ -44,7 +44,7 @@ module.exports = {
           main: '#00B8D9',
           dark: '#006C9C',
           darker: '#003768',
-          contrastText: '#fff',
+          contrastText: '#ffffff',
         },
         success: {
           lighter: '#D8FBDE',
@@ -52,7 +52,7 @@ module.exports = {
           main: '#36B37E',
           dark: '#1B806A',
           darker: '#0A5554',
-          contrastText: '#fff',
+          contrastText: '#ffffff',
         },
         warning: {
           lighter: '#FFF5CC',
@@ -68,7 +68,17 @@ module.exports = {
           main: '#FF5630',
           dark: '#B71D18',
           darker: '#7A0916',
-          contrastText: '#fff',
+          contrastText: '#ffffff',
+        },
+        text: {
+          primary: '#212B36',
+          secondary: '#637381',
+          disabled: '#919EAB',
+        },
+        background: {
+          paper: '#ffffff',
+          default: '#ffffff',
+          neutral: '#F4F6F8',
         },
       },
     },

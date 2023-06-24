@@ -1,6 +1,7 @@
 import React from 'react';
 import useCountdown from 'src/hooks/useCountdown';
 import typography from 'src/theme/typography';
+import LoadingScreen from 'src/components/loading-screen';
 
 export default function ComingSoonPage() {
   const { days, hours, minutes, seconds } = useCountdown(new Date('07/17/2023 11:30'));
@@ -9,13 +10,13 @@ export default function ComingSoonPage() {
     <div className="flex flex-col w-full h-screen items-center justify-center gap-y-40">
       <div className="flex flex-col items-center gap-y-3">
         <p style={typography.h1}>Coming Soon!</p>
-        <p className="text-grey-700" style={typography.body1}>
+        <p className="text-text-secondary" style={typography.body1}>
           We are currently working hard on this page!
         </p>
       </div>
 
       <div
-        className="flex flex-row justify-center items-center text-grey-800"
+        className="flex flex-row justify-center items-start text-text-primary"
         style={typography.h2}
       >
         <TimeBlock label="Days" value={days} />
@@ -38,10 +39,10 @@ type TimeBlockProps = {
 const TimeBlock = ({ label, value }: TimeBlockProps) => (
   <div className="flex flex-col items-center">
     <p>{value}</p>
-    <p className="text-grey-600" style={typography.body1}>
+    <p className="text-text-secondary" style={typography.body1}>
       {label}
     </p>
   </div>
 );
 
-const Divider = () => <span className="mx-2 md:mx-4">:</span>;
+const Divider = () => <span className="mx-3 md:mx-6">:</span>;

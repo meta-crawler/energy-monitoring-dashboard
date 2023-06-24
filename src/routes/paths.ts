@@ -14,7 +14,7 @@ export const PATH_AUTH = {
   newPassword: path(ROOTS_AUTH, '/new-password'),
 };
 
-export const PATH_PAGE = {
+export const PATH_DASHBOARD = {
   root: ROOTS_DASHBOARD,
   dashboard: path(ROOTS_DASHBOARD, '/'),
   devices: path(ROOTS_DASHBOARD, '/devices'),
