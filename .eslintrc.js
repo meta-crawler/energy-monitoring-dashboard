@@ -1,5 +1,6 @@
 module.exports = {
   env: {
+    node: true,
     browser: true,
     es2021: true,
   },
@@ -30,6 +31,7 @@ module.exports = {
     'no-var': 'error',
     'space-before-blocks': 'error',
     'import/prefer-default-export': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
   },
   overrides: [
     {
