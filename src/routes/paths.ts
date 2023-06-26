@@ -3,7 +3,7 @@ function path(root: string, sublink: string) {
 }
 
 const ROOTS_AUTH = '/auth';
-const ROOTS_DASHBOARD = '/dashboard';
+const ROOTS_ROOT = '/caec';
 
 export const PATH_AUTH = {
   root: ROOTS_AUTH,
@@ -15,11 +15,11 @@ export const PATH_AUTH = {
 };
 
 export const PATH_DASHBOARD = {
-  root: ROOTS_DASHBOARD,
-  dashboard: path(ROOTS_DASHBOARD, '/'),
-  devices: path(ROOTS_DASHBOARD, '/devices'),
-  history: path(ROOTS_DASHBOARD, '/history'),
-  charge: path(ROOTS_DASHBOARD, '/charge'),
-  alert: path(ROOTS_DASHBOARD, '/alert'),
-  setting: path(ROOTS_DASHBOARD, '/setting'),
+  root: ROOTS_ROOT,
+  dashboard: path(ROOTS_ROOT, '/dashboard'),
+  devices: path(ROOTS_ROOT, '/devices'),
+  history: path(ROOTS_ROOT, '/history'),
+  charge: path(ROOTS_ROOT, '/charge'),
+  alert: path(ROOTS_ROOT, '/alert'),
+  setting: path(ROOTS_ROOT, '/setting'),
 };

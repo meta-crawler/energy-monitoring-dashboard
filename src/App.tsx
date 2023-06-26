@@ -4,14 +4,14 @@ import { BrowserRouter } from 'react-router-dom';
 import { SettingsProvider } from 'src/components/settings';
 
 import ComingSoonPage from 'src/pages/ComingSoonPage';
-import NavMini from 'src/layouts/dashboard/nav/NavMini';
+import NavVertical from 'src/layouts/dashboard/nav/NavVertical';
 
 function App() {
   return (
     <div className="App">
       <SettingsProvider>
         <BrowserRouter>
-          <NavMini />
+          <NavVertical />
           <ComingSoonPage />
         </BrowserRouter>
       </SettingsProvider>
