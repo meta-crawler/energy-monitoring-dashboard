@@ -17,7 +17,7 @@ export default function NavItem({ title, path, icon }: NavItemProps) {
       <div
         className={`w-full flex flex-row items-center py-4 gap-x-6 hover:bg-grey-900/30 ${
           active ? 'bg-grey-900/60' : 'bg-grey-800'
-        } ${themeLayout === 'mini' ? 'px-0 justify-center' : 'px-8'}`}
+        } ${themeLayout === 'mini' ? 'px-0 justify-center' : 'px-6'}`}
       >
         <NavIcon
           icon={icon}
