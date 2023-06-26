@@ -2,7 +2,6 @@ import React from 'react';
 import useResponsive from 'src/hooks/useResponsive';
 import { useSettingsContext } from 'src/components/settings';
 import { useColor } from 'src/hooks/useColor';
-import typography from 'src/theme/typography';
 import navConfig from './config-navigation';
 import { NAV } from 'src/config-global';
 import NavToggleButton from 'src/layouts/dashboard/nav/NavToggleButton';

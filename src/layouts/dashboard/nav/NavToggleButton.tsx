@@ -8,7 +8,7 @@ export default function NavToggleButton() {
   const { themeLayout, onToggleLayout } = useSettingsContext();
 
   return (
-    <div className="p-2 rounded hover:bg-grey-700" onClick={onToggleLayout}>
+    <div role="button" className="p-2 rounded hover:bg-grey-700" onClick={onToggleLayout}>
       {themeLayout === 'mini' ? (
         <AiOutlineMenuUnfold size={25} color={colors('white')} />
       ) : (
