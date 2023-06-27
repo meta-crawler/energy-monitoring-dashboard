@@ -25,3 +25,9 @@ export const ICON = {
   NAV_ITEM_HORIZONTAL: 22,
   NAV_ITEM_MINI: 22,
 };
+
+export const CARD = {
+  BORDER_RADIUS: 16,
+  BOX_SHADOW: 12,
+  PADDING: 18,
+};

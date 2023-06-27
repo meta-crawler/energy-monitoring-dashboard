@@ -76,7 +76,7 @@ module.exports = {
           disabled: '#919EAB',
         },
         background: {
-          paper: '#ffffff',
+          paper: '#F4F6F8',
           default: '#ffffff',
           neutral: '#F4F6F8',
         },

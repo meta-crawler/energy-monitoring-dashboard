@@ -1,10 +1,12 @@
 import React from 'react';
-import typography from 'src/theme/typography';
+import SystemInfo from 'src/components/dashboard-section/string-info/SystemInfo';
 
 export default function DashboardPage() {
   return (
-    <div className="w-full h-screen flex items-center justify-center">
-      <p style={typography.h1}>Dashboard</p>
+    <div className="w-full h-screen flex flex-col items-center justify-center">
+      <div className="w-full lg:w-fit">
+        <SystemInfo />
+      </div>
     </div>
   );
 }
