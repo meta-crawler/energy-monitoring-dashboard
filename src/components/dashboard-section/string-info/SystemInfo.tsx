@@ -1,9 +1,11 @@
 import React from 'react';
 import { CARD } from 'src/config-global';
 import { shadows as customShadow } from 'src/theme/shadows';
-import { useColor } from 'src/hooks/useColor';
+import colors from 'src/theme/colors';
 import typography from 'src/theme/typography';
 import { ChargingStatus, OperationStatus } from 'src/lib/types/status';
+import LoadingScreen from 'src/components/loading-screen';
+
 import { SystemInfoFields } from 'src/lib/constants/system-info-fields';
 
 const SystemInfoValues = [
@@ -35,8 +37,7 @@ const SystemInfoValues = [
   },
 ];
 
-export default function SystemInfo() {
-  const colors = useColor;
+export default function SystemInfo({ isLoading = false }: { isLoading?: boolean }) {
   const shadows = customShadow();
 
   const StatusTag = ({ status }: { status: OperationStatus | ChargingStatus }) => {
@@ -129,7 +130,9 @@ export default function SystemInfo() {
     }
   };
 
-  return (
+  return isLoading ? (
+    <LoadingScreen />
+  ) : (
     <div
       className="w-full flex flex-col gap-y-3"
       style={{

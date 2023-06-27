@@ -1,7 +1,7 @@
 import React from 'react';
 import useResponsive from 'src/hooks/useResponsive';
 import { useSettingsContext } from 'src/components/settings';
-import { useColor } from 'src/hooks/useColor';
+import colors from 'src/theme/colors';
 import navConfig from './config-navigation';
 import { NAV } from 'src/config-global';
 import NavToggleButton from 'src/layouts/dashboard/nav/NavToggleButton';
@@ -11,7 +11,6 @@ import Logo from 'src/components/logo';
 
 export default function NavVertical() {
   const { themeLayout } = useSettingsContext();
-  const colors = useColor;
   const isDesktop = useResponsive('up', 'lg');
   return (
     <div

@@ -1,4 +1,4 @@
-import { alpha } from 'src/utils/cssStyles';
+import { alpha } from 'src/theme/cssStyles';
 
 export function createShadow(color: string) {
   const transparent1 = alpha(color, 0.2);

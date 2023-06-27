@@ -74,7 +74,7 @@ export function getSelectedSystem(systemId: string) {
   };
 }
 
-export function getSystem() {
+export function getSystems() {
   return async (dispatch: Dispatch) => {
     dispatch(startLoading());
     try {

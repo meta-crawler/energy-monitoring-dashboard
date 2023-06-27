@@ -1,7 +1,6 @@
 import React from 'react';
 import useCountdown from 'src/hooks/useCountdown';
 import typography from 'src/theme/typography';
-import LoadingScreen from 'src/components/loading-screen';
 
 export default function ComingSoonPage() {
   const { days, hours, minutes, seconds } = useCountdown(new Date('07/17/2023 11:30'));
