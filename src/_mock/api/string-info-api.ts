@@ -1,7 +1,7 @@
 import mock from 'src/_mock/mock';
 import stringInfoDb from 'src/_mock/db/string-info-db';
 
-mock.onGet('/api/get-strings-info').reply((req: any) => {
+mock.onGet('/api/get-string-infos').reply((req: any) => {
   const { systemId } = req.params;
   return [
     200,

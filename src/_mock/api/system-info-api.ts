@@ -1,7 +1,7 @@
 import mock from 'src/_mock/mock';
 import systemInfoDb, { systemFields } from 'src/_mock/db/system-info-db';
 
-mock.onGet('/api/get-systems-info').reply(() => {
+mock.onGet('/api/get-system-infos').reply(() => {
   return [
     200,
     {
