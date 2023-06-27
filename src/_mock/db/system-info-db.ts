@@ -1,0 +1,117 @@
+import { ChargingStatus, OperationStatus } from 'src/lib/types/status';
+
+export default {
+  1: [
+    {
+      chargingStatus: ChargingStatus.CHARGING,
+      temperatureStatus: OperationStatus.NORMAL,
+      overChargeStatus: OperationStatus.WARNING,
+      overDisChargeStatus: OperationStatus.NORMAL,
+      i485Status: OperationStatus.DANGER,
+      dryContactStatus: OperationStatus.NORMAL,
+      irfStatus: OperationStatus.WARNING,
+    },
+    {
+      onlineDays: 195.76,
+      chargingTime: 0,
+      overChargingWarning: 0,
+      overTemperatureWarning: 0,
+      maxV: 3.36,
+      minV: 3.29,
+      maxT: 28.2,
+      minT: 26.7,
+      voltage: 534.91,
+      current: 35.7,
+    },
+    {
+      soc: 89.8,
+      dod: 20.4,
+      soh: 59.2,
+    },
+  ],
+  2: [
+    {
+      chargingStatus: ChargingStatus.CHARGING,
+      temperatureStatus: OperationStatus.NORMAL,
+      overChargeStatus: OperationStatus.WARNING,
+      overDisChargeStatus: OperationStatus.NORMAL,
+      i485Status: OperationStatus.DANGER,
+      dryContactStatus: OperationStatus.NORMAL,
+      irfStatus: OperationStatus.WARNING,
+    },
+    {
+      onlineDays: 195.76,
+      chargingTime: 0,
+      overChargingWarning: 0,
+      overTemperatureWarning: 0,
+      maxV: 3.36,
+      minV: 3.29,
+      maxT: 28.2,
+      minT: 26.7,
+      voltage: 534.91,
+      current: 35.7,
+    },
+    {
+      soc: 89.8,
+      dod: 20.4,
+      soh: 59.2,
+    },
+  ],
+  3: [
+    {
+      chargingStatus: ChargingStatus.CHARGING,
+      temperatureStatus: OperationStatus.NORMAL,
+      overChargeStatus: OperationStatus.WARNING,
+      overDisChargeStatus: OperationStatus.NORMAL,
+      i485Status: OperationStatus.DANGER,
+      dryContactStatus: OperationStatus.NORMAL,
+      irfStatus: OperationStatus.WARNING,
+    },
+    {
+      onlineDays: 195.76,
+      chargingTime: 0,
+      overChargingWarning: 0,
+      overTemperatureWarning: 0,
+      maxV: 3.36,
+      minV: 3.29,
+      maxT: 28.2,
+      minT: 26.7,
+      voltage: 534.91,
+      current: 35.7,
+    },
+    {
+      soc: 89.8,
+      dod: 20.4,
+      soh: 59.2,
+    },
+  ],
+};
+
+export const systemFields = [
+  {
+    chargingStatus: '充放電狀態',
+    temperatureStatus: '溫度狀態',
+    overChargeStatus: '過充監控',
+    overDisChargeStatus: '過放監控',
+    i485Status: '485狀態',
+    dryContactStatus: '乾接點狀態',
+    irfStatus: 'IRF狀態',
+  },
+  {
+    onlineDays: '上線天數',
+    chargingTime: '充放電次數',
+    overChargingWarning: '過充告警',
+    overTemperatureWarning: '過溫告警',
+    maxV: 'Max V(V)',
+    minV: 'Min V(V)',
+    maxT: 'Max T(℃)',
+    min: 'Min T(℃)',
+    voltage: 'Voltage(V)',
+    current: 'Current(A)',
+  },
+  {
+    soc: 'SoC(%)',
+    dod: 'DoD(%)',
+    soh: 'SoH(%)',
+  },
+];

@@ -97,7 +97,7 @@ export default function SystemInfo() {
             className="text-text-primary flex-1"
             style={typography.overline}
           >{`${progress}%`}</span>
-          <div className="w-32 h-1.5 bg-error-lighter overflow-hidden rounded-full">
+          <div className="w-full lg:w-32 h-1.5 bg-error-lighter overflow-hidden rounded-full">
             <div className="bg-error-main h-1.5" style={{ width: `${progress}%` }}></div>
           </div>
         </div>
@@ -109,7 +109,7 @@ export default function SystemInfo() {
             className="text-text-primary flex-1"
             style={typography.overline}
           >{`${progress}%`}</span>
-          <div className="w-32 h-1.5 bg-warning-lighter overflow-hidden rounded-full">
+          <div className="w-full lg:w-32 h-1.5 bg-warning-lighter overflow-hidden rounded-full">
             <div className="bg-warning-main h-1.5" style={{ width: `${progress}%` }}></div>
           </div>
         </div>
@@ -121,7 +121,7 @@ export default function SystemInfo() {
             className="text-text-primary flex-1"
             style={typography.overline}
           >{`${progress}%`}</span>
-          <div className="w-32 h-1.5 bg-primary-lighter overflow-hidden rounded-full">
+          <div className="w-full lg:w-32 h-1.5 bg-primary-lighter overflow-hidden rounded-full">
             <div className="bg-primary-main h-1.5" style={{ width: `${progress}%` }}></div>
           </div>
         </div>

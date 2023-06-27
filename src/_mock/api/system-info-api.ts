@@ -1,0 +1,30 @@
+import mock from 'src/_mock/mock';
+import systemInfoDb, { systemFields } from 'src/_mock/db/system-info-db';
+
+mock.onGet('/api/get-systems-info').reply(() => {
+  return [
+    200,
+    {
+      data: systemInfoDb,
+    },
+  ];
+});
+
+mock.onGet('/api/get-system-info').reply((req: any) => {
+  const { id } = req.params;
+  return [
+    200,
+    {
+      data: (systemInfoDb as any)[id],
+    },
+  ];
+});
+
+mock.onGet('/api/get-system-fields').reply(() => {
+  return [
+    200,
+    {
+      data: systemFields,
+    },
+  ];
+});
