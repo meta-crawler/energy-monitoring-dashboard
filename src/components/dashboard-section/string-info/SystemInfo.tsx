@@ -3,7 +3,7 @@ import { CARD } from 'src/config-global';
 import { shadows as customShadow } from 'src/theme/shadows';
 import colors from 'src/theme/colors';
 import typography from 'src/theme/typography';
-import { ChargingStatus, OperationStatus } from 'src/lib/types/status';
+import { ChargingStatus, OperationStatus } from 'src/lib/constants/status';
 import { ISystemFields, ISystemInfo } from 'src/@types/system';
 
 type ISystemInfoProps = {
@@ -106,7 +106,7 @@ export default function SystemInfo({ systemInfoFields, systemInfoValue }: ISyste
 
   return (
     <div
-      className="w-full flex flex-col gap-y-3"
+      className="w-full flex flex-col gap-y-3 h-full"
       style={{
         borderRadius: `${CARD.BORDER_RADIUS}px`,
         backgroundColor: colors('background.default'),

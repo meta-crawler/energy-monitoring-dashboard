@@ -1,0 +1,42 @@
+@layer base {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(71, 85, 105) rgb(30, 41, 59);
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background-color: #292c30;
+  }
+
+  #content::-webkit-scrollbar-track {
+    background-color: #1d2126 #{!important};
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #454545;
+    border-radius: 8px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #a8a8a8;
+  }
+}
+
+@layer utilities {
+  @variants responsive {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+  }
+}

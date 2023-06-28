@@ -14,9 +14,6 @@ export default function NavVertical() {
   const isDesktop = useResponsive('up', 'lg');
   return (
     <div
-      className={`flex flex-col py-2 transition-all ease-in-out duration-200 ${
-        themeLayout !== 'mini' ? 'gap-y-6' : 'gap-y-2'
-      }`}
       style={{
         width: themeLayout === 'mini' ? `${NAV.W_DASHBOARD_MINI}px` : `${NAV.W_DASHBOARD}px`,
         height: '100vh',
@@ -25,15 +22,21 @@ export default function NavVertical() {
       }}
     >
       <div
-        className={`flex flex-row items-center ${
-          themeLayout === 'mini' ? 'justify-center' : 'justify-between pl-6 pr-3'
+        className={`flex flex-col py-2 overflow-y-auto transition-all ease-in-out duration-200 ${
+          themeLayout !== 'mini' ? 'gap-y-6' : 'gap-y-2'
         }`}
       >
-        {themeLayout !== 'mini' && <Logo />}
-        <NavToggleButton />
-      </div>
+        <div
+          className={`flex flex-row items-center ${
+            themeLayout === 'mini' ? 'justify-center' : 'justify-between pl-6 pr-3'
+          }`}
+        >
+          {themeLayout !== 'mini' && <Logo />}
+          <NavToggleButton />
+        </div>
 
-      <NavSection data={navConfig as NavItemProps[]} />
+        <NavSection data={navConfig as NavItemProps[]} />
+      </div>
     </div>
   );
 }

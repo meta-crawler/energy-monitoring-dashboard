@@ -1,3 +1,10 @@
+export type IStringState = {
+  isLoading: boolean;
+  error: Error | string | null;
+  selectedString: IStringInfo | null;
+  strings: IStringInfo[] | null;
+};
+
 export type IStringInfo = [
   {
     maxT: number;
@@ -11,10 +18,3 @@ export type IStringInfo = [
     soh: number;
   },
 ];
-
-export type IStringState = {
-  isLoading: boolean;
-  error: Error | string | null;
-  selectedString: IStringInfo | null;
-  strings: IStringInfo[] | null;
-};

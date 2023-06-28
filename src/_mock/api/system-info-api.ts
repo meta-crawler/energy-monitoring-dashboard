@@ -1,5 +1,5 @@
 import mock from 'src/_mock/mock';
-import systemInfoDb, { systemFields } from 'src/_mock/db/system-info-db';
+import systemInfoDb, { systemFields, systemList } from 'src/_mock/db/system-info-db';
 
 mock.onGet('/api/get-system-infos').reply(() => {
   return [
@@ -25,6 +25,15 @@ mock.onGet('/api/get-system-fields').reply(() => {
     200,
     {
       data: systemFields,
+    },
+  ];
+});
+
+mock.onGet('/api/get-system-list').reply(() => {
+  return [
+    200,
+    {
+      data: systemList,
     },
   ];
 });

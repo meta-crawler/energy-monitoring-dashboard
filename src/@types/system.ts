@@ -1,3 +1,14 @@
+export type ISystemState = {
+  isLoading: boolean;
+  error: Error | string | null;
+  activeSystem: string | null;
+  activeString: string | null;
+  systemFields: ISystemFields | null;
+  systemList: ISystemListItem[] | null;
+  selectedSystem: ISystemInfo | null;
+  systems: ISystemInfo[] | null;
+};
+
 export type ISystemFields = [
   {
     chargingStatus: string;
@@ -56,10 +67,11 @@ export type ISystemInfo = [
   },
 ];
 
-export type ISystemState = {
-  isLoading: boolean;
-  error: Error | string | null;
-  systemFields: ISystemFields | null;
-  selectedSystem: ISystemInfo | null;
-  systems: ISystemInfo[] | null;
+export type ISystemListItem = {
+  id: string;
+  status: string;
+  strings: {
+    id: string;
+    status: string;
+  }[];
 };

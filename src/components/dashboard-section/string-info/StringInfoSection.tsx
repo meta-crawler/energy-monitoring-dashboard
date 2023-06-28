@@ -7,18 +7,23 @@ import { getSelectedSystem, getSystemFields } from 'src/redux/slices/system';
 
 export default function StringInfoSection() {
   const dispatch = useDispatch();
-  const { systemFields, selectedSystem, isLoading } = useSelector((store) => store.system);
+  const { isLoading, activeSystem, systemFields, selectedSystem } = useSelector(
+    (store) => store.system,
+  );
 
   useEffect(() => {
     dispatch(getSystemFields());
-    dispatch(getSelectedSystem(`${1}`));
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getSelectedSystem(activeSystem!));
+  }, [activeSystem, dispatch]);
 
   return isLoading ? (
     <LoadingScreen />
   ) : (
     !!systemFields && !!selectedSystem && (
-      <div className="w-full md:w-fit">
+      <div className="w-full lg:w-fit h-fit lg:h-full">
         <SystemInfo systemInfoFields={systemFields} systemInfoValue={selectedSystem} />
       </div>
     )

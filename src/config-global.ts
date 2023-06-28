@@ -30,6 +30,11 @@ export const ICON = {
 
 export const CARD = {
   BORDER_RADIUS: 16,
-  BOX_SHADOW: 12,
+  BOX_SHADOW: 6,
   PADDING: 18,
+};
+
+export const DASHBOARD = {
+  PADDING: 12,
+  W_LIST: 220,
 };

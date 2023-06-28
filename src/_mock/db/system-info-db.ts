@@ -1,4 +1,4 @@
-import { ChargingStatus, OperationStatus } from 'src/lib/types/status';
+import { ChargingStatus, OperationStatus } from 'src/lib/constants/status';
 
 export default {
   1: [
@@ -32,7 +32,7 @@ export default {
   2: [
     {
       chargingStatus: ChargingStatus.CHARGING,
-      temperatureStatus: OperationStatus.NORMAL,
+      temperatureStatus: OperationStatus.WARNING,
       overChargeStatus: OperationStatus.WARNING,
       overDisChargeStatus: OperationStatus.NORMAL,
       i485Status: OperationStatus.DANGER,
@@ -52,18 +52,18 @@ export default {
       current: 35.7,
     },
     {
-      soc: 89.8,
-      dod: 20.4,
-      soh: 59.2,
+      soc: 90.8,
+      dod: 10.4,
+      soh: 34.2,
     },
   ],
   3: [
     {
-      chargingStatus: ChargingStatus.CHARGING,
+      chargingStatus: ChargingStatus.DISCHARGING,
       temperatureStatus: OperationStatus.NORMAL,
-      overChargeStatus: OperationStatus.WARNING,
+      overChargeStatus: OperationStatus.NORMAL,
       overDisChargeStatus: OperationStatus.NORMAL,
-      i485Status: OperationStatus.DANGER,
+      i485Status: OperationStatus.WARNING,
       dryContactStatus: OperationStatus.NORMAL,
       irfStatus: OperationStatus.WARNING,
     },
@@ -80,9 +80,9 @@ export default {
       current: 35.7,
     },
     {
-      soc: 89.8,
-      dod: 20.4,
-      soh: 59.2,
+      soc: 96.4,
+      dod: 0.4,
+      soh: 34.9,
     },
   ],
 };
@@ -113,5 +113,62 @@ export const systemFields = [
     soc: 'SoC(%)',
     dod: 'DoD(%)',
     soh: 'SoH(%)',
+  },
+];
+
+export const systemList = [
+  {
+    id: '1',
+    status: 'normal',
+    strings: [
+      {
+        id: '1-1',
+        status: 'normal',
+      },
+      {
+        id: '1-2',
+        status: 'normal',
+      },
+      {
+        id: '1-3',
+        status: 'normal',
+      },
+    ],
+  },
+  {
+    id: '2',
+    status: 'warning',
+    strings: [
+      {
+        id: '2-1',
+        status: 'normal',
+      },
+      {
+        id: '2-2',
+        status: 'warning',
+      },
+      {
+        id: '2-3',
+        status: 'normal',
+      },
+    ],
+  },
+  {
+    id: '3',
+    status: 'normal',
+    strings: [
+      {
+        id: '3-1',
+        status: 'normal',
+      },
+      {
+        id: '3-2',
+        status: 'normal',
+      },
+      {
+        id: '3-3',
+        status: 'normal',
+      },
+    ],
   },
 ];
