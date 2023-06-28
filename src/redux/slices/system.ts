@@ -48,7 +48,13 @@ const slice = createSlice({
 export default slice.reducer;
 
 // ----------------------------------------------------------------------
-const { startLoading, hasError, getSystemFieldsSuccess, getSystemsSuccess } = slice.actions;
+const {
+  startLoading,
+  hasError,
+  getSystemFieldsSuccess,
+  getSelectedSystemSuccess,
+  getSystemsSuccess,
+} = slice.actions;
 
 export function getSystemFields() {
   return async (dispatch: Dispatch) => {
@@ -67,7 +73,7 @@ export function getSelectedSystem(systemId: string) {
     dispatch(startLoading());
     try {
       const { data }: AxiosResponse = await getSystemInfoApi(systemId);
-      dispatch(getSystemsSuccess(data.data));
+      dispatch(getSelectedSystemSuccess(data.data));
     } catch (error) {
       dispatch(hasError(error));
     }

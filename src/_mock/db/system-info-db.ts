@@ -105,7 +105,7 @@ export const systemFields = [
     maxV: 'Max V(V)',
     minV: 'Min V(V)',
     maxT: 'Max T(℃)',
-    min: 'Min T(℃)',
+    minT: 'Min T(℃)',
     voltage: 'Voltage(V)',
     current: 'Current(A)',
   },
