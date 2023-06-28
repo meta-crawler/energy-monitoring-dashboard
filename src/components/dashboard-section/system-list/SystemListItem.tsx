@@ -8,6 +8,7 @@ import {
 import { ISystemListItem } from 'src/@types/system';
 import colors from 'src/theme/colors';
 import typography from 'src/theme/typography';
+import { DASHBOARD } from 'src/config-global';
 
 type ISystemListItemProps = {
   system: ISystemListItem;
@@ -31,12 +32,15 @@ export default function SystemListItem({
         className="flex flex-row items-center gap-x-2 py-1 px-3 rounded hover:bg-grey-300/60"
         onClick={() => onSystemSelect(system.id)}
       >
-        <BsChevronRight size={12} color={colors('grey.500')} />
+        <BsChevronRight size={DASHBOARD.LIST_CHEVRON_ICON} color={colors('grey.500')} />
 
         {system.status === 'normal' ? (
-          <BsFillCheckCircleFill color={colors('primary.main')} />
+          <BsFillCheckCircleFill size={DASHBOARD.LIST_STATUS_ICON} color={colors('primary.main')} />
         ) : (
-          <BsFillExclamationCircleFill color={colors('error.dark')} />
+          <BsFillExclamationCircleFill
+            size={DASHBOARD.LIST_STATUS_ICON}
+            color={colors('error.dark')}
+          />
         )}
 
         <span style={typography.body1}>System&nbsp;{system.id}</span>
@@ -50,12 +54,15 @@ export default function SystemListItem({
         className="flex flex-row items-center gap-x-2 py-1 px-3 rounded hover:bg-grey-300/60"
         onClick={() => onSystemSelect(system.id)}
       >
-        <BsChevronDown size={12} color={colors('grey.500')} />
+        <BsChevronDown size={DASHBOARD.LIST_CHEVRON_ICON} color={colors('grey.500')} />
 
         {system.status === 'normal' ? (
-          <BsFillCheckCircleFill color={colors('primary.main')} />
+          <BsFillCheckCircleFill size={DASHBOARD.LIST_STATUS_ICON} color={colors('primary.main')} />
         ) : (
-          <BsFillExclamationCircleFill color={colors('error.dark')} />
+          <BsFillExclamationCircleFill
+            size={DASHBOARD.LIST_STATUS_ICON}
+            color={colors('error.dark')}
+          />
         )}
 
         <span style={typography.body1}>System&nbsp;{system.id}</span>
