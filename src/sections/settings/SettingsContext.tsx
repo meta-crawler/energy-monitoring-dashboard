@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useContext, useMemo, useCallback, useState } from 'react';
+import React, { createContext, useContext, useMemo, useCallback, useState } from 'react';
 import { SettingsContextProps } from 'src/sections/settings/types';
 import { defaultSettings } from 'src/sections/settings/config-setting';
 
