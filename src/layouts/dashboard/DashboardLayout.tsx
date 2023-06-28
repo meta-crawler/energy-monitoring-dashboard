@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { DASHBOARD, NAV } from 'src/config-global';
-import { useSettingsContext } from 'src/components/settings';
+import { useSettingsContext } from 'src/sections/settings';
 
 import NavVertical from 'src/layouts/dashboard/nav/NavVertical';
 

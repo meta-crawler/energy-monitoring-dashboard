@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { DASHBOARD } from 'src/config-global';
 import { useDispatch } from 'src/redux/store';
-import { setActiveSystem, setActiveString } from 'src/redux/slices/system';
-import SystemList from 'src/components/dashboard-section/system-list';
-import StringInfoSection from 'src/components/dashboard-section/string-info';
+import { setActiveSystem } from 'src/redux/slices/system';
+import { setActiveString } from 'src/redux/slices/string';
+import SystemListSection from 'src/sections/dashboard-section/system-list';
+import SystemInfoSection from 'src/sections/dashboard-section/system-info';
+import StringInfoSection from 'src/sections/dashboard-section/string-info/StringInfoSection';
 
 export default function DashboardPage() {
   const dispatch = useDispatch();
@@ -19,8 +21,9 @@ export default function DashboardPage() {
       style={{ height: `calc(100vh - ${DASHBOARD.PADDING * 2}px)` }}
     >
       <div style={{ width: `${DASHBOARD.W_LIST}px` }}>
-        <SystemList />
+        <SystemListSection />
       </div>
+      <SystemInfoSection />
       <StringInfoSection />
     </div>
   );

@@ -5,7 +5,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { store, persistor } from 'src/redux/store';
 import Router from 'src/routes';
-import { SettingsProvider } from 'src/components/settings';
+import { SettingsProvider } from 'src/sections/settings';
 
 function App() {
   return (

@@ -1,12 +1,12 @@
 import React from 'react';
 import useResponsive from 'src/hooks/useResponsive';
-import { useSettingsContext } from 'src/components/settings';
+import { useSettingsContext } from 'src/sections/settings';
 import colors from 'src/theme/colors';
 import navConfig from './config-navigation';
 import { NAV } from 'src/config-global';
 import NavToggleButton from 'src/layouts/dashboard/nav/NavToggleButton';
-import NavSection from 'src/components/nav-section/NavSection';
-import { NavItemProps } from 'src/components/nav-section/types';
+import NavSection from 'src/sections/nav-section/NavSection';
+import { NavItemProps } from 'src/sections/nav-section/types';
 import Logo from 'src/components/logo';
 
 export default function NavVertical() {

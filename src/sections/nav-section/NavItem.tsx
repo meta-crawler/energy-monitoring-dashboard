@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import useActiveLink from 'src/hooks/useActiveLink';
-import { useSettingsContext } from 'src/components/settings';
+import { useSettingsContext } from 'src/sections/settings';
 import { ICON } from 'src/config-global';
 import colors from 'src/theme/colors';
 import typography from 'src/theme/typography';

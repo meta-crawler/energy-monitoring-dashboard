@@ -12,7 +12,6 @@ const initialState: ISystemState = {
   isLoading: false,
   error: null,
   activeSystem: null,
-  activeString: null,
   systemFields: null,
   systemList: null,
   systems: null,
@@ -34,10 +33,6 @@ const slice = createSlice({
 
     setActiveSystemSuccess(state, action) {
       state.activeSystem = action.payload;
-    },
-
-    setActiveStringSuccess(state, action) {
-      state.activeString = action.payload;
     },
 
     getSystemFieldsSuccess(state, action) {
@@ -69,7 +64,6 @@ const {
   startLoading,
   hasError,
   setActiveSystemSuccess,
-  setActiveStringSuccess,
   getSystemFieldsSuccess,
   getSystemListSuccess,
   getSelectedSystemSuccess,
@@ -126,8 +120,4 @@ export function getSystems() {
 
 export function setActiveSystem(systemId: string) {
   return async (dispatch: Dispatch) => dispatch(setActiveSystemSuccess(systemId));
-}
-
-export function setActiveString(stringId: string) {
-  return async (dispatch: Dispatch) => dispatch(setActiveStringSuccess(stringId));
 }

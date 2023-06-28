@@ -2,7 +2,6 @@ export type ISystemState = {
   isLoading: boolean;
   error: Error | string | null;
   activeSystem: string | null;
-  activeString: string | null;
   systemFields: ISystemFields | null;
   systemList: ISystemListItem[] | null;
   selectedSystem: ISystemInfo | null;

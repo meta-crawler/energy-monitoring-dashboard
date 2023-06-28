@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import NavItem from 'src/components/nav-section/NavItem';
-import { NavItemProps } from 'src/components/nav-section/types';
+import NavItem from 'src/sections/nav-section/NavItem';
+import { NavItemProps } from 'src/sections/nav-section/types';
 
 function NavSection({ data }: { data: NavItemProps[] }) {
   return (

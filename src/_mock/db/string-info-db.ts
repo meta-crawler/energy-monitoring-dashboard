@@ -21,9 +21,9 @@ export default {
         current: 7.49,
       },
       {
-        soc: 100.0,
-        dod: 0.0,
-        soh: 99.2,
+        soc: 89.8,
+        dod: 20.4,
+        soh: 59.2,
       },
     ],
     3: [
@@ -34,9 +34,9 @@ export default {
         current: 9.38,
       },
       {
-        soc: 100.0,
-        dod: 0.0,
-        soh: 99.2,
+        soc: 90.8,
+        dod: 10.4,
+        soh: 34.2,
       },
     ],
   },
@@ -49,9 +49,9 @@ export default {
         current: 18.83,
       },
       {
-        soc: 100.0,
-        dod: 0.0,
-        soh: 99.2,
+        soc: 96.4,
+        dod: 0.4,
+        soh: 34.9,
       },
     ],
     2: [
@@ -75,9 +75,9 @@ export default {
         current: 9.38,
       },
       {
-        soc: 100.0,
-        dod: 0.0,
-        soh: 99.2,
+        soc: 90.8,
+        dod: 10.4,
+        soh: 34.2,
       },
     ],
   },
@@ -90,9 +90,9 @@ export default {
         current: 18.83,
       },
       {
-        soc: 100.0,
-        dod: 0.0,
-        soh: 99.2,
+        soc: 90.8,
+        dod: 10.4,
+        soh: 34.2,
       },
     ],
     2: [
@@ -116,10 +116,24 @@ export default {
         current: 9.38,
       },
       {
-        soc: 100.0,
-        dod: 0.0,
-        soh: 99.2,
+        soc: 96.4,
+        dod: 0.4,
+        soh: 34.9,
       },
     ],
   },
 };
+
+export const stringFields = [
+  {
+    maxT: 'Max T(℃)',
+    minT: 'Min T(℃)',
+    voltage: 'Voltage(V)',
+    current: 'Current(A)',
+  },
+  {
+    soc: 'SoC(%)',
+    dod: 'DoD(%)',
+    soh: 'SoH(%)',
+  },
+];

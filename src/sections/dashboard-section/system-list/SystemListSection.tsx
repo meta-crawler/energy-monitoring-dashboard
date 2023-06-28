@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'src/redux/store';
-import { getSystemList, setActiveSystem, setActiveString } from 'src/redux/slices/system';
-import LoadingScreen from 'src/components/loading-screen';
+import { getSystemList, setActiveSystem } from 'src/redux/slices/system';
+import { setActiveString } from 'src/redux/slices/string';
+import LoadingScreen from 'src/sections/loading-screen';
 import SystemListItem from './SystemListItem';
 import { CARD, DASHBOARD } from 'src/config-global';
 import colors from 'src/theme/colors';
 import { shadows as customShadow } from 'src/theme/shadows';
 
-export default function SystemList() {
+export default function SystemListSection() {
   const dispatch = useDispatch();
-  const { isLoading, activeSystem, activeString, systemList } = useSelector(
-    (store) => store.system,
-  );
+  const { isLoading, activeSystem, systemList } = useSelector((store) => store.system);
+  const { activeString } = useSelector((store) => store.string);
   const shadows = customShadow();
 
   useEffect(() => {
