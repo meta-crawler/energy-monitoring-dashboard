@@ -19,7 +19,10 @@ export default function SystemListSection() {
   }, [dispatch]);
 
   const handleSelectedSystem = (systemId: string) => {
+    const currentSystem = systemList!.find((system) => system.id === systemId);
+    const initialStringId = currentSystem!.strings[0].id;
     dispatch(setActiveSystem(systemId));
+    dispatch(setActiveString(initialStringId));
   };
 
   const handleSelectedString = (stringId: string) => {
