@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import useActiveLink from 'src/hooks/useActiveLink';
-import { useSettingsContext } from 'src/components/settings';
-import { useColor } from 'src/hooks/useColor';
+import { useSettingsContext } from 'src/sections/settings';
 import { ICON } from 'src/config-global';
+import colors from 'src/theme/colors';
 import typography from 'src/theme/typography';
 import NavIcon from './NavIcon';
 import { NavItemProps } from './types';
@@ -11,7 +11,6 @@ import { NavItemProps } from './types';
 export default function NavItem({ title, path, icon }: NavItemProps) {
   const { active } = useActiveLink(path);
   const { themeLayout } = useSettingsContext();
-  const colors = useColor;
   return (
     <RouterLink to={path}>
       <div

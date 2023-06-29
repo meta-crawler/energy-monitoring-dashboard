@@ -2,6 +2,7 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 import useAssets from 'src/hooks/useAssets';
+import typography from 'src/theme/typography';
 
 export interface LogoProps {
   disabledLink?: boolean;
@@ -18,8 +19,14 @@ const Logo = ({ disabledLink, size }: LogoProps) => {
     />
   );
 
-  if (disabledLink) return logo;
-  return <RouterLink to="/">{logo}</RouterLink>;
+  const textLogo = (
+    <span className="text-grey-300" style={typography.h3}>
+      CAEC BMS
+    </span>
+  );
+
+  if (disabledLink) return textLogo;
+  return <RouterLink to="/">{textLogo}</RouterLink>;
 };
 
 export default Logo;

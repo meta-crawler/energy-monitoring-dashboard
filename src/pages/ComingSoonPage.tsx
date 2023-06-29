@@ -1,13 +1,12 @@
 import React from 'react';
 import useCountdown from 'src/hooks/useCountdown';
 import typography from 'src/theme/typography';
-import LoadingScreen from 'src/components/loading-screen';
 
 export default function ComingSoonPage() {
   const { days, hours, minutes, seconds } = useCountdown(new Date('07/17/2023 11:30'));
 
   return (
-    <div className="flex flex-col w-full h-screen items-center justify-center gap-y-40">
+    <div className="flex flex-col w-full h-full items-center justify-center gap-y-40">
       <div className="flex flex-col items-center gap-y-3">
         <p style={typography.h1}>Coming Soon!</p>
         <p className="text-text-secondary" style={typography.body1}>

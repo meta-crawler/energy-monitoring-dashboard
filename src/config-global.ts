@@ -1,5 +1,7 @@
 import { PATH_DASHBOARD } from './routes/paths';
 
+export const HOST_API_KEY = 'http://localhost:3006';
+
 export const PATH_AFTER_LOGIN = PATH_DASHBOARD.dashboard;
 
 export const HEADER = {
@@ -24,4 +26,17 @@ export const ICON = {
   NAV_ITEM: 24,
   NAV_ITEM_HORIZONTAL: 22,
   NAV_ITEM_MINI: 22,
+};
+
+export const CARD = {
+  BORDER_RADIUS: 16,
+  BOX_SHADOW: 6,
+  PADDING: 18,
+};
+
+export const DASHBOARD = {
+  PADDING: 12,
+  W_LIST: 220,
+  LIST_CHEVRON_ICON: 12,
+  LIST_STATUS_ICON: 15,
 };

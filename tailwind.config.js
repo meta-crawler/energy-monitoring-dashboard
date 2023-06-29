@@ -6,6 +6,14 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      backgroundImage: (theme) => ({
+        'gradient-normal': `radial-gradient(79.44% 190.83% at 47.12% 105.83%, ${theme(
+          'colors.primary.light',
+        )} 0%, ${theme('colors.primary.main')} 100%)`,
+        'gradient-warning': `radial-gradient(79.44% 190.83% at 47.12% 105.83%, ${theme(
+          'colors.error.light',
+        )} 0%, ${theme('colors.error.main')} 100%)`,
+      }),
       colors: {
         transparent: 'transparent',
         current: 'currentColor',
@@ -76,7 +84,7 @@ module.exports = {
           disabled: '#919EAB',
         },
         background: {
-          paper: '#ffffff',
+          paper: '#F4F6F8',
           default: '#ffffff',
           neutral: '#F4F6F8',
         },

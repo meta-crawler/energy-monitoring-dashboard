@@ -1,10 +1,9 @@
 import React from 'react';
-import { useSettingsContext } from 'src/components/settings';
-import { useColor } from 'src/hooks/useColor';
+import colors from 'src/theme/colors';
+import { useSettingsContext } from 'src/sections/settings';
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai';
 
 export default function NavToggleButton() {
-  const colors = useColor;
   const { themeLayout, onToggleLayout } = useSettingsContext();
 
   return (
