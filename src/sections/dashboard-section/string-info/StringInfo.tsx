@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'src/redux/store';
 import { getSelectedString, getStringFields } from 'src/redux/slices/string';
 import { CARD } from 'src/config-global';
-import { shadows as customShadow } from 'src/theme/shadows';
+import { shadows as customShadows } from 'src/theme/shadows';
 import colors from 'src/theme/colors';
 import typography from 'src/theme/typography';
 import ProgressBar from 'src/components/progress-bar';
@@ -13,7 +13,7 @@ export default function StringInfo() {
   const { isLoading, activeString, stringFields, selectedString } = useSelector(
     (store) => store.string,
   );
-  const shadows = customShadow();
+  const shadows = customShadows();
 
   useEffect(() => {
     dispatch(getStringFields());

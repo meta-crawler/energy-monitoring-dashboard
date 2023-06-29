@@ -5,7 +5,7 @@ import { setActiveSystem } from 'src/redux/slices/system';
 import { setActiveString } from 'src/redux/slices/string';
 import SystemListSection from 'src/sections/dashboard-section/system-list';
 import SystemInfoSection from 'src/sections/dashboard-section/system-info';
-import StringInfoSection from 'src/sections/dashboard-section/string-info';
+import StringInfoSection, { StringAlertSection } from 'src/sections/dashboard-section/string-info';
 import ModuleInfoSection from 'src/sections/dashboard-section/module-info';
 
 export default function DashboardPage() {
@@ -26,8 +26,11 @@ export default function DashboardPage() {
       </div>
       <SystemInfoSection />
       <div className="flex flex-col gap-3 overflow-y-auto">
-        <StringInfoSection />
         <ModuleInfoSection />
+        <div className="flex flex-row gap-3">
+          <StringInfoSection />
+          <StringAlertSection />
+        </div>
       </div>
     </div>
   );
