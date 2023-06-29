@@ -1,7 +1,7 @@
 @layer base {
   html {
     scrollbar-width: thin;
-    scrollbar-color: rgb(71, 85, 105) rgb(30, 41, 59);
+    scrollbar-color: #F4F6F8 #919EAB;
   }
 
   *::-webkit-scrollbar {
@@ -9,20 +9,16 @@
   }
 
   *::-webkit-scrollbar-track {
-    background-color: #292c30;
-  }
-
-  #content::-webkit-scrollbar-track {
-    background-color: #1d2126 #{!important};
+    background-color: #F4F6F8;
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: #454545;
+    background-color: #C4CDD5;
     border-radius: 8px;
   }
 
   *::-webkit-scrollbar-thumb:hover {
-    background-color: #a8a8a8;
+    background-color: #919EAB;
   }
 }
 

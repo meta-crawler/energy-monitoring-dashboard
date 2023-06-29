@@ -25,7 +25,10 @@ export default function DashboardPage() {
         <SystemListSection />
       </div>
       <SystemInfoSection />
-      <ModuleInfoSection />
+      <div className="flex flex-col gap-3 overflow-y-auto">
+        <StringInfoSection />
+        <ModuleInfoSection />
+      </div>
     </div>
   );
 }

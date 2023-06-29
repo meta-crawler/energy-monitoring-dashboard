@@ -20,7 +20,7 @@ export default function ModuleWithCells({
       <p
         role="button"
         className="text-text-primary py-1"
-        style={typography.overline}
+        style={typography.h6}
         onClick={() => onSelectModule(id)}
       >
         Module ID:&nbsp;{id}
@@ -30,8 +30,8 @@ export default function ModuleWithCells({
           <div
             key={idx}
             role="button"
-            className={`w-16 h-16 flex items-center justify-center p-1 ${
-              cells[idx].status === 'normal' ? 'bg-primary-main' : 'bg-error-main'
+            className={`w-16 h-16 flex items-center justify-center p-1 rounded-lg ${
+              cells[idx].status === 'normal' ? 'bg-gradient-normal' : 'bg-gradient-warning'
             }`}
             onClick={() => onSelectCell(cells[idx].id)}
           >
@@ -46,8 +46,8 @@ export default function ModuleWithCells({
           <div
             key={idx}
             role="button"
-            className={`w-16 h-16 flex items-center justify-center p-1 ${
-              cells[idx].status === 'normal' ? 'bg-primary-main' : 'bg-error-main'
+            className={`w-16 h-16 flex items-center justify-center p-1 rounded-lg ${
+              cells[idx].status === 'normal' ? 'bg-gradient-normal' : 'bg-gradient-warning'
             }`}
             onClick={() => onSelectCell(cells[idx].id)}
           >

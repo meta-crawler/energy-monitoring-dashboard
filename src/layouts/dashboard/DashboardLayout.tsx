@@ -11,7 +11,7 @@ export default function DashboardLayout() {
     <div className="flex flex-row h-screen">
       <NavVertical />
       <div
-        className="h-screen overflow-y-scroll bg-background-paper"
+        className="h-screen overflow-y-auto bg-background-paper"
         style={{
           width:
             themeLayout === 'mini'
