@@ -1,3 +1,5 @@
+import { ICellInfo } from './cell';
+
 export type IModuleState = {
   isLoading: boolean;
   error: Error | string | null;
@@ -6,7 +8,6 @@ export type IModuleState = {
 };
 
 export type IModuleInfo = {
-  voltage: number;
-  t_01: number;
-  t_02: number;
+  id: string;
+  cells: ICellInfo[];
 };

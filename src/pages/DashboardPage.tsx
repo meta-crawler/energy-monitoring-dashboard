@@ -5,7 +5,8 @@ import { setActiveSystem } from 'src/redux/slices/system';
 import { setActiveString } from 'src/redux/slices/string';
 import SystemListSection from 'src/sections/dashboard-section/system-list';
 import SystemInfoSection from 'src/sections/dashboard-section/system-info';
-import StringInfoSection from 'src/sections/dashboard-section/string-info/StringInfoSection';
+import StringInfoSection from 'src/sections/dashboard-section/string-info';
+import ModuleInfoSection from 'src/sections/dashboard-section/module-info';
 
 export default function DashboardPage() {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export default function DashboardPage() {
         <SystemListSection />
       </div>
       <SystemInfoSection />
-      <StringInfoSection />
+      <ModuleInfoSection />
     </div>
   );
 }
