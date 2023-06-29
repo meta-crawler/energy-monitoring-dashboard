@@ -51,7 +51,7 @@ export default function SystemInfo() {
                         key={item}
                         scope="col"
                         className="px-4 py-1.5 capitalize font-normal text-center text-text-secondary"
-                        style={typography.body2}
+                        style={typography.overline}
                       >
                         {item}
                       </th>
