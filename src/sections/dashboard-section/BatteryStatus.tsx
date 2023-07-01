@@ -16,8 +16,15 @@ export default function BatteryStatus({ soc = 0, chargingStatus = false }: IBatt
   return (
     <div className="flex flex-row items-center">
       <div className="flex flex-row -ml-10">
-        <BatteryGauge value={charged} size={200} orientation="vertical" charging={chargingStatus} />
-        <div className="flex flex-col -ml-6 pt-4 pb-2 justify-between">
+        <div className="flex-1">
+          <BatteryGauge
+            value={charged}
+            size={200}
+            orientation="vertical"
+            charging={chargingStatus}
+          />
+        </div>
+        <div className="flex flex-col justify-between -ml-6 pt-4 pb-2 ">
           <div>
             <p className="text-text-secondary" style={isMobile ? typography.h5 : typography.h3}>
               SoC
@@ -34,7 +41,7 @@ export default function BatteryStatus({ soc = 0, chargingStatus = false }: IBatt
               className={`px-3 py-1 mt-2 uppercase rounded-full text-white text-center ${
                 chargingStatus ? 'bg-success-main' : 'bg-error-main'
               }`}
-              style={typography.h6}
+              style={isMobile ? typography.body2 : typography.h6}
             >
               {chargingStatus ? ChargingStatus.CHARGING : ChargingStatus.DISCHARGING}
             </p>

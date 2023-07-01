@@ -4,7 +4,7 @@ import { StatusCard, StatusTable, BatteryStatus } from 'src/sections/dashboard-s
 
 export default function DashboardPage() {
   return (
-    <div className="w-full h-full flex flex-col gap-3">
+    <div className="w-full h-full flex flex-col p-3 gap-6">
       <div className="h-22 flex flex-col lg:flex-row gap-3">
         <div className="w-full grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-3">
           <StatusCard status={OperationStatus.NORMAL} title={`System ${1} Status`} />
