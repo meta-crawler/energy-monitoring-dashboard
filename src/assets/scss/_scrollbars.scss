@@ -1,7 +1,7 @@
 @layer base {
   html {
     scrollbar-width: thin;
-    scrollbar-color: #F4F6F8 #919EAB;
+    scrollbar-color: #f4f6f8 #919eab;
   }
 
   *::-webkit-scrollbar {
@@ -9,16 +9,16 @@
   }
 
   *::-webkit-scrollbar-track {
-    background-color: #F4F6F8;
+    background-color: #f4f6f8;
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: #C4CDD5;
+    background-color: #c4cdd5;
     border-radius: 8px;
   }
 
   *::-webkit-scrollbar-thumb:hover {
-    background-color: #919EAB;
+    background-color: #919eab;
   }
 }
 
