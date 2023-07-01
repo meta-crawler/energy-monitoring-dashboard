@@ -15,7 +15,7 @@ export default function DashboardPage() {
         <StatusTable />
       </div>
       <div className="flex flex-row">
-        <BatteryStatus soc={30} chargingStatus={true} />
+        <BatteryStatus soc={30} chargingStatus={false} />
       </div>
     </div>
   );
