@@ -8,8 +8,30 @@ const navConfig = [
   },
   {
     title: 'devices',
-    path: PATH_DASHBOARD.devices,
+    path: PATH_DASHBOARD.devices.root,
     icon: 'devices',
+    children: [
+      {
+        title: 'cells',
+        path: PATH_DASHBOARD.devices.cells,
+        icon: 'cells',
+      },
+      {
+        title: 'modules',
+        path: PATH_DASHBOARD.devices.modules,
+        icon: 'modules',
+      },
+      {
+        title: 'strings',
+        path: PATH_DASHBOARD.devices.strings,
+        icon: 'strings',
+      },
+      {
+        title: 'systems',
+        path: PATH_DASHBOARD.devices.systems,
+        icon: 'systems',
+      },
+    ],
   },
   {
     title: 'history',

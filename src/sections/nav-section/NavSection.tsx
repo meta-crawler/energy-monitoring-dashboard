@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
-import NavItem from 'src/sections/nav-section/NavItem';
-import { NavItemProps } from 'src/sections/nav-section/types';
+import NavList from 'src/sections/nav-section/NavList';
+import { INavItem } from 'src/sections/nav-section/types';
 
-function NavSection({ data }: { data: NavItemProps[] }) {
+function NavSection({ data }: { data: INavItem[] }) {
   return (
     <div className="flex flex-col">
-      {data.map((item: NavItemProps) => (
-        <NavItem key={Math.random()} title={item.title} path={item.path} icon={item.icon} />
+      {data.map((item: INavItem) => (
+        <NavList key={item.title + item.path} data={item} depth={1} hasChildren={!!item.children} />
       ))}
     </div>
   );

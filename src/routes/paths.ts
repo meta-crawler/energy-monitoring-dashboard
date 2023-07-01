@@ -17,7 +17,13 @@ export const PATH_AUTH = {
 export const PATH_DASHBOARD = {
   root: ROOTS_ROOT,
   dashboard: path(ROOTS_ROOT, '/dashboard'),
-  devices: path(ROOTS_ROOT, '/devices'),
+  devices: {
+    root: path(ROOTS_ROOT, '/devices'),
+    cells: path(ROOTS_ROOT, '/devices/cells'),
+    modules: path(ROOTS_ROOT, '/devices/modules'),
+    strings: path(ROOTS_ROOT, '/devices/strings'),
+    systems: path(ROOTS_ROOT, '/devices/systems'),
+  },
   history: path(ROOTS_ROOT, '/history'),
   charge: path(ROOTS_ROOT, '/charge'),
   alert: path(ROOTS_ROOT, '/alert'),

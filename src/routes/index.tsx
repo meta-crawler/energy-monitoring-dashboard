@@ -6,11 +6,14 @@ import DashboardLayout from 'src/layouts/dashboard';
 
 import {
   DashboardPage,
-  DevicesPage,
   HistoryPage,
   ChargingPage,
   AlertPage,
   SettingPage,
+  CellPage,
+  ModulePage,
+  StringPage,
+  SystemPage,
 } from './elements';
 
 export default function Router() {
@@ -21,7 +24,15 @@ export default function Router() {
       children: [
         { element: <Navigate to={PATH_AFTER_LOGIN} replace />, index: true },
         { path: 'dashboard', element: <DashboardPage /> },
-        { path: 'devices', element: <DevicesPage /> },
+        {
+          path: 'devices',
+          children: [
+            { path: 'cells', element: <CellPage /> },
+            { path: 'modules', element: <ModulePage /> },
+            { path: 'strings', element: <StringPage /> },
+            { path: 'systems', element: <SystemPage /> },
+          ],
+        },
         { path: 'history', element: <HistoryPage /> },
         { path: 'charge', element: <ChargingPage /> },
         { path: 'alert', element: <AlertPage /> },

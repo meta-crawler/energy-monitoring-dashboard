@@ -10,7 +10,10 @@ const Loadable = (Component: ElementType) => (props: any) =>
   );
 
 export const DashboardPage = Loadable(lazy(() => import('src/pages/DashboardPage')));
-export const DevicesPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
+export const CellPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
+export const ModulePage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
+export const StringPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
+export const SystemPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
 export const HistoryPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
 export const ChargingPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
 export const AlertPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));

@@ -6,7 +6,6 @@ import navConfig from './config-navigation';
 import { NAV } from 'src/config-global';
 import NavToggleButton from 'src/layouts/dashboard/nav/NavToggleButton';
 import NavSection from 'src/sections/nav-section/NavSection';
-import { NavItemProps } from 'src/sections/nav-section/types';
 import Logo from 'src/components/logo';
 
 export default function NavVertical() {
@@ -35,7 +34,7 @@ export default function NavVertical() {
           <NavToggleButton />
         </div>
 
-        <NavSection data={navConfig as NavItemProps[]} />
+        <NavSection data={navConfig} />
       </div>
     </div>
   );

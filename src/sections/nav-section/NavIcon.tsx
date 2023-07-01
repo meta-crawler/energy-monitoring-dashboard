@@ -5,8 +5,8 @@ import { AiFillSetting } from 'react-icons/ai';
 import { FaChartSimple } from 'react-icons/fa6';
 import { TbDeviceImac } from 'react-icons/tb';
 import { IoBatteryCharging } from 'react-icons/io5';
-import { HiBellAlert } from 'react-icons/hi2';
 import { TbAlertTriangleFilled } from 'react-icons/tb';
+import { CellSVG, ModuleSVG, StringSVG, SystemSVG } from 'src/assets/icons';
 
 export default function NavIcon({
   icon,
@@ -30,6 +30,14 @@ export default function NavIcon({
       return <TbAlertTriangleFilled size={size} color={color} />;
     case 'setting':
       return <AiFillSetting size={size} color={color} />;
+    case 'cells':
+      return <CellSVG size={size} color={color} />;
+    case 'modules':
+      return <ModuleSVG size={size} color={color} />;
+    case 'strings':
+      return <StringSVG size={size} color={color} />;
+    case 'systems':
+      return <SystemSVG size={size} color={color} />;
     default:
       return <></>;
   }
