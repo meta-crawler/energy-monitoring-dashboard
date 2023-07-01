@@ -23,7 +23,10 @@ export default function NavList({ data, depth, hasChildren }: INavListProps) {
         />
       )}
 
-      {hasChildren && open && <NavSubList data={data.children!} depth={depth} />}
+      {hasChildren && themeLayout !== 'mini' && open && (
+        <NavSubList data={data.children!} depth={depth} />
+      )}
+      {hasChildren && themeLayout === 'mini' && <NavSubList data={data.children!} depth={depth} />}
     </div>
   );
 }

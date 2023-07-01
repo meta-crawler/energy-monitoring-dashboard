@@ -28,9 +28,9 @@ export default function NavItem({
   return (
     <RouterLink to={hasChildren ? pathname : path} className="w-full">
       <div
-        className={`w-full flex flex-row items-center justify-between h-14 hover:bg-grey-900/30 ${
+        className={`w-full flex flex-row items-center h-14 hover:bg-grey-900/30 ${
           active && !hasChildren ? 'bg-grey-900/60' : subItem ? 'bg-grey-900/10' : 'bg-grey-800'
-        } ${themeLayout === 'mini' ? 'px-0 justify-center' : 'px-6'}`}
+        } ${themeLayout === 'mini' ? 'px-0 justify-center' : 'px-6 justify-between'}`}
         onClick={onToggle}
       >
         <div className="flex flex-row items-center gap-x-6">
