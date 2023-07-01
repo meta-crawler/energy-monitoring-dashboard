@@ -14,7 +14,7 @@ export default function StatusCard({ title, status }: IStatusCardProps) {
   const statusColor = useMemo(() => {
     switch (status) {
       case OperationStatus.NORMAL:
-        return 'bg-primary-main';
+        return 'bg-success-main';
       case OperationStatus.WARNING:
         return 'bg-warning-main';
       case OperationStatus.DANGER:

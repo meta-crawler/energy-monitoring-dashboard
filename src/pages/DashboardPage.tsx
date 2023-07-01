@@ -1,6 +1,6 @@
 import React from 'react';
-import { StatusCard, StatusTable } from 'src/sections/dashboard-section';
 import { OperationStatus } from 'src/lib/constants/status';
+import { StatusCard, StatusTable, BatteryStatus } from 'src/sections/dashboard-section';
 
 export default function DashboardPage() {
   return (
@@ -13,6 +13,9 @@ export default function DashboardPage() {
           <StatusCard status={OperationStatus.NORMAL} title={`System ${1} Status`} />
         </div>
         <StatusTable />
+      </div>
+      <div className="flex flex-row">
+        <BatteryStatus soc={30} chargingStatus={true} />
       </div>
     </div>
   );

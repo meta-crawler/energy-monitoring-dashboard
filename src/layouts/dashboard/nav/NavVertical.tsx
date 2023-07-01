@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useResponsive from 'src/hooks/useResponsive';
 import { useSettingsContext } from 'src/sections/settings';
 import colors from 'src/theme/colors';
@@ -9,8 +9,15 @@ import NavSection from 'src/sections/nav-section/NavSection';
 import Logo from 'src/components/logo';
 
 export default function NavVertical() {
-  const { themeLayout } = useSettingsContext();
+  const { themeLayout, setLayout } = useSettingsContext();
   const isDesktop = useResponsive('up', 'lg');
+  const isMobile = useResponsive('down', 'md');
+
+  useEffect(() => {
+    if (isMobile && themeLayout !== 'mini') setLayout('mini');
+    if (isDesktop && themeLayout === 'mini') setLayout('vertical');
+  }, [isMobile, isDesktop, themeLayout, setLayout]);
+
   return (
     <div
       style={{

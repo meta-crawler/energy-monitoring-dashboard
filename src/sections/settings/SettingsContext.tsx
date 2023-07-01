@@ -1,9 +1,10 @@
 import React, { createContext, useContext, useMemo, useCallback, useState } from 'react';
-import { SettingsContextProps } from 'src/sections/settings/types';
+import { SettingsContextProps, ThemeLayoutValue } from 'src/sections/settings/types';
 import { defaultSettings } from 'src/sections/settings/config-setting';
 
 const initialState: SettingsContextProps = {
   ...defaultSettings,
+  setLayout: (layout: ThemeLayoutValue) => {},
   onToggleMode: () => {},
   onToggleLayout: () => {},
 };
@@ -35,13 +36,21 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
     setSettings({ ...settings, themeLayout });
   }, [setSettings, settings]);
 
+  const setLayout = useCallback(
+    (layout: ThemeLayoutValue) => {
+      setSettings({ ...settings, themeLayout: layout });
+    },
+    [setSettings, settings],
+  );
+
   const memoizedValue = useMemo(
     () => ({
       ...settings,
+      setLayout,
       onToggleMode,
       onToggleLayout,
     }),
-    [settings, onToggleMode, onToggleLayout],
+    [settings, setLayout, onToggleMode, onToggleLayout],
   );
 
   return <SettingsContext.Provider value={memoizedValue}>{children}</SettingsContext.Provider>;
