@@ -1878,6 +1878,69 @@
     "@svgr/plugin-svgo" "^5.5.0"
     loader-utils "^2.0.0"
 
+"@syncfusion/ej2-base@~22.1.34":
+  version "22.1.34"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-base/-/ej2-base-22.1.34.tgz#192150a74d0709ed01140bf212beb4ec1ed1786d"
+  integrity sha512-Cxk488BXsMHDYp4YmQ4uSBS1TSO9o6iiHs7qXO69BfNiSaRYhGfTbrBvtXgLFoE0KO4e/39sQ9Mle/zo+a2knw==
+  dependencies:
+    "@syncfusion/ej2-icons" "~22.1.34"
+
+"@syncfusion/ej2-circulargauge@22.1.34":
+  version "22.1.34"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-circulargauge/-/ej2-circulargauge-22.1.34.tgz#157e8c7d094f39fc0a7c06846725324c701acb04"
+  integrity sha512-wM1tf18CDh6tFMukA9/A60EqbLLOEqqrqCR/Dpj/xPVhS2Z8ZoCULaKrO4XAek0rJE/GALlIaYU+hNhc85aPnw==
+  dependencies:
+    "@syncfusion/ej2-base" "~22.1.34"
+    "@syncfusion/ej2-pdf-export" "~22.1.34"
+    "@syncfusion/ej2-svg-base" "~22.1.34"
+
+"@syncfusion/ej2-compression@~22.1.34":
+  version "22.1.34"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-compression/-/ej2-compression-22.1.34.tgz#4c1a315a78bb119115025f8fbb93c9273b1c4f7e"
+  integrity sha512-IAjGrq7e3pBL+9Trp/0R4cqMxOYdyyI6p2wER25qjpumg/9R4waCFJAUCwMT/A1J8Vh3ggVFRt+4wYjT1i1ptw==
+  dependencies:
+    "@syncfusion/ej2-file-utils" "~22.1.34"
+
+"@syncfusion/ej2-file-utils@~22.1.34":
+  version "22.1.34"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-file-utils/-/ej2-file-utils-22.1.34.tgz#b6fe8d8118795600115ce134d1476d75f4de7ca4"
+  integrity sha512-5pzzcQWaWJMCfOJ/XWx4ADvRWSBA1Hx6bxINGgeQlrkP/lQ/kgw3xn3xrYfaO6ujT2nqX6xVHqNpbTxPE7IWOg==
+
+"@syncfusion/ej2-icons@~22.1.34":
+  version "22.1.34"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-icons/-/ej2-icons-22.1.34.tgz#69316e59c6b1286e18bdcab0050836463d2b7488"
+  integrity sha512-DErl0LGB7gndgdCUJ4DgGkccAAxga6BlqR0nxtYBKetNhQpICkzafiq0o8ZfDR5xV3bguIxHOTLZGYNB3PgVCw==
+
+"@syncfusion/ej2-pdf-export@~22.1.34":
+  version "22.1.34"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-pdf-export/-/ej2-pdf-export-22.1.34.tgz#d621964c05ee98de8ce09ecff329f438616e5681"
+  integrity sha512-5jcenuQh/JyrST1TTVUqben34bkKewkFAXcWcxclvtSNYp7gMntinW96BorGoT9FPRJQGQI9PB1FSo0FEFDnoQ==
+  dependencies:
+    "@syncfusion/ej2-compression" "~22.1.34"
+
+"@syncfusion/ej2-react-base@~22.1.34":
+  version "22.1.34"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-react-base/-/ej2-react-base-22.1.34.tgz#e4e8e4a558da999b38cc90a809f794e01cf5c2b5"
+  integrity sha512-wmb0knvD3YmV6Nim1eXGSDdXmd4KcQS/Fmvhqn8VOcvqRS45P2/AI1uQ7qyQWu5soO9M/enWLxJbOEbudsf7wA==
+  dependencies:
+    "@syncfusion/ej2-base" "~22.1.34"
+
+"@syncfusion/ej2-react-circulargauge@^22.1.34":
+  version "22.1.34"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-react-circulargauge/-/ej2-react-circulargauge-22.1.34.tgz#61a4b58acc1110253da5199a4a78c712baf98c0a"
+  integrity sha512-1xXRwTDu5Bu6UTdzQb+kQwVt25x2Xsa17sJFN0ShHdrAiIFXf6MmOgcEz94nnaR9VgehChCGbqOyLWaj2eFRRw==
+  dependencies:
+    "@syncfusion/ej2-base" "~22.1.34"
+    "@syncfusion/ej2-circulargauge" "22.1.34"
+    "@syncfusion/ej2-react-base" "~22.1.34"
+
+"@syncfusion/ej2-svg-base@~22.1.34":
+  version "22.1.34"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-svg-base/-/ej2-svg-base-22.1.34.tgz#6d24b176a7c07ad45cb323e7acb810e470f22bd3"
+  integrity sha512-zOC0U5jpGVBmhU1TfQgSPP9HRS8bnA8ZuVu3RQ3/8yFjpkRlxZGRq3Q417eQGpRNYaMgWyzNJADNvWRL/mqnGg==
+  dependencies:
+    "@syncfusion/ej2-base" "~22.1.34"
+
 "@testing-library/dom@^8.5.0":
   version "8.20.1"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.20.1.tgz#2e52a32e46fc88369eef7eef634ac2a192decd9f"
