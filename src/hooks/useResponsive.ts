@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 
 type ReturnType = boolean;
 type Query = 'up' | 'down' | 'between';
-type Value = 'sm' | 'md' | 'lg' | 'xl';
+type Value = 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
 const breakPoints = {
   sm: '640px',
   md: '768px',
   lg: '1024px',
   xl: '1280px',
+  xxl: '1366px',
 };
 export default function useResponsive(query: Query, start?: Value, end?: Value): ReturnType {
   const [isMatch, setIsMatch] = useState(false);

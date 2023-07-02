@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   CircularGaugeComponent,
   AxesDirective,
@@ -14,6 +14,7 @@ import {
 } from '@syncfusion/ej2-react-circulargauge';
 import colors from 'src/theme/colors';
 import { IGaugeOptions } from './constants';
+import useResponsive from 'src/hooks/useResponsive';
 
 type ICircularGaugeProps = {
   title: string;
@@ -28,9 +29,25 @@ function CircularGauge({ title, value, options }: ICircularGaugeProps) {
   const min = breakpoints[0].start;
   const max = breakpoints[breakpoints.length - 1].end;
 
+  const [size, setSize] = useState(320);
+  const isLarge = useResponsive('up', 'xxl');
+  const isDesktop = useResponsive('between', 'md', 'xxl');
+  const isMobile = useResponsive('down', 'md');
+
+  useEffect(() => {
+    if (isLarge) setSize(320);
+    if (isDesktop) setSize(400);
+    if (isMobile) setSize(300);
+  }, [setSize, isLarge, isDesktop, isMobile]);
+
   return (
     <div className="control-pane">
-      <CircularGaugeComponent id={`${title}`} width="400" height="400" background="transparent">
+      <CircularGaugeComponent
+        id={`${title}`}
+        width={`${size}`}
+        height={`${size}`}
+        background="transparent"
+      >
         <Inject services={[Annotations]} />
         <AxesDirective>
           <AxisDirective
