@@ -5,6 +5,7 @@ import {
   StatusTable,
   BatteryStatus,
   CircularGauge,
+  ThermometerGauge,
 } from 'src/sections/dashboard-section';
 import { VOLTAGE_OPTIONS, CURRENT_OPTIONS } from 'src/sections/dashboard-section/constants';
 
@@ -21,22 +22,25 @@ export default function DashboardPage() {
         <StatusTable />
       </div>
       <div className="w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 gap-6">
-        <div className="col-span-1 flex justify-center items-center">
+        <div className="col-span-1 flex justify-center">
           <BatteryStatus soc={30} chargingStatus={false} />
         </div>
-        <div className="col-span-1 flex justify-center items-center">
+        <div className="col-span-1 flex justify-center">
           <CircularGauge
             title="Voltage"
             value={230}
             options={{ unit: 'V', border: 9, breakpoints: VOLTAGE_OPTIONS }}
           />
         </div>
-        <div className="col-span-1 flex justify-center items-center">
+        <div className="col-span-1 flex justify-center">
           <CircularGauge
             title="Current"
             value={40}
             options={{ unit: 'A', border: 9, breakpoints: CURRENT_OPTIONS }}
           />
+        </div>
+        <div className="col-span-1 flex justify-center">
+          <ThermometerGauge value={30} />
         </div>
       </div>
     </div>
