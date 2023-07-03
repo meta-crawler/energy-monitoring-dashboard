@@ -6,6 +6,8 @@ import {
   BatteryStatus,
   CircularGauge,
   ThermometerGauge,
+  AlarmListTable,
+  AlertListTable,
 } from 'src/sections/dashboard-section';
 import { VOLTAGE_OPTIONS, CURRENT_OPTIONS } from 'src/sections/dashboard-section/constants';
 import { CARD } from 'src/config-global';
@@ -26,7 +28,7 @@ export default function DashboardPage() {
         <StatusTable />
       </div>
       <div
-        className="w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 gap-6"
+        className="w-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 gap-6 bg-white"
         style={{
           boxShadow: shadows[CARD.BOX_SHADOW],
           borderRadius: `${CARD.BORDER_RADIUS}px`,
@@ -53,6 +55,14 @@ export default function DashboardPage() {
         <div className="col-span-1 flex flex-row justify-around items-center">
           <ThermometerGauge title="Min T" string={3} module={20} value={27} />
           <ThermometerGauge title="Max T" string={1} module={2} value={48} />
+        </div>
+      </div>
+      <div className="w-full grid grid-cols-1 xl:grid-cols-4 xl:gap-6 pb-3">
+        <div className="col-span-1 md:col-span-3">
+          <AlarmListTable />
+        </div>
+        <div className="col-span-1">
+          <AlertListTable />
         </div>
       </div>
     </div>

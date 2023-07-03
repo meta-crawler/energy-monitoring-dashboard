@@ -8,7 +8,7 @@ export default function StatusTable() {
 
   return (
     <div
-      className="md:min-w-[300px] overflow-auto"
+      className="md:min-w-[300px] overflow-auto bg-white"
       style={{
         padding: `${CARD.PADDING}px`,
         boxShadow: shadows[CARD.BOX_SHADOW],

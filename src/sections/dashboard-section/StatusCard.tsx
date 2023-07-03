@@ -24,7 +24,7 @@ export default function StatusCard({ title, status }: IStatusCardProps) {
 
   return (
     <div
-      className="w-full flex flex-row items-center justify-between gap-x-2"
+      className="w-full flex flex-row items-center justify-between gap-x-2 bg-white"
       style={{
         padding: `${CARD.PADDING}px`,
         boxShadow: shadows[CARD.BOX_SHADOW],
