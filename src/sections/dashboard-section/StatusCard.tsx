@@ -35,7 +35,7 @@ export default function StatusCard({ title, status }: IStatusCardProps) {
         {title}
       </p>
       <div
-        className={`flex items-center justify-center rounded-full w-20 h-fit py-3 ${statusColor}`}
+        className={`flex items-center justify-center rounded-full w-20 h-fit py-2.5 ${statusColor}`}
       >
         <p className="uppercase text-center text-white font-black" style={typography.overline}>
           {status}

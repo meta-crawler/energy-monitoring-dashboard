@@ -39,8 +39,9 @@ export default function DashboardPage() {
             options={{ unit: 'A', border: 9, breakpoints: CURRENT_OPTIONS }}
           />
         </div>
-        <div className="col-span-1 flex justify-center">
-          <ThermometerGauge value={30} />
+        <div className="col-span-1 flex flex-row justify-around">
+          <ThermometerGauge value={32} />
+          <ThermometerGauge value={48} />
         </div>
       </div>
     </div>
