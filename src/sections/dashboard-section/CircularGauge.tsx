@@ -36,7 +36,7 @@ function CircularGauge({ title, value, options }: ICircularGaugeProps) {
 
   useEffect(() => {
     if (isLarge) setSize(320);
-    if (isDesktop) setSize(400);
+    if (isDesktop) setSize(360);
     if (isMobile) setSize(300);
   }, [setSize, isLarge, isDesktop, isMobile]);
 

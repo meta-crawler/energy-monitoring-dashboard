@@ -32,6 +32,7 @@ export const CARD = {
   BORDER_RADIUS: 16,
   BOX_SHADOW: 6,
   PADDING: 18,
+  PADDING_LARGE: 24,
 };
 
 export const DASHBOARD = {
