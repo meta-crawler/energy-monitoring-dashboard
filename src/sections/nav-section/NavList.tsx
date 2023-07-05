@@ -4,29 +4,21 @@ import { INavItem, INavListProps } from './types';
 import NavItem from 'src/sections/nav-section/NavItem';
 
 export default function NavList({ data, depth, hasChildren }: INavListProps) {
-  const { themeLayout } = useSettingsContext();
   const [open, setOpen] = useState(false);
 
   return (
     <div className="flex flex-col">
-      {themeLayout === 'mini' && hasChildren ? (
-        <></>
-      ) : (
-        <NavItem
-          title={data.title}
-          path={data.path}
-          icon={data.icon}
-          depth={depth}
-          hasChildren={hasChildren}
-          open={open}
-          onToggle={() => setOpen(!open)}
-        />
-      )}
+      <NavItem
+        title={data.title}
+        path={data.path}
+        icon={data.icon}
+        depth={depth}
+        hasChildren={hasChildren}
+        open={open}
+        onToggle={() => setOpen(!open)}
+      />
 
-      {hasChildren && themeLayout !== 'mini' && open && (
-        <NavSubList data={data.children!} depth={depth} />
-      )}
-      {hasChildren && themeLayout === 'mini' && <NavSubList data={data.children!} depth={depth} />}
+      {hasChildren && open && <NavSubList data={data.children!} depth={depth} />}
     </div>
   );
 }

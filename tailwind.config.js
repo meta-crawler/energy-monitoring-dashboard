@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme');
 const _ = require('lodash');
 const flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette').default;
 
@@ -88,6 +89,18 @@ module.exports = {
           default: '#ffffff',
           neutral: '#F4F6F8',
         },
+      },
+      fontFamily: {
+        sans: ['Poppins', ...defaultTheme.fontFamily.sans],
+      },
+      fontWeight: {
+        light: 300,
+        regular: 400,
+        medium: 500,
+        semiBold: 600,
+        bold: 700,
+        xBold: 800,
+        xxBold: 900,
       },
     },
   },

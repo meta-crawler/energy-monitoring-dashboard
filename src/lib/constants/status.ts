@@ -1,10 +1,10 @@
 export enum ChargingStatus {
-  CHARGING = '充電',
-  DISCHARGING = '放電',
+  CHARGING = 'charging',
+  DISCHARGING = 'discharging',
 }
 
 export enum OperationStatus {
-  NORMAL = '正常',
-  WARNING = '警告',
-  DANGER = '異常',
+  NORMAL = 'normal',
+  WARNING = 'warning',
+  DANGER = 'danger',
 }

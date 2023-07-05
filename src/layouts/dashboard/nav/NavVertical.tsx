@@ -11,6 +11,7 @@ import Logo from 'src/components/logo';
 export default function NavVertical() {
   const { themeLayout } = useSettingsContext();
   const isDesktop = useResponsive('up', 'lg');
+
   return (
     <div
       style={{

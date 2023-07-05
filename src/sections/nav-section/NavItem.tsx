@@ -46,7 +46,9 @@ export default function NavItem({
             </span>
           )}
         </div>
-        {hasChildren && (open ? <FaChevronDown color={color} /> : <FaChevronRight color={color} />)}
+        {hasChildren &&
+          themeLayout !== 'mini' &&
+          (open ? <FaChevronDown color={color} /> : <FaChevronRight color={color} />)}
       </div>
     </RouterLink>
   );
