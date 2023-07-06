@@ -12,14 +12,9 @@ const navConfig = [
     icon: 'devices',
     children: [
       {
-        title: 'cells',
-        path: PATH_DASHBOARD.devices.cells,
-        icon: 'cells',
-      },
-      {
-        title: 'modules',
-        path: PATH_DASHBOARD.devices.modules,
-        icon: 'modules',
+        title: 'systems',
+        path: PATH_DASHBOARD.devices.systems,
+        icon: 'systems',
       },
       {
         title: 'strings',
@@ -27,9 +22,14 @@ const navConfig = [
         icon: 'strings',
       },
       {
-        title: 'systems',
-        path: PATH_DASHBOARD.devices.systems,
-        icon: 'systems',
+        title: 'modules',
+        path: PATH_DASHBOARD.devices.modules,
+        icon: 'modules',
+      },
+      {
+        title: 'cells',
+        path: PATH_DASHBOARD.devices.cells,
+        icon: 'cells',
       },
     ],
   },

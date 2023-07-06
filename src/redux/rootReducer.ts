@@ -6,6 +6,7 @@ import storage from 'redux-persist/lib/storage';
 import systemReducer from './slices/system';
 import stringReducer from './slices/string';
 import moduleReducer from './slices/module';
+import dashboardReducer from './slices/dashboard';
 
 // ----------------------------------------------------------------------
 
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   system: systemReducer,
   string: stringReducer,
   module: moduleReducer,
+  dashboard: dashboardReducer,
 });
 
 export default rootReducer;

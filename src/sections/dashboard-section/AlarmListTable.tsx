@@ -3,8 +3,13 @@ import { CARD } from 'src/config-global';
 import typography from 'src/theme/typography';
 import { shadows as customShadows } from 'src/theme/shadows';
 import { BiLink } from 'react-icons/bi';
+import { IAlarmInfo } from 'src/@types/dashboard';
 
-export default function AlarmListTable() {
+type IAlarmListTableProps = {
+  alarms: IAlarmInfo[] | null;
+};
+
+export default function AlarmListTable({ alarms }: IAlarmListTableProps) {
   const shadows = customShadows();
   return (
     <div
@@ -46,126 +51,40 @@ export default function AlarmListTable() {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white border-b">
-              <th scope="row" className="px-3 py-4 font-regular" style={typography.body2}>
-                1
-              </th>
-              <td className="px-3 py-4">2023-06-23 10:30:40</td>
-              <td className="px-3 py-4">System</td>
-              <td className="px-3 py-4">Info</td>
-              <td className="px-3 py-4">
-                Too Many RS485 Error Found. [4449] Errors-SAMPLING SERVICE
-              </td>
-              <td className="px-3 py-4 capitalize">
-                <span
-                  className="px-2 py-1 rounded-full bg-success-main text-success-darker"
-                  style={typography.caption}
+            {alarms &&
+              alarms.map((alarm, index) => (
+                <tr
+                  key={index}
+                  className={`${index % 2 ? 'bg-white' : 'bg-grey-200'} ${
+                    index !== alarms.length - 1 && 'border-b'
+                  }`}
                 >
-                  Fixed
-                </span>
-              </td>
-              <td className="px-3 py-4">
-                <div role="button" className="w-full flex items-center justify-center">
-                  <BiLink />
-                </div>
-              </td>
-            </tr>
-            <tr className="bg-grey-200 border-b">
-              <th scope="row" className="px-3 py-4 font-regular" style={typography.body2}>
-                2
-              </th>
-              <td className="px-3 py-4">2023-06-24 10:30:40</td>
-              <td className="px-3 py-4">System</td>
-              <td className="px-3 py-4">Info</td>
-              <td className="px-3 py-4">
-                Too Many RS485 Error Found. [4449] Errors-SAMPLING SERVICE
-              </td>
-              <td className="px-3 py-4 capitalize">
-                <span
-                  className="px-2 py-1 rounded-full bg-error-main text-error-darker"
-                  style={typography.caption}
-                >
-                  Pending
-                </span>
-              </td>
-              <td className="px-3 py-4">
-                <div role="button" className="w-full flex items-center justify-center">
-                  <BiLink />
-                </div>
-              </td>
-            </tr>
-            <tr className="bg-white border-b">
-              <th scope="row" className="px-3 py-4 font-regular" style={typography.body2}>
-                3
-              </th>
-              <td className="px-3 py-4">2023-06-25 10:30:40</td>
-              <td className="px-3 py-4">System</td>
-              <td className="px-3 py-4">Info</td>
-              <td className="px-3 py-4">
-                Too Many RS485 Error Found. [4449] Errors-SAMPLING SERVICE
-              </td>
-              <td className="px-3 py-4 capitalize">
-                <span
-                  className="px-2 py-1 rounded-full bg-success-main text-success-darker"
-                  style={typography.caption}
-                >
-                  Fixed
-                </span>
-              </td>
-              <td className="px-3 py-4">
-                <div role="button" className="w-full flex items-center justify-center">
-                  <BiLink />
-                </div>
-              </td>
-            </tr>
-            <tr className="bg-grey-200 border-b">
-              <th scope="row" className="px-3 py-4 font-regular" style={typography.body2}>
-                4
-              </th>
-              <td className="px-3 py-4">2023-06-26 10:30:40</td>
-              <td className="px-3 py-4">System</td>
-              <td className="px-3 py-4">Info</td>
-              <td className="px-3 py-4">
-                Too Many RS485 Error Found. [4449] Errors-SAMPLING SERVICE
-              </td>
-              <td className="px-3 py-4 capitalize">
-                <span
-                  className="px-2 py-1 rounded-full bg-success-main text-success-darker"
-                  style={typography.caption}
-                >
-                  Fixed
-                </span>
-              </td>
-              <td className="px-3 py-4">
-                <div role="button" className="w-full flex items-center justify-center">
-                  <BiLink />
-                </div>
-              </td>
-            </tr>
-            <tr className="bg-white">
-              <th scope="row" className="px-3 py-4 font-regular" style={typography.body2}>
-                5
-              </th>
-              <td className="px-3 py-4">2023-06-27 10:30:40</td>
-              <td className="px-3 py-4">System</td>
-              <td className="px-3 py-4">Info</td>
-              <td className="px-3 py-4">
-                Too Many RS485 Error Found. [4449] Errors-SAMPLING SERVICE
-              </td>
-              <td className="px-3 py-4 capitalize">
-                <span
-                  className="px-2 py-1 rounded-full bg-success-main text-success-darker"
-                  style={typography.caption}
-                >
-                  Fixed
-                </span>
-              </td>
-              <td className="px-3 py-4">
-                <div role="button" className="w-full flex items-center justify-center">
-                  <BiLink />
-                </div>
-              </td>
-            </tr>
+                  <th scope="row" className="px-3 py-4 font-regular" style={typography.body2}>
+                    {index + 1}
+                  </th>
+                  <td className="px-3 py-4">{alarm.time}</td>
+                  <td className="px-3 py-4">{alarm.type}</td>
+                  <td className="px-3 py-4">{alarm.level}</td>
+                  <td className="px-3 py-4">{alarm.message}</td>
+                  <td className="px-3 py-4 capitalize">
+                    <span
+                      className={`px-2 py-1 rounded-full ${
+                        alarm.status
+                          ? 'bg-success-main text-success-darker'
+                          : 'bg-error-main text-error-darker'
+                      }`}
+                      style={typography.caption}
+                    >
+                      {alarm.status ? 'Fixed' : 'Pending'}
+                    </span>
+                  </td>
+                  <td className="px-3 py-4">
+                    <div role="button" className="w-full flex items-center justify-center">
+                      <BiLink />
+                    </div>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
