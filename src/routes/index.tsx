@@ -27,10 +27,10 @@ export default function Router() {
         {
           path: 'devices',
           children: [
-            { path: 'cells', element: <CellPage /> },
-            { path: 'modules', element: <ModulePage /> },
-            { path: 'strings', element: <StringPage /> },
             { path: 'systems', element: <SystemPage /> },
+            { path: 'strings', element: <StringPage /> },
+            { path: 'modules', element: <ModulePage /> },
+            { path: 'cells', element: <CellPage /> },
           ],
         },
         { path: 'history', element: <HistoryPage /> },
