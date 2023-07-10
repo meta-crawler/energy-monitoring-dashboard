@@ -80,11 +80,11 @@ export const getAlertList = () => {
   };
 };
 
-export const getAlarmList = () => {
+export const getAlarmList = (total?: number) => {
   return async (dispatch: Dispatch) => {
     dispatch(startLoading());
     try {
-      const { data }: AxiosResponse = await getAlarmListApi();
+      const { data }: AxiosResponse = await getAlarmListApi(total);
       dispatch(getAlarmListSuccess(data.data));
     } catch (error) {
       dispatch(hasError(error));

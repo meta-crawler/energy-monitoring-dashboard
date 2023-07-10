@@ -7,6 +7,11 @@ const navConfig = [
     icon: 'dashboard',
   },
   {
+    title: 'alarm',
+    path: PATH_DASHBOARD.alarm,
+    icon: 'alarm',
+  },
+  {
     title: 'devices',
     path: PATH_DASHBOARD.devices.root,
     icon: 'devices',
@@ -35,23 +40,35 @@ const navConfig = [
   },
   {
     title: 'history',
-    path: PATH_DASHBOARD.history,
+    path: PATH_DASHBOARD.history.root,
     icon: 'history',
+    children: [
+      {
+        title: 'system',
+        path: PATH_DASHBOARD.history.system,
+        icon: 'history_system',
+      },
+      {
+        title: 'string',
+        path: PATH_DASHBOARD.history.string,
+        icon: 'history_string',
+      },
+      {
+        title: 'module',
+        path: PATH_DASHBOARD.history.module,
+        icon: 'history_module',
+      },
+      {
+        title: 'cell',
+        path: PATH_DASHBOARD.history.cell,
+        icon: 'history_cell',
+      },
+    ],
   },
   {
-    title: 'charge',
-    path: PATH_DASHBOARD.charge,
-    icon: 'charge',
-  },
-  {
-    title: 'alert',
-    path: PATH_DASHBOARD.alert,
-    icon: 'alert',
-  },
-  {
-    title: 'setting',
-    path: PATH_DASHBOARD.setting,
-    icon: 'setting',
+    title: 'export',
+    path: PATH_DASHBOARD.export,
+    icon: 'export',
   },
 ];
 

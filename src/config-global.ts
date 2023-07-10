@@ -36,7 +36,7 @@ export const CARD = {
 };
 
 export const DASHBOARD = {
-  PADDING: 12,
+  PADDING: 24,
   W_LIST: 220,
   LIST_CHEVRON_ICON: 12,
   LIST_STATUS_ICON: 15,

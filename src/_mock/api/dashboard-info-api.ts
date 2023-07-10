@@ -1,10 +1,5 @@
-import mock from 'src/_mock/mock';
-import { format, subHours } from 'date-fns';
-
-const getRandomValue = (m: number, sigma: number) => m + sigma * Math.random();
-
-const getRoundedValue = (x: number, drop: number | null = null) =>
-  drop !== null ? Number(x.toFixed(drop)) : Number(x.toFixed(2));
+import mock from '../mock';
+import { getRoundedValue, getRandomValue } from '../utils/random';
 
 mock.onGet('/api/get-gauges-info').reply((req: any) => {
   const chargingStatus = Math.round(getRandomValue(5, 5)) > 9;
@@ -39,33 +34,6 @@ mock.onGet('/api/get-gauges-info').reply((req: any) => {
           module: minTM,
         },
       },
-    },
-  ];
-});
-
-mock.onGet('/api/get-alarm-list').reply((req: any) => {
-  const types = ['System', 'String', 'Module', 'Cell'];
-  const levels = ['Info', 'Warning'];
-
-  const alarms = [...Array(5)].map((_, index) => {
-    const typeId = Math.round(getRandomValue(2, 2)) % 4;
-    const levelId = Math.round(getRandomValue(1, 1)) % 2;
-    const messageId = Math.round(getRandomValue(4440, 10));
-    const status = Math.round(getRandomValue(1, 1)) % 2;
-
-    return {
-      time: format(subHours(new Date(), index), 'yyyy-MM-dd HH:mm:ss'),
-      type: types[typeId],
-      level: levels[levelId],
-      message: `Too Many RS485 Error Found. [${messageId}] Errors-SAMPLING SERVICE`,
-      status,
-      link: '',
-    };
-  });
-  return [
-    200,
-    {
-      data: alarms,
     },
   ];
 });

@@ -6,14 +6,16 @@ import DashboardLayout from 'src/layouts/dashboard';
 
 import {
   DashboardPage,
-  HistoryPage,
-  ChargingPage,
-  AlertPage,
-  SettingPage,
+  HistorySystemPage,
+  HistoryStringPage,
+  HistoryModulePage,
+  HistoryCellPage,
   CellPage,
   ModulePage,
   StringPage,
   SystemPage,
+  AlarmPage,
+  ExportPage,
 } from './elements';
 
 export default function Router() {
@@ -33,10 +35,17 @@ export default function Router() {
             { path: 'systems', element: <SystemPage /> },
           ],
         },
-        { path: 'history', element: <HistoryPage /> },
-        { path: 'charge', element: <ChargingPage /> },
-        { path: 'alert', element: <AlertPage /> },
-        { path: 'setting', element: <SettingPage /> },
+        {
+          path: 'history',
+          children: [
+            { path: 'system', element: <HistorySystemPage /> },
+            { path: 'string', element: <HistoryStringPage /> },
+            { path: 'module', element: <HistoryModulePage /> },
+            { path: 'cell', element: <HistoryCellPage /> },
+          ],
+        },
+        { path: 'alarm', element: <AlarmPage /> },
+        { path: 'export', element: <ExportPage /> },
       ],
     },
     { path: '*', element: <Navigate to={PATH_AFTER_LOGIN} replace /> },

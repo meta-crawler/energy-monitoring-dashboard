@@ -17,15 +17,20 @@ export const PATH_AUTH = {
 export const PATH_DASHBOARD = {
   root: ROOTS_ROOT,
   dashboard: path(ROOTS_ROOT, '/dashboard'),
+  alarm: path(ROOTS_ROOT, '/alarm'),
   devices: {
     root: path(ROOTS_ROOT, '/devices'),
-    cells: path(ROOTS_ROOT, '/devices/cells'),
-    modules: path(ROOTS_ROOT, '/devices/modules'),
-    strings: path(ROOTS_ROOT, '/devices/strings'),
     systems: path(ROOTS_ROOT, '/devices/systems'),
+    strings: path(ROOTS_ROOT, '/devices/strings'),
+    modules: path(ROOTS_ROOT, '/devices/modules'),
+    cells: path(ROOTS_ROOT, '/devices/cells'),
   },
-  history: path(ROOTS_ROOT, '/history'),
-  charge: path(ROOTS_ROOT, '/charge'),
-  alert: path(ROOTS_ROOT, '/alert'),
-  setting: path(ROOTS_ROOT, '/setting'),
+  history: {
+    root: path(ROOTS_ROOT, '/history'),
+    system: path(ROOTS_ROOT, '/history/system'),
+    string: path(ROOTS_ROOT, '/history/string'),
+    module: path(ROOTS_ROOT, '/history/module'),
+    cell: path(ROOTS_ROOT, '/history/cell'),
+  },
+  export: path(ROOTS_ROOT, '/export'),
 };
