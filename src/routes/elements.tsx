@@ -10,11 +10,12 @@ const Loadable = (Component: ElementType) => (props: any) =>
   );
 
 export const DashboardPage = Loadable(lazy(() => import('src/pages/DashboardPage')));
-export const CellPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
-export const ModulePage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
-export const StringPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
-export const SystemPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
+export const CellPage = Loadable(lazy(() => import('src/pages/devices/CellsPage')));
+export const ModulePage = Loadable(lazy(() => import('src/pages/devices/ModulesPage')));
+export const StringPage = Loadable(lazy(() => import('src/pages/devices/StringsPage')));
+export const SystemPage = Loadable(lazy(() => import('src/pages/devices/SystemsPage')));
+export const AlarmPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
+export const ExportPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
 export const HistoryPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
 export const ChargingPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
-export const AlertPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
 export const SettingPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));

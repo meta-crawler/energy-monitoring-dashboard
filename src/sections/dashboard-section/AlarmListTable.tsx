@@ -55,9 +55,7 @@ export default function AlarmListTable({ alarms }: IAlarmListTableProps) {
               alarms.map((alarm, index) => (
                 <tr
                   key={index}
-                  className={`${index % 2 ? 'bg-white' : 'bg-grey-200'} ${
-                    index !== alarms.length - 1 && 'border-b'
-                  }`}
+                  className={`${index % 2 ? 'bg-grey-200' : 'bg-white'} ${index && 'border-t'}`}
                 >
                   <th scope="row" className="px-3 py-4 font-regular" style={typography.body2}>
                     {index + 1}
