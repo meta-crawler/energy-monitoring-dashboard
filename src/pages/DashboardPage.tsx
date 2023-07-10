@@ -49,10 +49,22 @@ export default function DashboardPage() {
     <div className="w-full h-full flex flex-col p-3 gap-3">
       <div className="h-22 flex flex-col lg:flex-row gap-3">
         <div className="w-full grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-3">
-          <StatusCard status={OperationStatus.NORMAL} title={`System ${1} Status`} />
-          <StatusCard status={OperationStatus.NORMAL} title="Temperature Status" />
-          <StatusCard status={OperationStatus.WARNING} title="Over Charge Monitoring" />
-          <StatusCard status={OperationStatus.NORMAL} title={`System ${1} Status`} />
+          <StatusCard system="PCS-M300" status={OperationStatus.NORMAL} title="Overall Status" />
+          <StatusCard
+            system="PCS-M300"
+            status={OperationStatus.WARNING}
+            title="Temperature Status"
+          />
+          <StatusCard
+            system="PCS-M300"
+            status={OperationStatus.NORMAL}
+            title="Overcharging Monitoring"
+          />
+          <StatusCard
+            system="PCS-M300"
+            status={OperationStatus.NORMAL}
+            title="OverDischarging Monitoring"
+          />
         </div>
         <StatusTable />
       </div>
