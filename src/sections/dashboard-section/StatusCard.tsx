@@ -27,7 +27,7 @@ export default function StatusCard({ title, system, status }: IStatusCardProps) 
     <div
       className="w-full flex flex-col items-center justify-between gap-2 bg-white"
       style={{
-        padding: `${CARD.PADDING}px`,
+        padding: `${CARD.PADDING}px ${CARD.PADDING_LARGE}px`,
         boxShadow: shadows[CARD.BOX_SHADOW],
         borderRadius: `${CARD.BORDER_RADIUS}px`,
       }}
@@ -35,14 +35,16 @@ export default function StatusCard({ title, system, status }: IStatusCardProps) 
       <p className="flex-1 text-text-primary" style={typography.body2}>
         System(<span className="font-bold">{system}</span>)
       </p>
-      <p className="flex-1 text-text-primary" style={typography.body1}>
+      <p
+        className="flex-1 text-text-primary text-center"
+        style={{ ...typography.body1, fontWeight: 500 }}
+      >
         {title}
       </p>
-      <div className={`flex items-center justify-center rounded-full h-fit py-2.5 ${statusColor}`}>
-        <p
-          className="uppercase px-10 text-center text-white font-black"
-          style={typography.overline}
-        >
+      <div
+        className={`flex items-center justify-center rounded-full h-fit w-full py-2.5 ${statusColor}`}
+      >
+        <p className="uppercase text-center text-white font-black" style={typography.overline}>
           {status}
         </p>
       </div>
