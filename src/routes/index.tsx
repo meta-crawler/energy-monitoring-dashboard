@@ -7,9 +7,8 @@ import DashboardLayout from 'src/layouts/dashboard';
 import {
   DashboardPage,
   HistoryPage,
-  ChargingPage,
-  AlertPage,
-  SettingPage,
+  AlarmPage,
+  ExportPage,
   CellPage,
   ModulePage,
   StringPage,
@@ -24,6 +23,7 @@ export default function Router() {
       children: [
         { element: <Navigate to={PATH_AFTER_LOGIN} replace />, index: true },
         { path: 'dashboard', element: <DashboardPage /> },
+        { path: 'alarm', element: <AlarmPage /> },
         {
           path: 'devices',
           children: [
@@ -34,9 +34,7 @@ export default function Router() {
           ],
         },
         { path: 'history', element: <HistoryPage /> },
-        { path: 'charge', element: <ChargingPage /> },
-        { path: 'alert', element: <AlertPage /> },
-        { path: 'setting', element: <SettingPage /> },
+        { path: 'export', element: <ExportPage /> },
       ],
     },
     { path: '*', element: <Navigate to={PATH_AFTER_LOGIN} replace /> },

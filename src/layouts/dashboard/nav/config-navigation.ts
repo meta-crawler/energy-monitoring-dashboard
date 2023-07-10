@@ -7,6 +7,11 @@ const navConfig = [
     icon: 'dashboard',
   },
   {
+    title: 'alarm',
+    path: PATH_DASHBOARD.alarm,
+    icon: 'alarm',
+  },
+  {
     title: 'devices',
     path: PATH_DASHBOARD.devices.root,
     icon: 'devices',
@@ -39,19 +44,9 @@ const navConfig = [
     icon: 'history',
   },
   {
-    title: 'charge',
-    path: PATH_DASHBOARD.charge,
-    icon: 'charge',
-  },
-  {
-    title: 'alert',
-    path: PATH_DASHBOARD.alert,
-    icon: 'alert',
-  },
-  {
-    title: 'setting',
-    path: PATH_DASHBOARD.setting,
-    icon: 'setting',
+    title: 'export',
+    path: PATH_DASHBOARD.export,
+    icon: 'export',
   },
 ];
 

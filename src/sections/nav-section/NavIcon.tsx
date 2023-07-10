@@ -6,6 +6,7 @@ import { FaChartSimple } from 'react-icons/fa6';
 import { TbDeviceImac } from 'react-icons/tb';
 import { IoBatteryCharging } from 'react-icons/io5';
 import { TbAlertTriangleFilled } from 'react-icons/tb';
+import { BsFillPrinterFill } from 'react-icons/bs';
 import { CellSVG, ModuleSVG, StringSVG, SystemSVG } from 'src/assets/icons';
 
 export default function NavIcon({
@@ -26,10 +27,12 @@ export default function NavIcon({
       return <FaChartSimple size={size} color={color} />;
     case 'charge':
       return <IoBatteryCharging size={size} color={color} />;
-    case 'alert':
+    case 'alarm':
       return <TbAlertTriangleFilled size={size} color={color} />;
     case 'setting':
       return <AiFillSetting size={size} color={color} />;
+    case 'export':
+      return <BsFillPrinterFill size={size} color={color} />;
     case 'cells':
       return <CellSVG size={size} color={color} />;
     case 'modules':

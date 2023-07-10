@@ -25,7 +25,8 @@ export const PATH_DASHBOARD = {
     systems: path(ROOTS_ROOT, '/devices/systems'),
   },
   history: path(ROOTS_ROOT, '/history'),
+  alarm: path(ROOTS_ROOT, '/alarm'),
+  export: path(ROOTS_ROOT, '/export'),
   charge: path(ROOTS_ROOT, '/charge'),
-  alert: path(ROOTS_ROOT, '/alert'),
   setting: path(ROOTS_ROOT, '/setting'),
 };
