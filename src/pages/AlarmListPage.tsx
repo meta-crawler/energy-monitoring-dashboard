@@ -83,6 +83,7 @@ export default function AlarmListPage() {
           options={AlarmTypes}
           placeholder="Select Alarm Type"
           style="md:w-80"
+          showClose={true}
           onChange={(v) => setAlarmType(v)}
         />
         <DropDown
@@ -91,6 +92,7 @@ export default function AlarmListPage() {
           options={AlarmLevels}
           placeholder="Select Alarm Level"
           style="md:w-80"
+          showClose={true}
           onChange={(v) => setAlarmLevel(v)}
         />
         <button

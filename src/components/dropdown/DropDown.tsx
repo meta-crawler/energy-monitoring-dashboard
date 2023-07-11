@@ -10,6 +10,7 @@ type IDropDownProps = {
   name: string;
   placeholder?: string;
   style?: string;
+  showClose?: boolean;
 };
 
 export default function DropDown({
@@ -19,6 +20,7 @@ export default function DropDown({
   placeholder,
   onChange,
   style,
+  showClose = false,
 }: IDropDownProps) {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -57,7 +59,7 @@ export default function DropDown({
           required
           readOnly
         />
-        {selected.value && (
+        {selected.value && showClose && (
           <div
             role="button"
             className="absolute top-0 bottom-0 right-9 flex items-center text-text-secondary hover:text-text-primary"
