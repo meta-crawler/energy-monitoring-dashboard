@@ -3,7 +3,7 @@ import { CARD } from 'src/config-global';
 import typography from 'src/theme/typography';
 import { shadows as customShadows } from 'src/theme/shadows';
 import { BiLink } from 'react-icons/bi';
-import { IAlarmInfo } from 'src/@types/dashboard';
+import { IAlarmInfo } from 'src/@types/alarm';
 
 type IAlarmListTableProps = {
   alarms: IAlarmInfo[] | null;

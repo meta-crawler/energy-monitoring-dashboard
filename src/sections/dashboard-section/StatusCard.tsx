@@ -8,9 +8,10 @@ type IStatusCardProps = {
   system: string;
   title: string;
   status: string;
+  action?: () => void;
 };
 
-export default function StatusCard({ system, title, status }: IStatusCardProps) {
+export default function StatusCard({ system, title, status, action }: IStatusCardProps) {
   const shadows = customShadows();
   const statusColor = useMemo(() => {
     switch (status) {
@@ -39,7 +40,9 @@ export default function StatusCard({ system, title, status }: IStatusCardProps) 
         {title}
       </p>
       <div
+        role="button"
         className={`flex items-center justify-center rounded-full w-full h-fit py-2.5 ${statusColor}`}
+        onClick={action}
       >
         <p className="uppercase text-center text-white font-black" style={typography.overline}>
           {status}

@@ -5,13 +5,14 @@ import { shadows as customShadows } from 'src/theme/shadows';
 // UI
 import DropDown from 'src/components/dropdown';
 import Pagination from 'src/components/pagination';
+import Empty from 'src/components/empty';
 import LoadingIndicator from 'src/components/loading-indicator';
-import { IDropdownItem } from 'src/components/dropdown/type';
+import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
 import { BiLink } from 'react-icons/bi';
 // Redux
 import { useDispatch, useSelector } from 'src/redux/store';
-import { getAlarmList } from 'src/redux/slices/dashboard';
-import { IAlarmInfo } from 'src/@types/dashboard';
+import { IAlarmInfo } from 'src/@types/alarm';
+import { getAlarmList } from 'src/redux/slices/alarm';
 
 const AlarmTypes = [
   { key: 'overT', value: 'Over Temperature' },
@@ -27,17 +28,15 @@ const AlarmLevels = [
 
 export default function AlarmListPage() {
   const dispatch = useDispatch();
-  const { isLoading, alarmList } = useSelector((store) => store.dashboard);
+  const { isLoading, alarmList } = useSelector((store) => store.alarm);
   const shadows = customShadows();
-  const [alarmType, setAlarmType] = useState<IDropdownItem>({
-    key: 'overT',
-    value: 'Over Temperature',
-  });
-  const [alarmLevel, setAlarmLevel] = useState<IDropdownItem>({ key: 'info', value: 'Info' });
+  const [alarmType, setAlarmType] = useState<IDropdownItem>(InitOption);
+  const [alarmLevel, setAlarmLevel] = useState<IDropdownItem>(InitOption);
   const [alarms, setAlarms] = useState<IAlarmInfo[]>();
 
   const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(5);
+  const [total, setTotal] = useState(alarmList?.length);
 
   const handlePage = (page: number) => setPage(page);
   const handleLimit = (limit: number) => setLimit(limit);
@@ -47,8 +46,22 @@ export default function AlarmListPage() {
   }, [dispatch]);
 
   useEffect(() => {
-    setAlarms(alarmList?.slice(page * limit, (page + 1) * limit));
-  }, [alarmList, page, limit]);
+    let filteredAlarms = alarmList;
+
+    if (alarmType.value)
+      filteredAlarms = filteredAlarms?.filter(
+        (alarm) => alarm.type == alarmType.value,
+      ) as IAlarmInfo[];
+
+    if (alarmLevel.value)
+      filteredAlarms = filteredAlarms?.filter(
+        (alarm) => alarm.level == alarmLevel.value,
+      ) as IAlarmInfo[];
+
+    setTotal(filteredAlarms?.length);
+
+    setAlarms(filteredAlarms?.slice(page * limit, (page + 1) * limit));
+  }, [alarmList, page, limit, alarmType, alarmLevel]);
 
   return (
     <div
@@ -125,8 +138,7 @@ export default function AlarmListPage() {
                   <LoadingIndicator />
                 </td>
               </tr>
-            ) : (
-              alarms &&
+            ) : alarms && alarms.length ? (
               alarms.map((alarm, index) => (
                 <tr
                   key={index}
@@ -158,18 +170,26 @@ export default function AlarmListPage() {
                   </td>
                 </tr>
               ))
+            ) : (
+              <tr>
+                <td className="w-full" colSpan={9}>
+                  <Empty />
+                </td>
+              </tr>
             )}
           </tbody>
         </table>
       </div>
 
-      <Pagination
-        page={page}
-        limit={limit}
-        pages={20}
-        onPageChange={handlePage}
-        onLimitChange={handleLimit}
-      />
+      {alarms && !!alarms.length && (
+        <Pagination
+          page={page}
+          limit={limit}
+          pages={total}
+          onPageChange={handlePage}
+          onLimitChange={handleLimit}
+        />
+      )}
     </div>
   );
 }

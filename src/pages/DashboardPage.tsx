@@ -1,28 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { OperationStatus } from 'src/lib/constants/status';
 import {
-  StatusCard,
-  StatusTable,
-  BatteryStatus,
-  CircularGauge,
-  ThermometerGauge,
   AlarmListTable,
   AlertListTable,
+  BatteryStatus,
+  CircularGauge,
+  StatusCard,
+  StatusTable,
+  ThermometerGauge,
 } from 'src/sections/dashboard-section';
-import { VOLTAGE_OPTIONS, CURRENT_OPTIONS } from 'src/sections/dashboard-section/constants';
+import { CURRENT_OPTIONS, VOLTAGE_OPTIONS } from 'src/sections/dashboard-section/constants';
 import { CARD } from 'src/config-global';
 import { shadows as customShadows } from 'src/theme/shadows';
 // Redux
 import { useDispatch, useSelector } from 'src/redux/store';
 import { getDashboardInfo } from 'src/redux/slices/dashboard';
 // UI
+import { IAlarmLevel, IAlarmType } from 'src/@types/alarm';
 import { initGaugeInfo } from 'src/@types/dashboard';
+// Route
+import { useNavigate, createSearchParams } from 'react-router-dom';
 
 export default function DashboardPage() {
-  const [gaugeInfo, setGaugeInfo] = useState(initGaugeInfo);
   const dispatch = useDispatch();
   const { gauge, alarmList, alertList } = useSelector((store) => store.dashboard);
+  const navigate = useNavigate();
+  const [gaugeInfo, setGaugeInfo] = useState(initGaugeInfo);
   const shadows = customShadows();
+
+  const handleClickStatus = () => {
+    navigate({
+      pathname: 'caec/alarm',
+      search: `?${createSearchParams({
+        alarmType: IAlarmType.OVER_TEMPERATURE,
+        alarmLevel: IAlarmLevel.WARNING,
+      })}`,
+    });
+  };
 
   useEffect(() => {
     dispatch(getDashboardInfo());
@@ -54,6 +68,7 @@ export default function DashboardPage() {
             system="PCS-M300"
             status={OperationStatus.WARNING}
             title="Temperature Status"
+            action={handleClickStatus}
           />
           <StatusCard
             system="PCS-M300"

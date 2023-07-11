@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { IDropdownItem } from 'src/components/dropdown/type';
+import React, { useState, useEffect, useRef } from 'react';
 import typography from 'src/theme/typography';
+import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
+import { IoClose } from 'react-icons/io5';
 
 type IDropDownProps = {
   selected: IDropdownItem;
@@ -20,14 +21,30 @@ export default function DropDown({
   style,
 }: IDropDownProps) {
   const [open, setOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const toggleOpen = () => setOpen(!open);
+
+  useEffect(() => {
+    const handleOutsideClick = (event: any) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
 
   return (
     <div
       role="button"
       className={`relative w-full transition-all ease-in-out duration-200 ${style && style}`}
       onClick={toggleOpen}
+      ref={dropdownRef}
     >
       <div className="relative w-full">
         <input
@@ -40,6 +57,15 @@ export default function DropDown({
           required
           readOnly
         />
+        {selected.value && (
+          <div
+            role="button"
+            className="absolute top-0 bottom-0 right-9 flex items-center text-text-secondary hover:text-text-primary"
+            onClick={() => onChange(InitOption)}
+          >
+            <IoClose />
+          </div>
+        )}
         <div
           role="button"
           className="absolute top-0 bottom-0 right-4 flex items-center text-text-secondary hover:text-text-primary"

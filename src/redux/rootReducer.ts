@@ -3,6 +3,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 // slices
 
+import alarmReducer from './slices/alarm';
 import systemReducer from './slices/system';
 import stringReducer from './slices/string';
 import moduleReducer from './slices/module';
@@ -18,6 +19,7 @@ export const rootPersistConfig = {
 };
 
 const rootReducer = combineReducers({
+  alarm: alarmReducer,
   system: systemReducer,
   string: stringReducer,
   module: moduleReducer,

@@ -1,10 +1,7 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
-import {
-  getDynamicGaugeInfoApi,
-  getAlarmListApi,
-  getAlertListApi,
-} from 'src/lib/apis/dashboard-info-api';
+import { getDynamicGaugeInfoApi, getAlertListApi } from 'src/lib/apis/dashboard-info-api';
+import { getAlarmListApi } from 'src/lib/apis/alarm-info-api';
 import { IDashboardState } from 'src/@types/dashboard';
 
 const initialState: IDashboardState = {
