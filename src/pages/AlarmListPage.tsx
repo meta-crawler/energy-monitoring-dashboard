@@ -95,12 +95,6 @@ export default function AlarmListPage() {
           showClose={true}
           onChange={(v) => setAlarmLevel(v)}
         />
-        <button
-          type="submit"
-          className="text-white bg-secondary-main hover:bg-secondary-dark focus:ring-2 focus:outline-none focus:ring-secondary-light font-medium rounded-lg text-sm w-full md:w-auto px-5 py-2.5 text-center"
-        >
-          Search
-        </button>
       </div>
 
       <div className="relative overflow-x-auto overflow-y-auto bg-white rounded-lg border border-grey-300">
