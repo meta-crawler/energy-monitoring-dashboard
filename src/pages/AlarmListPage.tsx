@@ -188,6 +188,7 @@ export default function AlarmListPage() {
           pages={total}
           onPageChange={handlePage}
           onLimitChange={handleLimit}
+          color="#36B37E"
         />
       )}
     </div>

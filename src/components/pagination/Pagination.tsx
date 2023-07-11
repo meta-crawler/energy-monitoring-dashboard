@@ -13,6 +13,7 @@ type IPaginationProps = {
   limit: number;
   onPageChange: (page: number) => void;
   onLimitChange: (limit: number) => void;
+  color?: string;
 };
 
 export default function Pagination({
@@ -21,6 +22,7 @@ export default function Pagination({
   limit,
   onPageChange,
   onLimitChange,
+  color,
 }: IPaginationProps) {
   const total = Math.ceil(pages / limit) - 1;
   return (
@@ -68,7 +70,9 @@ export default function Pagination({
               <a
                 role="button"
                 className={`mx-1 flex h-9 w-9 items-center justify-center rounded-full p-0 text-sm font-medium shadow-md transition duration-150 ease-in-out ${
-                  idx == page ? 'text-white bg-pink-500' : 'text-blue-gray-500 bg-white'
+                  idx == page
+                    ? `text-white ${color ? `bg-[${color}]` : 'bg-pink-500'}`
+                    : 'text-blue-gray-500 bg-white'
                 }`}
                 onClick={() => onPageChange(idx)}
               >
