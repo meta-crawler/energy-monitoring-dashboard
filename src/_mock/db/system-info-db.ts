@@ -1,7 +1,7 @@
 import { ChargingStatus, OperationStatus } from 'src/lib/constants/status';
 
-export default {
-  '1': [
+export default [
+  [
     {
       chargingStatus: ChargingStatus.CHARGING,
       temperatureStatus: OperationStatus.WARNING,
@@ -29,7 +29,7 @@ export default {
       soh: 45.06,
     },
   ],
-  '2': [
+  [
     {
       chargingStatus: ChargingStatus.DISCHARGING,
       temperatureStatus: OperationStatus.DANGER,
@@ -57,7 +57,7 @@ export default {
       soh: 40.1,
     },
   ],
-  '3': [
+  [
     {
       chargingStatus: ChargingStatus.CHARGING,
       temperatureStatus: OperationStatus.DANGER,
@@ -85,7 +85,7 @@ export default {
       soh: 49.91,
     },
   ],
-};
+];
 
 export const systemFields = [
   {
