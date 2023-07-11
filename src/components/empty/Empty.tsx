@@ -1,14 +1,13 @@
 import React from 'react';
-import { AiOutlineInbox } from 'react-icons/ai';
-import colors from 'src/theme/colors';
 import typography from 'src/theme/typography';
+import { AiOutlineInbox } from 'react-icons/ai';
 
 export default function Empty() {
   return (
-    <div className="w-full h-24 flex items-center justify-center gap-x-2">
-      <AiOutlineInbox size={30} color={colors('text.secondary')} />
+    <div className="w-full flex flex-row items-center justify-center gap-x-3 py-6 text-text-secondary">
+      <AiOutlineInbox size={30} />
       <p className="text-text-primary" style={typography.body1}>
-        No Data to Show
+        No Data
       </p>
     </div>
   );

@@ -7,6 +7,9 @@ import { TbDeviceImac } from 'react-icons/tb';
 import { IoBatteryCharging } from 'react-icons/io5';
 import { TbAlertTriangleFilled } from 'react-icons/tb';
 import { BsFillPrinterFill } from 'react-icons/bs';
+import { HiPresentationChartBar } from 'react-icons/hi';
+import { IoBarChart, IoStatsChartSharp } from 'react-icons/io5';
+import { AiOutlineAreaChart } from 'react-icons/ai';
 import { CellSVG, ModuleSVG, StringSVG, SystemSVG } from 'src/assets/icons';
 
 export default function NavIcon({
@@ -41,6 +44,14 @@ export default function NavIcon({
       return <StringSVG size={size} color={color} />;
     case 'systems':
       return <SystemSVG size={size} color={color} />;
+    case 'history_cell':
+      return <AiOutlineAreaChart size={size} color={color} />;
+    case 'history_module':
+      return <IoStatsChartSharp size={size} color={color} />;
+    case 'history_string':
+      return <IoBarChart size={size} color={color} />;
+    case 'history_system':
+      return <HiPresentationChartBar size={size} color={color} />;
     default:
       return <></>;
   }

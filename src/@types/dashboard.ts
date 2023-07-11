@@ -1,3 +1,5 @@
+import { IAlarmInfo } from 'src/@types/alarm';
+
 export type IDashboardState = {
   isLoading: boolean;
   error: Error | string | null;
@@ -36,15 +38,6 @@ export const initGaugeInfo = {
     string: 0,
     module: 0,
   },
-};
-
-export type IAlarmInfo = {
-  time: string;
-  type: string;
-  level: string;
-  message: string;
-  status: string;
-  link: string;
 };
 
 export type IAlertInfo = {

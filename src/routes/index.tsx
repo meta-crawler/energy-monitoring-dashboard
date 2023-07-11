@@ -6,13 +6,16 @@ import DashboardLayout from 'src/layouts/dashboard';
 
 import {
   DashboardPage,
-  HistoryPage,
-  AlarmPage,
-  ExportPage,
+  HistorySystemPage,
+  HistoryStringPage,
+  HistoryModulePage,
+  HistoryCellPage,
   CellPage,
   ModulePage,
   StringPage,
   SystemPage,
+  AlarmPage,
+  ExportPage,
 } from './elements';
 
 export default function Router() {
@@ -23,17 +26,25 @@ export default function Router() {
       children: [
         { element: <Navigate to={PATH_AFTER_LOGIN} replace />, index: true },
         { path: 'dashboard', element: <DashboardPage /> },
-        { path: 'alarm', element: <AlarmPage /> },
         {
           path: 'devices',
           children: [
-            { path: 'systems', element: <SystemPage /> },
-            { path: 'strings', element: <StringPage /> },
-            { path: 'modules', element: <ModulePage /> },
             { path: 'cells', element: <CellPage /> },
+            { path: 'modules', element: <ModulePage /> },
+            { path: 'strings', element: <StringPage /> },
+            { path: 'systems', element: <SystemPage /> },
           ],
         },
-        { path: 'history', element: <HistoryPage /> },
+        {
+          path: 'history',
+          children: [
+            { path: 'system', element: <HistorySystemPage /> },
+            { path: 'string', element: <HistoryStringPage /> },
+            { path: 'module', element: <HistoryModulePage /> },
+            { path: 'cell', element: <HistoryCellPage /> },
+          ],
+        },
+        { path: 'alarm', element: <AlarmPage /> },
         { path: 'export', element: <ExportPage /> },
       ],
     },
