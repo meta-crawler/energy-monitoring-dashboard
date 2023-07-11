@@ -7,7 +7,7 @@ type IDropDownProps = {
   onChange: (selected: IDropdownItem) => void;
   options?: IDropdownItem[];
   name: string;
-  placeholder: string;
+  placeholder?: string;
   style?: string;
 };
 
@@ -25,6 +25,7 @@ export default function DropDown({
 
   return (
     <div
+      role="button"
       className={`relative w-full transition-all ease-in-out duration-200 ${style && style}`}
       onClick={toggleOpen}
     >
@@ -34,7 +35,7 @@ export default function DropDown({
           id={name}
           name={name}
           value={selected.value}
-          className="bg-grey-100 border border-grey-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 w-full py-2.5 px-4 focus-visible:outline-none"
+          className="cursor-pointer bg-grey-100 border border-grey-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 w-full py-2.5 px-4 focus-visible:outline-none"
           placeholder={placeholder}
           required
           readOnly

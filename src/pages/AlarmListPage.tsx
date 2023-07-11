@@ -4,12 +4,14 @@ import { CARD } from 'src/config-global';
 import { shadows as customShadows } from 'src/theme/shadows';
 // UI
 import DropDown from 'src/components/dropdown';
+import Pagination from 'src/components/pagination';
 import LoadingIndicator from 'src/components/loading-indicator';
 import { IDropdownItem } from 'src/components/dropdown/type';
 import { BiLink } from 'react-icons/bi';
 // Redux
 import { useDispatch, useSelector } from 'src/redux/store';
 import { getAlarmList } from 'src/redux/slices/dashboard';
+import { IAlarmInfo } from 'src/@types/dashboard';
 
 const AlarmTypes = [
   { key: 'overT', value: 'Over Temperature' },
@@ -32,10 +34,21 @@ export default function AlarmListPage() {
     value: 'Over Temperature',
   });
   const [alarmLevel, setAlarmLevel] = useState<IDropdownItem>({ key: 'info', value: 'Info' });
+  const [alarms, setAlarms] = useState<IAlarmInfo[]>();
+
+  const [page, setPage] = useState(0);
+  const [limit, setLimit] = useState(5);
+
+  const handlePage = (page: number) => setPage(page);
+  const handleLimit = (limit: number) => setLimit(limit);
 
   useEffect(() => {
     dispatch(getAlarmList(20));
   }, [dispatch]);
+
+  useEffect(() => {
+    setAlarms(alarmList?.slice(page * limit, (page + 1) * limit));
+  }, [alarmList, page, limit]);
 
   return (
     <div
@@ -113,14 +126,14 @@ export default function AlarmListPage() {
                 </td>
               </tr>
             ) : (
-              alarmList &&
-              alarmList.map((alarm, index) => (
+              alarms &&
+              alarms.map((alarm, index) => (
                 <tr
                   key={index}
                   className={`${index % 2 ? 'bg-grey-200' : 'bg-white'} ${index && 'border-t'}`}
                 >
                   <th scope="row" className="px-3 py-4 font-regular" style={typography.body2}>
-                    {index + 1}
+                    {page * limit + index + 1}
                   </th>
                   <td className="px-3 py-4">{alarm.time}</td>
                   <td className="px-3 py-4">{alarm.type}</td>
@@ -149,6 +162,14 @@ export default function AlarmListPage() {
           </tbody>
         </table>
       </div>
+
+      <Pagination
+        page={page}
+        limit={limit}
+        pages={20}
+        onPageChange={handlePage}
+        onLimitChange={handleLimit}
+      />
     </div>
   );
 }
