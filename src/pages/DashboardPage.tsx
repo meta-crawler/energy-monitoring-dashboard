@@ -16,7 +16,7 @@ import { shadows as customShadows } from 'src/theme/shadows';
 import { useDispatch, useSelector } from 'src/redux/store';
 import { getDashboardInfo } from 'src/redux/slices/dashboard';
 // UI
-import { IGaugeInfo, initGaugeInfo } from 'src/@types/dashboard';
+import { initGaugeInfo } from 'src/@types/dashboard';
 
 export default function DashboardPage() {
   const [gaugeInfo, setGaugeInfo] = useState(initGaugeInfo);
@@ -49,10 +49,22 @@ export default function DashboardPage() {
     <div className="w-full h-full flex flex-col p-3 gap-3">
       <div className="h-22 flex flex-col lg:flex-row gap-3">
         <div className="w-full grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-3">
-          <StatusCard status={OperationStatus.NORMAL} title={`System ${1} Status`} />
-          <StatusCard status={OperationStatus.NORMAL} title="Temperature Status" />
-          <StatusCard status={OperationStatus.WARNING} title="Over Charge Monitoring" />
-          <StatusCard status={OperationStatus.NORMAL} title={`System ${1} Status`} />
+          <StatusCard system="PCS-M300" status={OperationStatus.NORMAL} title="Overall Status" />
+          <StatusCard
+            system="PCS-M300"
+            status={OperationStatus.WARNING}
+            title="Temperature Status"
+          />
+          <StatusCard
+            system="PCS-M300"
+            status={OperationStatus.NORMAL}
+            title="Over Charge Monitoring"
+          />
+          <StatusCard
+            system="PCS-M300"
+            status={OperationStatus.NORMAL}
+            title="Over DisCharge Monitoring"
+          />
         </div>
         <StatusTable />
       </div>
