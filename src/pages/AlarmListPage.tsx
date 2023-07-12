@@ -43,7 +43,7 @@ export default function AlarmListPage() {
   const handleLimit = (limit: number) => setLimit(limit);
 
   useEffect(() => {
-    dispatch(getAlarmList(30));
+    dispatch(getAlarmList(25));
   }, [dispatch]);
 
   useEffect(() => {
