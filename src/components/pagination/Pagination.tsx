@@ -37,6 +37,11 @@ export default function Pagination({
     onPageChange(Math.min(page + 1, total));
   };
 
+  const onClickLimit = (v: IDropdownItem) => {
+    onPageChange(0);
+    onLimitChange(parseInt(v.value));
+  };
+
   return (
     <div className="w-full py-3 pl-3 flex flex-row flex-wrap gap-3 items-center justify-between">
       <p className="text-text-secondary" style={typography.body1}>
@@ -52,7 +57,7 @@ export default function Pagination({
           selected={{ key: `${limit}`, value: `${limit}` }}
           options={limits.map((limit) => ({ key: `${limit}`, value: `${limit}` } as IDropdownItem))}
           style="md:w-20"
-          onChange={(v) => onLimitChange(parseInt(v.value))}
+          onChange={onClickLimit}
         />
         <ul className="flex">
           <li>
