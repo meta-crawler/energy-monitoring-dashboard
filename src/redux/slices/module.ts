@@ -56,7 +56,7 @@ export function getModules() {
   return async (dispatch: Dispatch) => {
     dispatch(startLoading());
     try {
-      const { data }: AxiosResponse = await getModuleInfosApi();
+      const { data }: AxiosResponse = await getModuleInfosApi(60);
       dispatch(getModulesSuccess(data.data));
     } catch (error) {
       dispatch(hasError(error));

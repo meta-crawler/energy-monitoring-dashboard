@@ -90,7 +90,7 @@ export default function DropDown({
         </div>
       </div>
       {options?.length && open && (
-        <div className="md:absolute left-0 right-0 w-full rounded-lg bg-grey-100 mt-1 z-40 border border-grey-300/60 md:border-none">
+        <div className="md:absolute left-0 right-0 w-full max-h-64 overflow-y-auto rounded-lg bg-grey-100 mt-1 z-40 border border-grey-300/60 md:border-none">
           {options.map((option, idx) => (
             <div
               role="button"

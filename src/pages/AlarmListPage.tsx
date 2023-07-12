@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import typography from 'src/theme/typography';
 import { CARD } from 'src/config-global';
 import { shadows as customShadows } from 'src/theme/shadows';
@@ -6,27 +7,14 @@ import { shadows as customShadows } from 'src/theme/shadows';
 import DropDown from 'src/components/dropdown';
 import Pagination from 'src/components/pagination';
 import Empty from 'src/components/empty';
+import AlarmLevelBadge from 'src/components/alarm-level-badge';
 import LoadingIndicator from 'src/components/loading-indicator';
 import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
 import { BiLink } from 'react-icons/bi';
 // Redux
 import { useDispatch, useSelector } from 'src/redux/store';
-import { IAlarmInfo, IAlarmLevel } from 'src/@types/alarm';
+import { IAlarmInfo, IAlarmLevel, AlarmLevels, AlarmTypes } from 'src/@types/alarm';
 import { getAlarmList } from 'src/redux/slices/alarm';
-import { useNavigate } from 'react-router-dom';
-
-const AlarmTypes = [
-  { key: 'overT', value: 'Over Temperature' },
-  { key: 'overCharging', value: 'Over Charge' },
-  { key: 'overDisCharging', value: 'Over Discharge' },
-  { key: 'rs485', value: 'RS485 Fail' },
-];
-
-const AlarmLevels = [
-  { key: 'Normal', value: 'Normal' },
-  { key: 'Warning', value: 'Warning' },
-  { key: 'Abnormal', value: 'Abnormal' },
-];
 
 export default function AlarmListPage() {
   const dispatch = useDispatch();
@@ -67,33 +55,6 @@ export default function AlarmListPage() {
 
     setAlarms(filteredAlarms?.slice(page * limit, (page + 1) * limit));
   }, [alarmList, page, limit, alarmType, alarmLevel]);
-
-  const alarmLevelBadge = (level: IAlarmLevel) => {
-    let color = '';
-    switch (level) {
-      case IAlarmLevel.NORMAL:
-        color = 'bg-success-main';
-        break;
-      case IAlarmLevel.WARNING:
-        color = 'bg-warning-main';
-        break;
-      case IAlarmLevel.ABNORMAL:
-        color = 'bg-error-main';
-        break;
-      default:
-        color = 'bg-grey-300';
-        break;
-    }
-
-    return (
-      <span
-        className={`text-white font-medium ${color} py-2 px-4 rounded-full`}
-        style={typography.caption}
-      >
-        {level}
-      </span>
-    );
-  };
 
   const alarmStatusBadge = (status: number) => {
     const color = status ? 'bg-success-main' : 'bg-warning-main';
@@ -189,7 +150,9 @@ export default function AlarmListPage() {
                     {page * limit + index + 1}
                   </th>
                   <td className="px-3 py-4">{alarm.type}</td>
-                  <td className="px-3 py-4">{alarmLevelBadge(alarm.level as IAlarmLevel)}</td>
+                  <td className="px-3 py-4">
+                    <AlarmLevelBadge level={alarm.level as IAlarmLevel} />
+                  </td>
                   <td className="px-3 py-4">{alarm.message}</td>
                   <td className="px-3 py-4">{alarmStatusBadge(alarm.status)}</td>
                   <td className="px-3 py-4">{alarm.time}</td>

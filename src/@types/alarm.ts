@@ -34,3 +34,16 @@ export type ITargetType = {
   module: string;
   cell?: string;
 };
+
+export const AlarmTypes = [
+  { key: 'overT', value: 'Over Temperature' },
+  { key: 'overCharging', value: 'Over Charge' },
+  { key: 'overDisCharging', value: 'Over Discharge' },
+  { key: 'rs485', value: 'RS485 Fail' },
+];
+
+export const AlarmLevels = [
+  { key: 'Normal', value: 'Normal' },
+  { key: 'Warning', value: 'Warning' },
+  { key: 'Abnormal', value: 'Abnormal' },
+];

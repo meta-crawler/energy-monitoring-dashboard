@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import typography from 'src/theme/typography';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { FaAnglesLeft, FaAnglesRight } from 'react-icons/fa6';
@@ -23,6 +23,15 @@ export default function Pagination({
   onLimitChange,
 }: IPaginationProps) {
   const total = Math.ceil(pages / limit) - 1;
+
+  const onClickLeft = () => {
+    onPageChange(Math.max(page - 1, 0));
+  };
+
+  const onClickRight = () => {
+    onPageChange(Math.min(page + 1, total));
+  };
+
   return (
     <div className="w-full py-3 pl-3 flex flex-row flex-wrap gap-3 items-center justify-between">
       <p className="text-text-secondary" style={typography.body1}>
@@ -58,7 +67,7 @@ export default function Pagination({
               className={`mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm font-medium shadow-md transition duration-150 ease-in-out hover:bg-light-300 ${
                 page ? 'text-blue-gray-500' : 'text-grey-500'
               }`}
-              onClick={() => onPageChange(Math.max(page - 1, 0))}
+              onClick={onClickLeft}
             >
               <FaAngleLeft />
             </a>
@@ -82,7 +91,7 @@ export default function Pagination({
               className={`mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm font-medium shadow-md transition duration-150 ease-in-out hover:bg-light-300 ${
                 page < total ? 'text-blue-gray-500' : 'text-grey-500'
               }`}
-              onClick={() => onPageChange(Math.min(page + 1, total))}
+              onClick={onClickRight}
             >
               <FaAngleRight />
             </a>
