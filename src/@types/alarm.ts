@@ -14,8 +14,9 @@ export enum IAlarmType {
 }
 
 export enum IAlarmLevel {
-  INFO = 'info',
-  WARNING = 'warning',
+  NORMAL = 'Normal',
+  WARNING = 'Warning',
+  ABNORMAL = 'Abnormal',
 }
 
 export type IAlarmInfo = {
@@ -23,6 +24,6 @@ export type IAlarmInfo = {
   type: string;
   level: string;
   message: string;
-  status: string;
+  status: number;
   link: string;
 };

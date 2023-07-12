@@ -11,7 +11,7 @@ import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
 import { BiLink } from 'react-icons/bi';
 // Redux
 import { useDispatch, useSelector } from 'src/redux/store';
-import { IAlarmInfo } from 'src/@types/alarm';
+import { IAlarmInfo, IAlarmLevel } from 'src/@types/alarm';
 import { getAlarmList } from 'src/redux/slices/alarm';
 
 const AlarmTypes = [
@@ -22,8 +22,9 @@ const AlarmTypes = [
 ];
 
 const AlarmLevels = [
-  { key: 'info', value: 'Info' },
-  { key: 'warning', value: 'Warning' },
+  { key: 'Normal', value: 'Normal' },
+  { key: 'Warning', value: 'Warning' },
+  { key: 'Abnormal', value: 'Abnormal' },
 ];
 
 export default function AlarmListPage() {
@@ -42,7 +43,7 @@ export default function AlarmListPage() {
   const handleLimit = (limit: number) => setLimit(limit);
 
   useEffect(() => {
-    dispatch(getAlarmList(20));
+    dispatch(getAlarmList(30));
   }, [dispatch]);
 
   useEffect(() => {
@@ -62,6 +63,46 @@ export default function AlarmListPage() {
 
     setAlarms(filteredAlarms?.slice(page * limit, (page + 1) * limit));
   }, [alarmList, page, limit, alarmType, alarmLevel]);
+
+  const alarmLevelBadge = (level: IAlarmLevel) => {
+    let color = '';
+    switch (level) {
+      case IAlarmLevel.NORMAL:
+        color = 'bg-success-main';
+        break;
+      case IAlarmLevel.WARNING:
+        color = 'bg-warning-main';
+        break;
+      case IAlarmLevel.ABNORMAL:
+        color = 'bg-error-main';
+        break;
+      default:
+        color = 'bg-grey-300';
+        break;
+    }
+
+    return (
+      <span
+        className={`text-white font-medium ${color} py-2 px-4 rounded-full`}
+        style={typography.caption}
+      >
+        {level}
+      </span>
+    );
+  };
+
+  const alarmStatusBadge = (status: number) => {
+    const color = status ? 'bg-success-main' : 'bg-warning-main';
+
+    return (
+      <span
+        className={`px-4 py-2 rounded-full text-white font-medium ${color}`}
+        style={typography.caption}
+      >
+        {status ? 'Fixed' : 'Pending'}
+      </span>
+    );
+  };
 
   return (
     <div
@@ -143,22 +184,11 @@ export default function AlarmListPage() {
                   <th scope="row" className="px-3 py-4 font-regular" style={typography.body2}>
                     {page * limit + index + 1}
                   </th>
-                  <td className="px-3 py-4">{alarm.time}</td>
                   <td className="px-3 py-4">{alarm.type}</td>
-                  <td className="px-3 py-4">{alarm.level}</td>
+                  <td className="px-3 py-4">{alarmLevelBadge(alarm.level as IAlarmLevel)}</td>
                   <td className="px-3 py-4">{alarm.message}</td>
-                  <td className="px-3 py-4 capitalize">
-                    <span
-                      className={`px-2 py-1 rounded-full ${
-                        alarm.status
-                          ? 'bg-success-main text-success-darker'
-                          : 'bg-error-main text-error-darker'
-                      }`}
-                      style={typography.caption}
-                    >
-                      {alarm.status ? 'Fixed' : 'Pending'}
-                    </span>
-                  </td>
+                  <td className="px-3 py-4">{alarmStatusBadge(alarm.status)}</td>
+                  <td className="px-3 py-4">{alarm.time}</td>
                   <td className="px-3 py-4">
                     <div role="button" className="w-full flex items-center justify-center">
                       <BiLink />

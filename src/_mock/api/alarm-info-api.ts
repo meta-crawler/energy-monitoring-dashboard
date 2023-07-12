@@ -7,11 +7,11 @@ mock.onGet('/api/get-alarm-list').reply((req: any) => {
   const length = total ? total : 5;
 
   const types = ['Over Temperature', 'Over Charge', 'Over Discharge', 'RS485 Fail'];
-  const levels = ['Info', 'Warning'];
+  const levels = ['Normal', 'Warning', 'Abnormal'];
 
   const alarms = [...Array(length)].map((_, index) => {
     const typeId = Math.round(getRandomValue(2, 2)) % 4;
-    const levelId = Math.round(getRandomValue(1, 1)) % 2;
+    const levelId = Math.round(getRandomValue(2, 2)) % 3;
     const messageId = Math.round(getRandomValue(4440, 10));
     const status = Math.round(getRandomValue(1, 1)) % 2;
 
