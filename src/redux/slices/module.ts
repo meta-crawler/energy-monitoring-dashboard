@@ -40,11 +40,11 @@ export default slice.reducer;
 // ----------------------------------------------------------------------
 const { startLoading, hasError, getSelectedModuleSuccess, getModulesSuccess } = slice.actions;
 
-export function getSelectedModule(systemId: string, stringId: string, moduleId: string) {
+export function getSelectedModule() {
   return async (dispatch: Dispatch) => {
     dispatch(startLoading());
     try {
-      const { data }: AxiosResponse = await getModuleInfoApi(systemId, stringId, moduleId);
+      const { data }: AxiosResponse = await getModuleInfoApi();
       dispatch(getSelectedModuleSuccess(data.data));
     } catch (error) {
       dispatch(hasError(error));
@@ -52,11 +52,11 @@ export function getSelectedModule(systemId: string, stringId: string, moduleId: 
   };
 }
 
-export function getModules(systemId: string, stringId: string) {
+export function getModules() {
   return async (dispatch: Dispatch) => {
     dispatch(startLoading());
     try {
-      const { data }: AxiosResponse = await getModuleInfosApi(systemId, stringId);
+      const { data }: AxiosResponse = await getModuleInfosApi(60);
       dispatch(getModulesSuccess(data.data));
     } catch (error) {
       dispatch(hasError(error));

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import typography from 'src/theme/typography';
 import { CARD } from 'src/config-global';
 import { shadows as customShadows } from 'src/theme/shadows';
@@ -6,29 +7,19 @@ import { shadows as customShadows } from 'src/theme/shadows';
 import DropDown from 'src/components/dropdown';
 import Pagination from 'src/components/pagination';
 import Empty from 'src/components/empty';
+import AlarmLevelBadge from 'src/components/alarm-level-badge';
 import LoadingIndicator from 'src/components/loading-indicator';
 import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
 import { BiLink } from 'react-icons/bi';
 // Redux
 import { useDispatch, useSelector } from 'src/redux/store';
-import { IAlarmInfo } from 'src/@types/alarm';
+import { IAlarmInfo, IAlarmLevel, AlarmLevels, AlarmTypes } from 'src/@types/alarm';
 import { getAlarmList } from 'src/redux/slices/alarm';
-
-const AlarmTypes = [
-  { key: 'overT', value: 'Over Temperature' },
-  { key: 'overCharging', value: 'Over Charge' },
-  { key: 'overDisCharging', value: 'Over Discharge' },
-  { key: 'rs485', value: 'RS485 Fail' },
-];
-
-const AlarmLevels = [
-  { key: 'info', value: 'Info' },
-  { key: 'warning', value: 'Warning' },
-];
 
 export default function AlarmListPage() {
   const dispatch = useDispatch();
   const { isLoading, alarmList } = useSelector((store) => store.alarm);
+  const navigate = useNavigate();
   const shadows = customShadows();
   const [alarmType, setAlarmType] = useState<IDropdownItem>(InitOption);
   const [alarmLevel, setAlarmLevel] = useState<IDropdownItem>(InitOption);
@@ -41,8 +32,10 @@ export default function AlarmListPage() {
   const handlePage = (page: number) => setPage(page);
   const handleLimit = (limit: number) => setLimit(limit);
 
+  const gotoDevicePage = () => {};
+
   useEffect(() => {
-    dispatch(getAlarmList(20));
+    dispatch(getAlarmList(25));
   }, [dispatch]);
 
   useEffect(() => {
@@ -62,6 +55,19 @@ export default function AlarmListPage() {
 
     setAlarms(filteredAlarms?.slice(page * limit, (page + 1) * limit));
   }, [alarmList, page, limit, alarmType, alarmLevel]);
+
+  const alarmStatusBadge = (status: number) => {
+    const color = status ? 'bg-success-main' : 'bg-warning-main';
+
+    return (
+      <span
+        className={`px-4 py-2 rounded-full text-white font-medium ${color}`}
+        style={typography.caption}
+      >
+        {status ? 'Fixed' : 'Pending'}
+      </span>
+    );
+  };
 
   return (
     <div
@@ -143,22 +149,13 @@ export default function AlarmListPage() {
                   <th scope="row" className="px-3 py-4 font-regular" style={typography.body2}>
                     {page * limit + index + 1}
                   </th>
-                  <td className="px-3 py-4">{alarm.time}</td>
                   <td className="px-3 py-4">{alarm.type}</td>
-                  <td className="px-3 py-4">{alarm.level}</td>
-                  <td className="px-3 py-4">{alarm.message}</td>
-                  <td className="px-3 py-4 capitalize">
-                    <span
-                      className={`px-2 py-1 rounded-full ${
-                        alarm.status
-                          ? 'bg-success-main text-success-darker'
-                          : 'bg-error-main text-error-darker'
-                      }`}
-                      style={typography.caption}
-                    >
-                      {alarm.status ? 'Fixed' : 'Pending'}
-                    </span>
+                  <td className="px-3 py-4">
+                    <AlarmLevelBadge level={alarm.level as IAlarmLevel} />
                   </td>
+                  <td className="px-3 py-4">{alarm.message}</td>
+                  <td className="px-3 py-4">{alarmStatusBadge(alarm.status)}</td>
+                  <td className="px-3 py-4">{alarm.time}</td>
                   <td className="px-3 py-4">
                     <div role="button" className="w-full flex items-center justify-center">
                       <BiLink />

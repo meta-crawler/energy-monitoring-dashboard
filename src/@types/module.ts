@@ -1,4 +1,4 @@
-import { ICellInfo } from './cell';
+import { IAlarmLevel } from 'src/@types/alarm';
 
 export type IModuleState = {
   isLoading: boolean;
@@ -8,6 +8,14 @@ export type IModuleState = {
 };
 
 export type IModuleInfo = {
-  id: string;
-  cells: ICellInfo[];
+  string: number;
+  module: number;
+  time: string;
+  tempStatus: IAlarmLevel;
+  vStatus: IAlarmLevel;
+  voltage: number;
+  current: number;
+  temp_01: number;
+  temp_02: number;
+  soc: number;
 };

@@ -1,17 +1,17 @@
 import mock from '../mock';
 import { format, subHours } from 'date-fns';
-import { getRandomValue, getRoundedValue } from '../utils/random';
+import { getRandomTime, getRandomValue, getRoundedValue } from '../utils/random';
 
 mock.onGet('/api/get-alarm-list').reply((req: any) => {
   const { total, page, limit } = req.params;
   const length = total ? total : 5;
 
   const types = ['Over Temperature', 'Over Charge', 'Over Discharge', 'RS485 Fail'];
-  const levels = ['Info', 'Warning'];
+  const levels = ['Normal', 'Warning', 'Abnormal'];
 
   const alarms = [...Array(length)].map((_, index) => {
     const typeId = Math.round(getRandomValue(2, 2)) % 4;
-    const levelId = Math.round(getRandomValue(1, 1)) % 2;
+    const levelId = Math.round(getRandomValue(2, 2)) % 3;
     const messageId = Math.round(getRandomValue(4440, 10));
     const status = Math.round(getRandomValue(1, 1)) % 2;
 
@@ -36,15 +36,47 @@ mock.onGet('/api/get-alarm-list').reply((req: any) => {
       }
     };
 
+    const target = () => {
+      switch (typeId) {
+        case 0:
+          return {
+            system: 'PCS-M300',
+            string,
+            module,
+          };
+        case 1:
+          return {
+            system: 'PCS-M300',
+            string,
+            module,
+            cell,
+          };
+        case 2:
+          return {
+            system: 'PCS-M300',
+            string,
+            module,
+            cell,
+          };
+        case 3:
+          return {
+            system: 'PCS-M300',
+            string,
+            module,
+          };
+      }
+    };
+
     return {
       time: format(subHours(new Date(), index), 'yyyy-MM-dd HH:mm:ss'),
       type: types[typeId],
       level: levels[levelId],
       message: message(),
       status,
-      link: '',
+      target: target(),
     };
   });
+
   return [
     200,
     {
