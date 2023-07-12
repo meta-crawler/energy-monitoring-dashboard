@@ -24,6 +24,7 @@ export default function Pagination({
 }: IPaginationProps) {
   const total = Math.ceil(pages / limit) - 1;
   const [startPage, setStartPage] = useState(0);
+  const totalPaginations = Math.ceil(pages / limit) > 5 ? 5 : Math.ceil(pages / limit);
 
   useEffect(() => {
     setStartPage(Math.max(page - 4, 0));
@@ -82,7 +83,7 @@ export default function Pagination({
               <FaAngleLeft />
             </a>
           </li>
-          {[...Array(Math.ceil(5))].map((_, idx) => (
+          {[...Array(Math.ceil(totalPaginations))].map((_, idx) => (
             <li key={idx}>
               <a
                 role="button"
