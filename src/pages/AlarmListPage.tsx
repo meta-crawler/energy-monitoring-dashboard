@@ -13,6 +13,7 @@ import { BiLink } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'src/redux/store';
 import { IAlarmInfo, IAlarmLevel } from 'src/@types/alarm';
 import { getAlarmList } from 'src/redux/slices/alarm';
+import { useNavigate } from 'react-router-dom';
 
 const AlarmTypes = [
   { key: 'overT', value: 'Over Temperature' },
@@ -30,6 +31,7 @@ const AlarmLevels = [
 export default function AlarmListPage() {
   const dispatch = useDispatch();
   const { isLoading, alarmList } = useSelector((store) => store.alarm);
+  const navigate = useNavigate();
   const shadows = customShadows();
   const [alarmType, setAlarmType] = useState<IDropdownItem>(InitOption);
   const [alarmLevel, setAlarmLevel] = useState<IDropdownItem>(InitOption);
@@ -41,6 +43,8 @@ export default function AlarmListPage() {
 
   const handlePage = (page: number) => setPage(page);
   const handleLimit = (limit: number) => setLimit(limit);
+
+  const gotoDevicePage = () => {};
 
   useEffect(() => {
     dispatch(getAlarmList(25));

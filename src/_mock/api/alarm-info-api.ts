@@ -36,13 +36,44 @@ mock.onGet('/api/get-alarm-list').reply((req: any) => {
       }
     };
 
+    const target = () => {
+      switch (typeId) {
+        case 0:
+          return {
+            system: 'PCS-M300',
+            string,
+            module,
+          };
+        case 1:
+          return {
+            system: 'PCS-M300',
+            string,
+            module,
+            cell,
+          };
+        case 2:
+          return {
+            system: 'PCS-M300',
+            string,
+            module,
+            cell,
+          };
+        case 3:
+          return {
+            system: 'PCS-M300',
+            string,
+            module,
+          };
+      }
+    };
+
     return {
       time: format(subHours(new Date(), index), 'yyyy-MM-dd HH:mm:ss'),
       type: types[typeId],
       level: levels[levelId],
       message: message(),
       status,
-      link: '',
+      target: target(),
     };
   });
   return [

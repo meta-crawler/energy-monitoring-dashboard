@@ -25,5 +25,12 @@ export type IAlarmInfo = {
   level: string;
   message: string;
   status: number;
-  link: string;
+  target: ITargetType;
+};
+
+export type ITargetType = {
+  system: string;
+  string: string;
+  module: string;
+  cell?: string;
 };
