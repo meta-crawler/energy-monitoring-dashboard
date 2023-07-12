@@ -1,6 +1,6 @@
 import mock from '../mock';
 import { format, subHours } from 'date-fns';
-import { getRandomValue, getRoundedValue } from '../utils/random';
+import { getRandomTime, getRandomValue, getRoundedValue } from '../utils/random';
 
 mock.onGet('/api/get-alarm-list').reply((req: any) => {
   const { total, page, limit } = req.params;
@@ -76,6 +76,7 @@ mock.onGet('/api/get-alarm-list').reply((req: any) => {
       target: target(),
     };
   });
+
   return [
     200,
     {
