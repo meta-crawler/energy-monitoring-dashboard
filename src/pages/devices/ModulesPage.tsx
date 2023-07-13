@@ -15,14 +15,9 @@ import { useDispatch, useSelector } from 'src/redux/store';
 import { IModuleInfo } from 'src/@types/module';
 import { getModules } from 'src/redux/slices/module';
 
-const Strings = [...Array(4)].map((_, index) => ({
-  key: (index + 1).toString(),
+const Strings = [...Array(3)].map((_, index) => ({
+  key: index.toString(),
   value: `String ${index + 1}`,
-}));
-
-const Modules = [...Array(10)].map((_, index) => ({
-  key: (index + 1).toString(),
-  value: `Module ${index + 1}`,
 }));
 
 export default function ModulesPage() {
@@ -36,6 +31,7 @@ export default function ModulesPage() {
 
   const [string, setString] = useState<IDropdownItem>(InitOption);
   const [module, setModule] = useState<IDropdownItem>(InitOption);
+  const [moduleOptions, setModuleOptions] = useState<IDropdownItem[]>();
   const [moduleList, setModuleList] = useState<IModuleInfo[]>();
 
   const handlePage = (page: number) => setPage(page);
@@ -44,6 +40,17 @@ export default function ModulesPage() {
   useEffect(() => {
     dispatch(getModules());
   }, [dispatch]);
+
+  useEffect(() => {
+    setModuleOptions(
+      [...Array.from({ length: 20 }, (_, index) => Number(string.key) * 20 + index)].map(
+        (index) => ({
+          key: (index + 1).toString(),
+          value: `Module ${index + 1}`,
+        }),
+      ),
+    );
+  }, [string]);
 
   useEffect(() => {
     let filteredModules = modules;
@@ -89,7 +96,7 @@ export default function ModulesPage() {
         <DropDown
           name="module"
           selected={module}
-          options={Modules}
+          options={moduleOptions}
           placeholder="Select Module"
           style="md:w-80"
           showClose={true}

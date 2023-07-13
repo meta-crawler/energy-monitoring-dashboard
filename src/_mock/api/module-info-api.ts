@@ -3,8 +3,8 @@ import { getRandomValue, getRoundedValue, getRandomTime } from '../utils/random'
 
 const getModuleData = () => {
   const status = ['Normal', 'Warning', 'Abnormal'];
-  const string = Math.round(getRandomValue(2, 2));
-  const module = Math.round(getRandomValue(5, 5));
+  const string = Math.round(getRandomValue(2, 2)) % 3;
+  const module = (Math.round(getRandomValue(10, 10)) % 20) + string * 20;
   const time = getRandomTime();
   const tempStatusId = Math.round(getRandomValue(2, 2)) % 3;
   const vStatusId = Math.round(getRandomValue(2, 2)) % 3;
