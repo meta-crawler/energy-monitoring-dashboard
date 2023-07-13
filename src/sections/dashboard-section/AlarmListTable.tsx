@@ -3,7 +3,8 @@ import { CARD } from 'src/config-global';
 import typography from 'src/theme/typography';
 import { shadows as customShadows } from 'src/theme/shadows';
 import { BiLink } from 'react-icons/bi';
-import { IAlarmInfo } from 'src/@types/alarm';
+import { IAlarmInfo, IAlarmLevel } from 'src/@types/alarm';
+import AlarmLevelBadge from 'src/components/alarm-level-badge';
 
 type IAlarmListTableProps = {
   alarms: IAlarmInfo[] | null;
@@ -62,14 +63,14 @@ export default function AlarmListTable({ alarms }: IAlarmListTableProps) {
                   </th>
                   <td className="px-3 py-4">{alarm.time}</td>
                   <td className="px-3 py-4">{alarm.type}</td>
-                  <td className="px-3 py-4">{alarm.level}</td>
+                  <td className="px-3 py-4">
+                    <AlarmLevelBadge level={alarm.level as IAlarmLevel} />
+                  </td>
                   <td className="px-3 py-4">{alarm.message}</td>
                   <td className="px-3 py-4 capitalize">
                     <span
-                      className={`px-2 py-1 rounded-full ${
-                        alarm.status
-                          ? 'bg-success-main text-success-darker'
-                          : 'bg-error-main text-error-darker'
+                      className={`px-4 py-2 rounded-full text-white font-medium ${
+                        alarm.status ? 'bg-success-main' : 'bg-error-main'
                       }`}
                       style={typography.caption}
                     >

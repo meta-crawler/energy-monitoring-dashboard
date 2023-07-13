@@ -4,12 +4,15 @@ import {
   AlarmListTable,
   AlertListTable,
   BatteryStatus,
-  CircularGauge,
   StatusCard,
   StatusTable,
   ThermometerGauge,
+  CircularIndicatorGauge,
 } from 'src/sections/dashboard-section';
-import { CURRENT_OPTIONS, VOLTAGE_OPTIONS } from 'src/sections/dashboard-section/constants';
+import {
+  CURRENT_GAUGE_OPTIONS,
+  VOLTAGE_GAUGE_OPTIONS,
+} from 'src/sections/dashboard-section/constants';
 import { CARD } from 'src/config-global';
 import { shadows as customShadows } from 'src/theme/shadows';
 // Redux
@@ -94,18 +97,32 @@ export default function DashboardPage() {
         <div className="col-span-1 flex justify-center">
           <BatteryStatus soc={gaugeInfo?.soc} chargingStatus={!!gaugeInfo?.chargingStatus} />
         </div>
-        <div className="col-span-1 flex justify-center -mb-10">
-          <CircularGauge
-            title="Voltage"
+        <div className="col-span-1 flex justify-center">
+          <CircularIndicatorGauge
             value={gaugeInfo?.voltage}
-            options={{ unit: 'V', border: 9, breakpoints: VOLTAGE_OPTIONS }}
+            options={{
+              breakpoints: VOLTAGE_GAUGE_OPTIONS,
+              title: 'Voltage',
+              formatter: '{value} V',
+              min: 0,
+              max: 300,
+              majorTicks: 10,
+              minorTicks: 10,
+            }}
           />
         </div>
-        <div className="col-span-1 flex justify-center -mb-10">
-          <CircularGauge
-            title="Current"
+        <div className="col-span-1 flex justify-center">
+          <CircularIndicatorGauge
             value={gaugeInfo?.current}
-            options={{ unit: 'A', border: 9, breakpoints: CURRENT_OPTIONS }}
+            options={{
+              breakpoints: CURRENT_GAUGE_OPTIONS,
+              title: 'Current',
+              formatter: '{value} A',
+              min: 0,
+              max: 180,
+              majorTicks: 9,
+              minorTicks: 10,
+            }}
           />
         </div>
         <div className="col-span-1 flex flex-row justify-around items-center">
