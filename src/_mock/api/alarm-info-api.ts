@@ -4,16 +4,17 @@ import { getRandomTime, getRandomValue, getRoundedValue } from '../utils/random'
 
 mock.onGet('/api/get-alarm-list').reply((req: any) => {
   const { total, page, limit } = req.params;
-  const length = total ? total : 5;
+  const length = total ? total : 10;
 
   const types = ['Over Temperature', 'Over Charge', 'Over Discharge', 'RS485 Fail'];
   const levels = ['Normal', 'Warning', 'Abnormal'];
 
   const alarms = [...Array(length)].map((_, index) => {
     const typeId = Math.round(getRandomValue(2, 2)) % 4;
-    const levelId = Math.round(getRandomValue(2, 2)) % 3;
+    const percent = Math.round(Math.random() * 100);
+    const levelId = percent < 90 ? 0 : percent < 99 ? 1 : 2;
     const messageId = Math.round(getRandomValue(4440, 10));
-    const status = Math.round(getRandomValue(1, 1)) % 2;
+    const status = Math.round(Math.random() * 100) < 90 ? 1 : 0;
 
     const string = Math.round(getRandomValue(2, 1));
     const module = Math.round(getRandomValue(10, 4));

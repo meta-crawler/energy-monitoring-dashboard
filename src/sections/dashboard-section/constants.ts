@@ -75,15 +75,15 @@ export type ICircularIndicatorGaugeOptions = {
 export type IBreakpoint = [breakpoint: number, color: string];
 
 export const VOLTAGE_GAUGE_OPTIONS = [
-  [180.0 / 300, colors('error.main')],
-  [220.0 / 300, colors('warning.main')],
-  [250.0 / 300, colors('success.main')],
-  [270.0 / 300, colors('warning.main')],
-  [300.0 / 300, colors('error.dark')],
+  [300.0 / 600, colors('error.main')],
+  [480.0 / 600, colors('warning.main')],
+  [540.0 / 600, colors('success.main')],
+  [600.0 / 600, colors('error.dark')],
 ] as IBreakpoint[];
 
 export const CURRENT_GAUGE_OPTIONS = [
-  [120.0 / 180, colors('success.main')],
-  [150.0 / 180, colors('warning.main')],
+  [20.0 / 180, colors('warning.main')],
+  [40.0 / 180, colors('success.main')],
+  [160.0 / 180, colors('warning.main')],
   [180.0 / 180, colors('error.main')],
 ] as IBreakpoint[];

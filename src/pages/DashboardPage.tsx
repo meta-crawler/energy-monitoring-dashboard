@@ -46,7 +46,7 @@ export default function DashboardPage() {
 
     setInterval(() => {
       dispatch(getDashboardInfo());
-    }, 3000);
+    }, 5000);
   }, [dispatch]);
 
   useEffect(() => {
@@ -66,7 +66,7 @@ export default function DashboardPage() {
     <div className="w-full h-full flex flex-col p-3 gap-3">
       <div className="h-22 flex flex-col lg:flex-row gap-3">
         <div className="w-full grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-3">
-          <StatusCard system="PCS-M300" status={OperationStatus.NORMAL} title="Overall Status" />
+          <StatusCard system="PCS-M300" status={OperationStatus.WARNING} title="Overall Status" />
           <StatusCard
             system="PCS-M300"
             status={OperationStatus.WARNING}
@@ -105,7 +105,7 @@ export default function DashboardPage() {
               title: 'Voltage',
               formatter: '{value} V',
               min: 0,
-              max: 300,
+              max: 600,
               majorTicks: 10,
               minorTicks: 10,
             }}
@@ -140,7 +140,7 @@ export default function DashboardPage() {
           />
         </div>
       </div>
-      <div className="w-full grid grid-cols-1 xl:grid-cols-4 xl:gap-6 pb-3">
+      <div className="w-full grid grid-cols-1 xl:grid-cols-4 xl:gap-3 pb-3">
         <div className="col-span-1 md:col-span-3">
           <AlarmListTable alarms={alarmList} />
         </div>
