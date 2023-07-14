@@ -140,7 +140,7 @@ export default function DashboardPage() {
           />
         </div>
       </div>
-      <div className="w-full grid grid-cols-1 xl:grid-cols-4 xl:gap-3 pb-3">
+      <div className="w-full grid grid-cols-1 xl:grid-cols-4 gap-y-3 xl:gap-x-3 pb-3">
         <div className="col-span-1 md:col-span-3">
           <AlarmListTable alarms={alarmList} />
         </div>

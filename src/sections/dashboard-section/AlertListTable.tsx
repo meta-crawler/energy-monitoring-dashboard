@@ -13,7 +13,7 @@ export default function AlertListTable({ alerts }: IAlertListTableProps) {
 
   return (
     <div
-      className="md:min-w-[300px] overflow-auto bg-white"
+      className="w-full overflow-auto bg-white"
       style={{
         padding: `${CARD.PADDING}px`,
         boxShadow: shadows[CARD.BOX_SHADOW],
@@ -23,28 +23,30 @@ export default function AlertListTable({ alerts }: IAlertListTableProps) {
       <p className="text-text-primary mb-6" style={typography.h4}>
         Today Alarm summary
       </p>
-      <table className="w-full text-left text-text-primary" style={typography.body1}>
-        <tbody>
-          <tr className="bg-white border-b">
-            <td className="py-2" style={typography.overline}>
-              Temperature Alert
-            </td>
-            <td className="py-2">{alerts?.temperature}</td>
-          </tr>
-          <tr className="bg-white border-b">
-            <td className="py-2" style={typography.overline}>
-              Overcharge Alert Count
-            </td>
-            <td className="py-2">{alerts?.overCharge}</td>
-          </tr>
-          <tr className="bg-white">
-            <td className="py-2" style={typography.overline}>
-              Overdischarge Alert Count
-            </td>
-            <td className="py-2">{alerts?.overDisCharge}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="relative overflow-x-auto bg-white rounded-lg border border-grey-300">
+        <table className="w-full text-left text-text-primary" style={typography.body1}>
+          <tbody>
+            <tr className="bg-white border-b">
+              <td className="py-2 px-4" style={typography.overline}>
+                Temperature Alert
+              </td>
+              <td className="py-2 px-3">{alerts?.temperature}</td>
+            </tr>
+            <tr className="bg-grey-200 border-b">
+              <td className="py-2 px-4" style={typography.overline}>
+                Overcharge Alert Count
+              </td>
+              <td className="py-2 px-3">{alerts?.overCharge}</td>
+            </tr>
+            <tr className="bg-white">
+              <td className="py-2 px-4" style={typography.overline}>
+                Overdischarge Alert Count
+              </td>
+              <td className="py-2 px-3">{alerts?.overDisCharge}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
