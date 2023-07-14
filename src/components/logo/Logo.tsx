@@ -26,7 +26,7 @@ const Logo = ({ disabledLink, size }: LogoProps) => {
   );
 
   if (disabledLink) return textLogo;
-  return <RouterLink to="/">{textLogo}</RouterLink>;
+  return <RouterLink to="/">{logo}</RouterLink>;
 };
 
 export default Logo;

@@ -23,7 +23,7 @@ export default function NavVertical() {
     >
       <div
         className={`flex flex-col py-2 overflow-y-auto transition-all ease-in-out duration-200 ${
-          themeLayout !== 'mini' ? 'gap-y-6' : 'gap-y-2'
+          themeLayout !== 'mini' ? 'gap-y-4' : 'gap-y-2'
         }`}
       >
         <div

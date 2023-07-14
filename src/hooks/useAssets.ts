@@ -4,7 +4,7 @@ function useAssets() {
   const jpegs = (require as any).context('src/assets/images', true, /\.jpeg$/);
 
   return {
-    logo: svgs('./logo.svg'),
+    logo: pngs('./logo.png'),
     dashboard: svgs('./logo.svg'),
     devices: svgs('./logo.svg'),
     history: svgs('./logo.svg'),
