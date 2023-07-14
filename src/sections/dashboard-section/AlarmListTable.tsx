@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { CARD } from 'src/config-global';
 import typography from 'src/theme/typography';
 import { shadows as customShadows } from 'src/theme/shadows';
 import { BiLink } from 'react-icons/bi';
 import { IAlarmInfo, IAlarmLevel } from 'src/@types/alarm';
 import AlarmLevelBadge from 'src/components/alarm-level-badge';
+import Pagination from 'src/components/pagination';
 
 type IAlarmListTableProps = {
   alarms: IAlarmInfo[] | null;
@@ -12,6 +13,18 @@ type IAlarmListTableProps = {
 
 export default function AlarmListTable({ alarms }: IAlarmListTableProps) {
   const shadows = customShadows();
+  const [page, setPage] = useState(0);
+  const [limit, setLimit] = useState(5);
+  const [total, setTotal] = useState(10);
+  const [alarmList, setAlarmList] = useState(alarms?.slice(0, 5));
+
+  useEffect(() => {
+    setAlarmList(alarms?.slice(page * limit + 1, (page + 1) * limit));
+  }, [page, limit, alarms]);
+
+  const handlePage = (page: number) => setPage(page);
+  const handleLimit = (limit: number) => setLimit(limit);
+
   return (
     <div
       className="w-full bg-white"
@@ -21,6 +34,9 @@ export default function AlarmListTable({ alarms }: IAlarmListTableProps) {
         padding: `${CARD.PADDING}px`,
       }}
     >
+      <p className="text-text-primary mb-6" style={typography.h4}>
+        System Alarm Latest list
+      </p>
       <div className="relative overflow-x-auto bg-white rounded-lg border border-grey-300">
         <table className="w-full text-center">
           <thead
@@ -52,8 +68,8 @@ export default function AlarmListTable({ alarms }: IAlarmListTableProps) {
             </tr>
           </thead>
           <tbody>
-            {alarms &&
-              alarms.map((alarm, index) => (
+            {alarmList &&
+              alarmList.map((alarm, index) => (
                 <tr
                   key={index}
                   className={`${index % 2 ? 'bg-grey-200' : 'bg-white'} ${index && 'border-t'}`}
@@ -87,6 +103,16 @@ export default function AlarmListTable({ alarms }: IAlarmListTableProps) {
           </tbody>
         </table>
       </div>
+
+      {alarmList && !!alarmList.length && (
+        <Pagination
+          page={page}
+          limit={limit}
+          pages={total}
+          onPageChange={handlePage}
+          onLimitChange={handleLimit}
+        />
+      )}
     </div>
   );
 }

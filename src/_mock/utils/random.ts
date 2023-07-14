@@ -2,8 +2,10 @@ import { addDays, addHours, addMinutes, addSeconds, format } from 'date-fns';
 
 export const getRandomValue = (m: number, sigma: number) => m + sigma * Math.random();
 
+export const getLinearRandomValue = (min: number, max: number) => Math.random() * (max - min) + min;
+
 export const getRoundedValue = (x: number, drop: number | null = null) =>
-  drop !== null ? Number(x.toFixed(drop)) : Number(x.toFixed(2));
+  drop !== null ? Number(x.toFixed(drop)) : Number(x.toFixed(1));
 
 export const getRandomTime = () => {
   const today = new Date();

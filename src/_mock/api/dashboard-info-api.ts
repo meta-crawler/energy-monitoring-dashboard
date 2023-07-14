@@ -1,19 +1,19 @@
 import mock from '../mock';
-import { getRoundedValue, getRandomValue } from '../utils/random';
+import { getRoundedValue, getRandomValue, getLinearRandomValue } from '../utils/random';
 
 mock.onGet('/api/get-gauges-info').reply((req: any) => {
-  const chargingStatus = Math.round(getRandomValue(5, 5)) > 9;
-  const soc = getRoundedValue(getRandomValue(40, 30), 0);
-  const voltage = getRoundedValue(getRandomValue(240, 20));
-  const current = getRoundedValue(getRandomValue(30, 20));
+  const chargingStatus = Math.random() < 0.9 ? 1 : 0;
+  const soc = getRoundedValue(getLinearRandomValue(90, 95), 0);
+  const voltage = getRoundedValue(getLinearRandomValue(520, 540));
+  const current = getRoundedValue(getLinearRandomValue(33, 37));
 
-  const maxTV = getRoundedValue(getRandomValue(40, 20), 1);
+  const maxTV = getRoundedValue(getRandomValue(40, 20));
   const maxTS = Math.round(getRandomValue(2, 1));
-  const maxTM = Math.round(getRandomValue(10, 4));
+  const maxTM = Math.round(getRandomValue(10, 3));
 
-  const minTV = getRoundedValue(getRandomValue(30, 15), 1);
+  const minTV = getRoundedValue(getRandomValue(30, 15));
   const minTS = Math.round(getRandomValue(2, 1));
-  const minTM = Math.round(getRandomValue(10, 4));
+  const minTM = Math.round(getRandomValue(10, 3));
 
   return [
     200,
