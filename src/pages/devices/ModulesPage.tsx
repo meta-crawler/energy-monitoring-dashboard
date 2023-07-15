@@ -10,6 +10,7 @@ import Empty from 'src/components/empty';
 import AlarmLevelBadge from 'src/components/alarm-level-badge';
 import LoadingIndicator from 'src/components/loading-indicator';
 import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
+import { IAlarmLevel, AlarmLevels } from 'src/@types/alarm';
 // Redux
 import { useDispatch, useSelector } from 'src/redux/store';
 import { IModuleInfo } from 'src/@types/module';
@@ -33,6 +34,7 @@ export default function ModulesPage() {
   const [module, setModule] = useState<IDropdownItem>(InitOption);
   const [moduleOptions, setModuleOptions] = useState<IDropdownItem[]>();
   const [moduleList, setModuleList] = useState<IModuleInfo[]>();
+  const [alarmLevel, setAlarmLevel] = useState<IDropdownItem>(InitOption);
 
   const handlePage = (page: number) => setPage(page);
   const handleLimit = (limit: number) => setLimit(limit);
@@ -65,10 +67,31 @@ export default function ModulesPage() {
         (item) => item.module === Number(module.key),
       ) as IModuleInfo[];
 
+    switch (alarmLevel.value) {
+      case IAlarmLevel.NORMAL:
+        filteredModules = filteredModules?.filter(
+          (item) => item.tempStatus === IAlarmLevel.NORMAL && item.vStatus === IAlarmLevel.NORMAL,
+        ) as IModuleInfo[];
+        break;
+      case IAlarmLevel.WARNING:
+        filteredModules = filteredModules?.filter(
+          (item) => item.tempStatus === IAlarmLevel.WARNING || item.vStatus === IAlarmLevel.WARNING,
+        ) as IModuleInfo[];
+        break;
+      case IAlarmLevel.ABNORMAL:
+        filteredModules = filteredModules?.filter(
+          (item) =>
+            item.tempStatus === IAlarmLevel.ABNORMAL || item.vStatus === IAlarmLevel.ABNORMAL,
+        ) as IModuleInfo[];
+        break;
+      default:
+        break;
+    }
+
     setTotal(filteredModules?.length);
 
     setModuleList(filteredModules?.slice(page * limit, (page + 1) * limit));
-  }, [modules, page, limit, string, module]);
+  }, [modules, page, limit, string, module, alarmLevel]);
 
   return (
     <div
@@ -101,6 +124,15 @@ export default function ModulesPage() {
           style="md:w-80"
           showClose={true}
           onChange={(v) => setModule(v)}
+        />
+        <DropDown
+          name="alarmLevel"
+          selected={alarmLevel}
+          options={AlarmLevels}
+          placeholder="Select Alarm Level"
+          style="md:w-80"
+          showClose={true}
+          onChange={(v) => setAlarmLevel(v)}
         />
       </div>
 

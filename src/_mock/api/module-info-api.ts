@@ -1,15 +1,22 @@
 import mock from 'src/_mock/mock';
-import { getRandomValue, getRoundedValue, getRandomTime } from '../utils/random';
+import {
+  getRandomValue,
+  getRoundedValue,
+  getRandomTime,
+  getLinearRandomValue,
+} from '../utils/random';
 
 const getModuleData = () => {
   const status = ['Normal', 'Warning', 'Abnormal'];
   const string = Math.round(getRandomValue(2, 2)) % 3;
   const module = (Math.round(getRandomValue(10, 10)) % 20) + string * 20;
   const time = getRandomTime();
-  const tempStatusId = Math.round(getRandomValue(2, 2)) % 3;
-  const vStatusId = Math.round(getRandomValue(2, 2)) % 3;
-  const voltage = getRoundedValue(getRandomValue(27, 2), 2);
-  const current = 0;
+  const percentT = Math.round(Math.random() * 100);
+  const percentV = Math.round(Math.random() * 100);
+  const tempStatusId = percentT < 90 ? 0 : percentT < 99 ? 1 : 2;
+  const vStatusId = percentV < 90 ? 0 : percentV < 99 ? 1 : 2;
+  const voltage = getRoundedValue(getLinearRandomValue(520, 540));
+  const current = getRoundedValue(getLinearRandomValue(33, 37));
   const temp_01 = getRoundedValue(getRandomValue(30, 3), 1);
   const temp_02 = getRoundedValue(getRandomValue(30, 3), 1);
   const soc = 0;

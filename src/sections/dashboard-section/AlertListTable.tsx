@@ -26,19 +26,19 @@ export default function AlertListTable({ alerts }: IAlertListTableProps) {
       <div className="relative overflow-x-auto bg-white rounded-lg border border-grey-300">
         <table className="w-full text-left text-text-primary" style={typography.body1}>
           <tbody>
-            <tr className="bg-white border-b">
+            <tr className="bg-grey-200 border-b">
               <td className="py-2 px-4" style={typography.overline}>
                 Temperature Alert
               </td>
               <td className="py-2 px-3">{alerts?.temperature}</td>
             </tr>
-            <tr className="bg-grey-200 border-b">
+            <tr className="bg-white border-b">
               <td className="py-2 px-4" style={typography.overline}>
                 Overcharge Alert Count
               </td>
               <td className="py-2 px-3">{alerts?.overCharge}</td>
             </tr>
-            <tr className="bg-white">
+            <tr className="bg-grey-200">
               <td className="py-2 px-4" style={typography.overline}>
                 Overdischarge Alert Count
               </td>
