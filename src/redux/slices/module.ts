@@ -52,11 +52,11 @@ export function getSelectedModule() {
   };
 }
 
-export function getModules() {
+export function getModules(string?: number, module?: number) {
   return async (dispatch: Dispatch) => {
     dispatch(startLoading());
     try {
-      const { data }: AxiosResponse = await getModuleInfosApi(60);
+      const { data }: AxiosResponse = await getModuleInfosApi(60, string, module);
       dispatch(getModulesSuccess(data.data));
     } catch (error) {
       dispatch(hasError(error));

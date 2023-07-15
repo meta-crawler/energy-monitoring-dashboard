@@ -1,6 +1,6 @@
 import mock from '../mock';
 import { format, subHours } from 'date-fns';
-import { getRandomTime, getRandomValue, getRoundedValue } from '../utils/random';
+import { getRandomValue, getRoundedValue } from '../utils/random';
 
 mock.onGet('/api/get-alarm-list').reply((req: any) => {
   const { total, page, limit } = req.params;
@@ -13,11 +13,10 @@ mock.onGet('/api/get-alarm-list').reply((req: any) => {
     const typeId = Math.round(getRandomValue(2, 2)) % 4;
     const percent = Math.round(Math.random() * 100);
     const levelId = percent < 90 ? 0 : percent < 99 ? 1 : 2;
-    const messageId = Math.round(getRandomValue(4440, 10));
     const status = Math.round(Math.random() * 100) < 90 ? 1 : 0;
 
-    const string = Math.round(getRandomValue(2, 1));
-    const module = Math.round(getRandomValue(10, 4));
+    const string = (Math.round(getRandomValue(2, 2)) % 3) + 1;
+    const module = (Math.round(getRandomValue(10, 10)) % 20) + string * 20 + 1;
     const cell = Math.round(getRandomValue(30, 10));
 
     const alertTemperature = getRoundedValue(getRandomValue(70, 5), 1);
@@ -77,6 +76,12 @@ mock.onGet('/api/get-alarm-list').reply((req: any) => {
       target: target(),
     };
   });
+
+  if (!alarms.some((alarm) => alarm.type === types[0] && alarm.level === levels[1])) {
+    const randomId = Math.round(Math.random() * total);
+    alarms[randomId].type = types[0];
+    alarms[randomId].level = levels[1];
+  }
 
   return [
     200,
