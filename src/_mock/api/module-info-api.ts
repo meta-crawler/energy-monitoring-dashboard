@@ -49,18 +49,13 @@ mock.onGet('/api/get-module-infos').reply((req: any) => {
         (item.tempStatus === 'Warning' || item.vStatus === 'Warning'),
     )
   ) {
-    const randomStatus = Math.round(Math.random() * 2) % 2;
     const id = modules.findIndex(
       (item) => item.string === Number(string) && item.module === Number(module),
     );
     modules[id].string = string;
     modules[id].module = module;
 
-    if (randomStatus) {
-      modules[id].tempStatus = 'Warning';
-    } else {
-      modules[id].vStatus = 'Warning';
-    }
+    modules[id].tempStatus = 'Warning';
   }
 
   return [
