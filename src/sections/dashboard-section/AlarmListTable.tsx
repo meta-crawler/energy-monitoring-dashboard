@@ -6,6 +6,7 @@ import { BiLink } from 'react-icons/bi';
 import { IAlarmInfo, IAlarmLevel } from 'src/@types/alarm';
 import AlarmLevelBadge from 'src/components/alarm-level-badge';
 import Pagination from 'src/components/pagination';
+import Empty from 'src/components/empty';
 
 type IAlarmListTableProps = {
   alarms: IAlarmInfo[] | null;
@@ -68,7 +69,7 @@ export default function AlarmListTable({ alarms }: IAlarmListTableProps) {
             </tr>
           </thead>
           <tbody>
-            {alarmList &&
+            {alarmList && alarmList.length ? (
               alarmList.map((alarm, index) => (
                 <tr
                   key={index}
@@ -99,7 +100,14 @@ export default function AlarmListTable({ alarms }: IAlarmListTableProps) {
                     </div>
                   </td>
                 </tr>
-              ))}
+              ))
+            ) : (
+              <tr>
+                <td className="w-full" colSpan={7}>
+                  <Empty />
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

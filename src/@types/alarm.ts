@@ -30,9 +30,9 @@ export type IAlarmInfo = {
 
 export type ITargetType = {
   system: string;
-  string: string;
-  module: string;
-  cell?: string;
+  string: number;
+  module: number;
+  cell?: number;
 };
 
 export const AlarmTypes = [

@@ -33,7 +33,7 @@ export default function DashboardPage() {
 
   const handleClickStatus = () => {
     navigate({
-      pathname: 'caec/alarm',
+      pathname: '/caec/alarm',
       search: `?${createSearchParams({
         alarmType: IAlarmType.OVER_TEMPERATURE,
         alarmLevel: IAlarmLevel.WARNING,
@@ -66,7 +66,12 @@ export default function DashboardPage() {
     <div className="w-full h-full flex flex-col p-3 gap-3">
       <div className="h-22 flex flex-col lg:flex-row gap-3">
         <div className="w-full grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-3">
-          <StatusCard system="PCS-M300" status={OperationStatus.WARNING} title="Overall Status" />
+          <StatusCard
+            system="PCS-M300"
+            status={OperationStatus.WARNING}
+            title="Overall Status"
+            action={handleClickStatus}
+          />
           <StatusCard
             system="PCS-M300"
             status={OperationStatus.WARNING}

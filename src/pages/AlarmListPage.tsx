@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams, createSearchParams } from 'react-router-dom';
 import typography from 'src/theme/typography';
 import { CARD } from 'src/config-global';
 import { shadows as customShadows } from 'src/theme/shadows';
@@ -20,6 +20,7 @@ export default function AlarmListPage() {
   const dispatch = useDispatch();
   const { isLoading, alarmList } = useSelector((store) => store.alarm);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const shadows = customShadows();
   const [alarmType, setAlarmType] = useState<IDropdownItem>(InitOption);
   const [alarmLevel, setAlarmLevel] = useState<IDropdownItem>(InitOption);
@@ -32,11 +33,34 @@ export default function AlarmListPage() {
   const handlePage = (page: number) => setPage(page);
   const handleLimit = (limit: number) => setLimit(limit);
 
-  const gotoDevicePage = () => {};
+  const gotoDevicePage = (level: IAlarmLevel, string: number, module: number, cell?: number) => {
+    navigate({
+      pathname: '/caec/devices/modules',
+      search: `?${createSearchParams({
+        string: `${string}`,
+        module: `${module}`,
+        cell: `${cell}`,
+        alarmLevel: level,
+      })}`,
+    });
+  };
 
   useEffect(() => {
     dispatch(getAlarmList(25));
   }, [dispatch]);
+
+  useEffect(() => {
+    const alarmTypeFromUrl = searchParams.get('alarmType');
+    const alarmLevelFromUrl = searchParams.get('alarmLevel');
+
+    if (alarmTypeFromUrl) {
+      setAlarmType(AlarmTypes.find((type) => type.key === alarmTypeFromUrl) as IDropdownItem);
+    }
+
+    if (alarmLevelFromUrl) {
+      setAlarmLevel(AlarmLevels.find((level) => level.key === alarmLevelFromUrl) as IDropdownItem);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     let filteredAlarms = alarmList;
@@ -158,7 +182,16 @@ export default function AlarmListPage() {
                   <td className="px-3 py-4">{alarm.time}</td>
                   <td className="px-3 py-4">
                     <div role="button" className="w-full flex items-center justify-center">
-                      <BiLink />
+                      <BiLink
+                        onClick={() =>
+                          gotoDevicePage(
+                            alarm.level as IAlarmLevel,
+                            alarm.target.string,
+                            alarm.target.module,
+                            alarm.target.cell,
+                          )
+                        }
+                      />
                     </div>
                   </td>
                 </tr>

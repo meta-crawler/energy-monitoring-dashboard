@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import typography from 'src/theme/typography';
 import { CARD } from 'src/config-global';
 import { shadows as customShadows } from 'src/theme/shadows';
@@ -17,13 +17,14 @@ import { IModuleInfo } from 'src/@types/module';
 import { getModules } from 'src/redux/slices/module';
 
 const Strings = [...Array(3)].map((_, index) => ({
-  key: index.toString(),
+  key: (index + 1).toString(),
   value: `String ${index + 1}`,
-}));
+})) as IDropdownItem[];
 
 export default function ModulesPage() {
   const dispatch = useDispatch();
   const { isLoading, modules } = useSelector((store) => store.module);
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const shadows = customShadows();
   const [page, setPage] = useState(0);
@@ -40,8 +41,8 @@ export default function ModulesPage() {
   const handleLimit = (limit: number) => setLimit(limit);
 
   useEffect(() => {
-    dispatch(getModules());
-  }, [dispatch]);
+    dispatch(getModules(Number(searchParams.get('string')), Number(searchParams.get('module'))));
+  }, [dispatch, searchParams]);
 
   useEffect(() => {
     setModuleOptions(
@@ -53,6 +54,27 @@ export default function ModulesPage() {
       ),
     );
   }, [string]);
+
+  useEffect(() => {
+    const stringFromUrl = searchParams.get('string');
+    const moduleFromUrl = searchParams.get('module');
+    const cellFromUrl = searchParams.get('cell');
+    const alarmLevelFromUrl = searchParams.get('alarmLevel');
+
+    if (stringFromUrl && Strings && Strings.length) {
+      if (Strings.find((item) => item.key === stringFromUrl)) {
+        setString(Strings.find((item) => item.key === stringFromUrl) as IDropdownItem);
+      }
+    }
+    if (moduleFromUrl && moduleOptions && moduleOptions.length) {
+      if (moduleOptions.find((item) => item.key === moduleFromUrl)) {
+        setModule(moduleOptions.find((item) => item.key === moduleFromUrl) as IDropdownItem);
+      }
+    }
+    if (alarmLevelFromUrl) {
+      setAlarmLevel(AlarmLevels.find((item) => item.key === alarmLevelFromUrl) as IDropdownItem);
+    }
+  }, [searchParams, moduleOptions]);
 
   useEffect(() => {
     let filteredModules = modules;
