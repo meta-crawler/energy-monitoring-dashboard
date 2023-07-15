@@ -9,9 +9,16 @@ import Empty from 'src/components/empty';
 import LoadingIndicator from 'src/components/loading-indicator';
 import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
 import { IAlarmLevel, AlarmLevels } from 'src/@types/alarm';
+import dayjs from 'dayjs';
+import type { RangePickerProps } from 'antd/es/date-picker';
+import { DatePicker } from 'antd';
+import { FiSearch } from 'react-icons/fi';
+import { BsFillPrinterFill } from 'react-icons/bs';
 // Redux
 import { useDispatch, useSelector } from 'src/redux/store';
 
+const { RangePicker } = DatePicker;
+const dateFormat = 'YYYY-MM-DD';
 const Strings = [...Array(3)].map((_, index) => ({
   key: (index + 1).toString(),
   value: `String ${index + 1}`,
@@ -26,6 +33,10 @@ export default function HistoryModulePage() {
   const [module, setModule] = useState<IDropdownItem>(InitOption);
   const [moduleOptions, setModuleOptions] = useState<IDropdownItem[]>();
   const [alarmLevel, setAlarmLevel] = useState<IDropdownItem>(InitOption);
+  const [dateRange, setDateRange] = useState<string[]>([
+    dayjs().format('YYYY-MM-DD'),
+    dayjs().subtract(1, 'week').format('YYYY-MM-DD'),
+  ]);
 
   useEffect(() => {
     setModuleOptions(
@@ -58,6 +69,10 @@ export default function HistoryModulePage() {
     }
   }, [searchParams, moduleOptions]);
 
+  const handleDateChange = (value: RangePickerProps['value'], dateString: [string, string]) => {
+    setDateRange(dateString);
+  };
+
   return (
     <div
       className="w-full bg-white"
@@ -71,34 +86,61 @@ export default function HistoryModulePage() {
         History Chart - Module
       </p>
 
-      <div className="flex flex-col md:flex-row items-center gap-3 pb-6">
-        <DropDown
-          name="string"
-          selected={string}
-          options={Strings}
-          placeholder="Select String"
-          style="md:w-64"
-          showClose={true}
-          onChange={(v) => setString(v)}
-        />
-        <DropDown
-          name="module"
-          selected={module}
-          options={moduleOptions}
-          placeholder="Select Module"
-          style="md:w-64"
-          showClose={true}
-          onChange={(v) => setModule(v)}
-        />
-        <DropDown
-          name="alarmLevel"
-          selected={alarmLevel}
-          options={AlarmLevels}
-          placeholder="Select Alarm Level"
-          style="md:w-64"
-          showClose={true}
-          onChange={(v) => setAlarmLevel(v)}
-        />
+      <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 items-center gap-3 pb-6">
+        <div className="col-span-1">
+          <DropDown
+            name="string"
+            selected={string}
+            options={Strings}
+            placeholder="Select String"
+            showClose={true}
+            onChange={(v) => setString(v)}
+          />
+        </div>
+        <div className="col-span-1">
+          <DropDown
+            name="module"
+            selected={module}
+            options={moduleOptions}
+            placeholder="Select Module"
+            showClose={true}
+            onChange={(v) => setModule(v)}
+          />
+        </div>
+        <div className="col-span-1">
+          <DropDown
+            name="alarmLevel"
+            selected={alarmLevel}
+            options={AlarmLevels}
+            placeholder="Select Alarm Level"
+            showClose={true}
+            onChange={(v) => setAlarmLevel(v)}
+          />
+        </div>
+        <div className="col-span-1 md:col-span-2 xl:col-span-1">
+          <RangePicker
+            size="large"
+            value={[dayjs(dateRange[0], dateFormat), dayjs(dateRange[1], dateFormat)]}
+            onChange={handleDateChange}
+            className="w-full lounded-lg hover:!border-grey-500"
+          />
+        </div>
+        <div className="col-span-1 flex flex-row items-center gap-1 xl:gap-3">
+          <div
+            role="button"
+            className="flex flex-row items-center justify-center w-full gap-x-2 text-white bg-info-main hover:bg-info-dark focus:ring-4 focus:ring-info-dark font-medium rounded-lg text-sm h-10 text-center focus:outline-none"
+          >
+            <FiSearch />
+            Search
+          </div>
+          <div
+            role="button"
+            className="flex flex-row items-center justify-center w-full gap-x-2 text-white bg-success-main hover:bg-success-dark focus:ring-4 focus:ring-success-dark font-medium rounded-lg text-sm h-10 text-center focus:outline-none"
+          >
+            <BsFillPrinterFill />
+            Export
+          </div>
+        </div>
       </div>
     </div>
   );
