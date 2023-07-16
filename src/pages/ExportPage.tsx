@@ -7,7 +7,6 @@ import dayjs from 'dayjs';
 // UI
 import { DropDown, Pagination, Empty, AlarmLevelBadge, LoadingIndicator } from 'src/components';
 import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
-import { IAlarmLevel, AlarmLevels } from 'src/@types/alarm';
 import { getAlarmLevelFromNumber } from 'src/components/alarm-level-badge/AlarmLevelBadge';
 // Redux
 import { useDispatch, useSelector } from 'src/redux/store';
@@ -17,6 +16,9 @@ import { FiSearch } from 'react-icons/fi';
 import { BsFillPrinterFill } from 'react-icons/bs';
 import { RangePickerProps } from 'antd/es/date-picker';
 import { DatePicker } from 'antd';
+// Excel
+import * as FileSaver from 'file-saver';
+import XLSX from 'sheetjs-style';
 
 const { RangePicker } = DatePicker;
 const dateFormat = 'YYYY-MM-DD';
@@ -104,6 +106,43 @@ export default function ExportPage() {
     dispatch(getExportData(Number(string.key), Number(module.key), startDate, endDate));
   };
 
+  const handleExport = async () => {
+    const fileType =
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8';
+    const fileExtension = '.xlsx';
+    const [startDate, endDate] = dateRange;
+    const fileName = `String ${string.key}-Module ${module.key}_${startDate}~${endDate}`;
+
+    const excelData = convertIntoExportDataFormat();
+
+    const ws = XLSX.utils.json_to_sheet(excelData);
+    const wb = { Sheets: { data: ws }, SheetNames: ['data'] };
+    const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    const blobData = new Blob([excelBuffer], { type: fileType });
+
+    FileSaver.saveAs(blobData, fileName + fileExtension);
+  };
+
+  const convertIntoExportDataFormat = () => {
+    if (data && data.length) {
+      return data.map((item, idx) => ({
+        No: idx + 1,
+        'String ID': item.string,
+        'Module ID': item.module,
+        Time: item.time,
+        Alarm: getAlarmLevelFromNumber(item.alarm),
+        'Charge Status': item.chargeStatus ? 'Charged' : 'Discharged',
+        'Over Temperature Status': getAlarmLevelFromNumber(item.overT),
+        'Over Charge Status': getAlarmLevelFromNumber(item.overCharge),
+        'Over Discharge Status': getAlarmLevelFromNumber(item.overDischarge),
+        Voltage: item.voltage,
+        Current: item.current,
+      }));
+    }
+
+    return [];
+  };
+
   return (
     <div
       className="w-full bg-white"
@@ -151,13 +190,15 @@ export default function ExportPage() {
           <div
             role="button"
             className="flex flex-row items-center justify-center w-full gap-x-2 text-white bg-info-main hover:bg-info-dark focus:ring-4 focus:ring-info-dark font-medium rounded-lg text-sm h-10 text-center focus:outline-none"
+            onClick={handleSearch}
           >
-            <FiSearch onClick={handleSearch} />
+            <FiSearch />
             Search
           </div>
           <div
             role="button"
             className="flex flex-row items-center justify-center w-full gap-x-2 text-white bg-success-main hover:bg-success-dark focus:ring-4 focus:ring-success-dark font-medium rounded-lg text-sm h-10 text-center focus:outline-none"
+            onClick={handleExport}
           >
             <BsFillPrinterFill />
             Export
