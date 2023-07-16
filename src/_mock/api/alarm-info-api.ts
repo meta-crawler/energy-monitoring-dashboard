@@ -16,7 +16,7 @@ mock.onGet('/api/get-alarm-list').reply((req: any) => {
     const status = Math.round(Math.random() * 100) < 90 ? 1 : 0;
 
     const string = (Math.round(getRandomValue(2, 2)) % 3) + 1;
-    const module = (Math.round(getRandomValue(10, 10)) % 20) + string * 20 + 1;
+    const module = (Math.round(getRandomValue(10, 10)) % 20) + (string - 1) * 20 + 1;
     const cell = Math.round(getRandomValue(30, 10));
 
     const alertTemperature = getRoundedValue(getRandomValue(70, 5), 1);

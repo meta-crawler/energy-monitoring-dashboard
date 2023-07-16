@@ -3,19 +3,15 @@ import { CARD } from 'src/config-global';
 import typography from 'src/theme/typography';
 import { shadows as customShadows } from 'src/theme/shadows';
 import LoadingScreen from 'src/sections/loading-screen';
-import Empty from 'src/components/empty';
-// UI
-import useResponsive from 'src/hooks/useResponsive';
+import { Empty } from 'src/components';
 // Redux
 import { useDispatch, useSelector } from 'src/redux/store';
-import { getSystems, setActiveSystem } from 'src/redux/slices/system';
+import { getSystems } from 'src/redux/slices/system';
 
 export default function SystemsPage() {
   const shadows = customShadows();
   const dispatch = useDispatch();
   const { isLoading, systems } = useSelector((store) => store.system);
-
-  const isDesktop = useResponsive('up', 'lg');
 
   useEffect(() => {
     dispatch(getSystems());

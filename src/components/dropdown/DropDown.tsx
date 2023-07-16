@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import typography from 'src/theme/typography';
-import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
+import { IDropdownItem, InitOption } from './type';
 import { IoClose } from 'react-icons/io5';
 
 type IDropDownProps = {
@@ -54,7 +54,7 @@ export default function DropDown({
           id={name}
           name={name}
           value={selected.value}
-          className="cursor-pointer bg-grey-100 border border-grey-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 w-full py-2.5 px-4 focus-visible:outline-none"
+          className="cursor-pointer bg-grey-100 border border-grey-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 w-full h-10 px-4 focus-visible:outline-none"
           placeholder={placeholder}
           required
           readOnly

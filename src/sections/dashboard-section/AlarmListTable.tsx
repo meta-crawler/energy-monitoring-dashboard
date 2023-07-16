@@ -4,9 +4,7 @@ import typography from 'src/theme/typography';
 import { shadows as customShadows } from 'src/theme/shadows';
 import { BiLink } from 'react-icons/bi';
 import { IAlarmInfo, IAlarmLevel } from 'src/@types/alarm';
-import AlarmLevelBadge from 'src/components/alarm-level-badge';
-import Pagination from 'src/components/pagination';
-import Empty from 'src/components/empty';
+import { AlarmLevelBadge, Pagination, Empty } from 'src/components';
 
 type IAlarmListTableProps = {
   alarms: IAlarmInfo[] | null;
@@ -20,7 +18,7 @@ export default function AlarmListTable({ alarms }: IAlarmListTableProps) {
   const [alarmList, setAlarmList] = useState(alarms?.slice(0, 5));
 
   useEffect(() => {
-    setAlarmList(alarms?.slice(page * limit + 1, (page + 1) * limit));
+    setAlarmList(alarms?.slice(page * limit, (page + 1) * limit));
   }, [page, limit, alarms]);
 
   const handlePage = (page: number) => setPage(page);
@@ -76,7 +74,7 @@ export default function AlarmListTable({ alarms }: IAlarmListTableProps) {
                   className={`${index % 2 ? 'bg-grey-200' : 'bg-white'} ${index && 'border-t'}`}
                 >
                   <th scope="row" className="px-3 py-4 font-regular" style={typography.body2}>
-                    {index + 1}
+                    {index + page * limit + 1}
                   </th>
                   <td className="px-3 py-4">{alarm.time}</td>
                   <td className="px-3 py-4">{alarm.type}</td>

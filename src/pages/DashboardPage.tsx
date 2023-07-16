@@ -6,18 +6,17 @@ import {
   BatteryStatus,
   StatusCard,
   StatusTable,
-  ThermometerGauge,
-  CircularIndicatorGauge,
 } from 'src/sections/dashboard-section';
+import { ThermometerGauge, CircularIndicatorGauge } from 'src/components';
 import {
   CURRENT_GAUGE_OPTIONS,
   VOLTAGE_GAUGE_OPTIONS,
-} from 'src/sections/dashboard-section/constants';
+} from 'src/components/circular-inidcator-gauge/constants';
 import { CARD } from 'src/config-global';
 import { shadows as customShadows } from 'src/theme/shadows';
 // Redux
 import { useDispatch, useSelector } from 'src/redux/store';
-import { getDashboardInfo } from 'src/redux/slices/dashboard';
+import { getDashboardInfo, getAlarmList } from 'src/redux/slices/dashboard';
 // UI
 import { IAlarmLevel, IAlarmType } from 'src/@types/alarm';
 import { initGaugeInfo } from 'src/@types/dashboard';
@@ -43,9 +42,11 @@ export default function DashboardPage() {
 
   useEffect(() => {
     dispatch(getDashboardInfo());
+    dispatch(getAlarmList());
 
     setInterval(() => {
       dispatch(getDashboardInfo());
+      dispatch(getAlarmList());
     }, 5000);
   }, [dispatch]);
 

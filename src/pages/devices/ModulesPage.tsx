@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 import typography from 'src/theme/typography';
 import { CARD } from 'src/config-global';
 import { shadows as customShadows } from 'src/theme/shadows';
 // UI
-import DropDown from 'src/components/dropdown';
-import Pagination from 'src/components/pagination';
-import Empty from 'src/components/empty';
-import AlarmLevelBadge from 'src/components/alarm-level-badge';
-import LoadingIndicator from 'src/components/loading-indicator';
+import { DropDown, Pagination, Empty, AlarmLevelBadge, LoadingIndicator } from 'src/components';
 import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
 import { IAlarmLevel, AlarmLevels } from 'src/@types/alarm';
+import { BiLink } from 'react-icons/bi';
 // Redux
 import { useDispatch, useSelector } from 'src/redux/store';
 import { IModuleInfo } from 'src/@types/module';
@@ -46,7 +43,7 @@ export default function ModulesPage() {
 
   useEffect(() => {
     setModuleOptions(
-      [...Array.from({ length: 20 }, (_, index) => Number(string.key) * 20 + index)].map(
+      [...Array.from({ length: 20 }, (_, index) => (Number(string.key) - 1) * 20 + index)].map(
         (index) => ({
           key: (index + 1).toString(),
           value: `Module ${index + 1}`,
@@ -114,6 +111,16 @@ export default function ModulesPage() {
 
     setModuleList(filteredModules?.slice(page * limit, (page + 1) * limit));
   }, [modules, page, limit, string, module, alarmLevel]);
+  const gotoHistoryPage = (level: IAlarmLevel, string: number, module: number) => {
+    navigate({
+      pathname: '/caec/history/module',
+      search: `?${createSearchParams({
+        string: `${string}`,
+        module: `${module}`,
+        alarmLevel: level,
+      })}`,
+    });
+  };
 
   return (
     <div
@@ -198,12 +205,15 @@ export default function ModulesPage() {
               <th scope="col" className="px-2 py-4">
                 Soc
               </th>
+              <th scope="col" className="px-2 py-4">
+                Link to data
+              </th>
             </tr>
           </thead>
           <tbody>
             {isLoading ? (
               <tr>
-                <td className="w-full py-3" colSpan={11}>
+                <td className="w-full py-3" colSpan={12}>
                   <LoadingIndicator />
                 </td>
               </tr>
@@ -230,11 +240,24 @@ export default function ModulesPage() {
                   <td className="px-3 py-4">{module.temp_01}</td>
                   <td className="px-3 py-4">{module.temp_02}</td>
                   <td className="px-3 py-4">{module.soc}</td>
+                  <td className="px-3 py-4">
+                    <div role="button" className="w-full flex items-center justify-center">
+                      <BiLink
+                        onClick={() =>
+                          gotoHistoryPage(
+                            module.tempStatus as IAlarmLevel,
+                            module.string,
+                            module.module,
+                          )
+                        }
+                      />
+                    </div>
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td className="w-full" colSpan={11}>
+                <td className="w-full" colSpan={12}>
                   <Empty />
                 </td>
               </tr>
