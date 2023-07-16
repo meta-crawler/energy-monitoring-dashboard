@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import typography from 'src/theme/typography';
-import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
+import { IDropdownItem, InitOption } from './type';
 import { IoClose } from 'react-icons/io5';
 
 type IDropDownProps = {

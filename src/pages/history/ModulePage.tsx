@@ -4,9 +4,7 @@ import typography from 'src/theme/typography';
 import { CARD } from 'src/config-global';
 import { shadows as customShadows } from 'src/theme/shadows';
 // UI
-import DropDown from 'src/components/dropdown';
-import Empty from 'src/components/empty';
-import LoadingIndicator from 'src/components/loading-indicator';
+import { DropDown } from 'src/components';
 import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
 import { IAlarmLevel, AlarmLevels } from 'src/@types/alarm';
 import dayjs from 'dayjs';
@@ -15,7 +13,7 @@ import { DatePicker } from 'antd';
 import { FiSearch } from 'react-icons/fi';
 import { BsFillPrinterFill } from 'react-icons/bs';
 // Redux
-import { useDispatch, useSelector } from 'src/redux/store';
+import { useDispatch } from 'src/redux/store';
 
 const { RangePicker } = DatePicker;
 const dateFormat = 'YYYY-MM-DD';

@@ -98,9 +98,6 @@ export const getDashboardInfo = () => {
 
       const alertsRes = await getAlertListApi();
       dispatch(getAlertListSuccess(alertsRes.data.data));
-
-      const alarmsRes = await getAlarmListApi();
-      dispatch(getAlarmListSuccess(alarmsRes.data.data));
     } catch (error) {
       dispatch(hasError(error));
     }

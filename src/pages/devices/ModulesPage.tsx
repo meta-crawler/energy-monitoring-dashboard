@@ -4,11 +4,7 @@ import typography from 'src/theme/typography';
 import { CARD } from 'src/config-global';
 import { shadows as customShadows } from 'src/theme/shadows';
 // UI
-import DropDown from 'src/components/dropdown';
-import Pagination from 'src/components/pagination';
-import Empty from 'src/components/empty';
-import AlarmLevelBadge from 'src/components/alarm-level-badge';
-import LoadingIndicator from 'src/components/loading-indicator';
+import { DropDown, Pagination, Empty, AlarmLevelBadge, LoadingIndicator } from 'src/components';
 import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
 import { IAlarmLevel, AlarmLevels } from 'src/@types/alarm';
 import { BiLink } from 'react-icons/bi';
