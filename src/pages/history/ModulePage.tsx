@@ -6,7 +6,7 @@ import { shadows as customShadows } from 'src/theme/shadows';
 // UI
 import { DropDown, LineChart, LoadingIndicator } from 'src/components';
 import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
-import { IAlarmLevel, AlarmLevels } from 'src/@types/alarm';
+import { AlarmLevels } from 'src/@types/alarm';
 import dayjs from 'dayjs';
 import type { RangePickerProps } from 'antd/es/date-picker';
 import { DatePicker } from 'antd';
@@ -40,13 +40,15 @@ export default function HistoryModulePage() {
   ]);
 
   useEffect(() => {
-    dispatch(
-      getHistoryData(
-        dayjs().subtract(1, 'week').format('YYYY-MM-DD'),
-        dayjs().format('YYYY-MM-DD'),
-      ),
-    );
-  }, [dispatch]);
+    if (string.key && module.key && alarmLevel.key) {
+      dispatch(
+        getHistoryData(
+          dayjs().subtract(1, 'week').format('YYYY-MM-DD'),
+          dayjs().format('YYYY-MM-DD'),
+        ),
+      );
+    }
+  }, [dispatch, string, module, alarmLevel]);
 
   useEffect(() => {
     setModuleOptions(
@@ -85,7 +87,9 @@ export default function HistoryModulePage() {
 
   const handleSearch = () => {
     const [startDate, endDate] = dateRange;
-    dispatch(getHistoryData(startDate, endDate));
+    if (string.key && module.key && alarmLevel.key && startDate && endDate) {
+      dispatch(getHistoryData(startDate, endDate));
+    }
   };
 
   const gotoExportPage = () => {
