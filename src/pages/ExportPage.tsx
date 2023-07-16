@@ -103,24 +103,28 @@ export default function ExportPage() {
 
   const handleSearch = () => {
     const [startDate, endDate] = dateRange;
-    dispatch(getExportData(Number(string.key), Number(module.key), startDate, endDate));
+    if (startDate && endDate && string.key && module.key) {
+      dispatch(getExportData(Number(string.key), Number(module.key), startDate, endDate));
+    }
   };
 
   const handleExport = async () => {
-    const fileType =
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8';
-    const fileExtension = '.xlsx';
     const [startDate, endDate] = dateRange;
-    const fileName = `String ${string.key}-Module ${module.key}_${startDate}~${endDate}`;
+    if (startDate && endDate && string.key && module.key) {
+      const fileType =
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8';
+      const fileExtension = '.xlsx';
+      const fileName = `String ${string.key}-Module ${module.key}_${startDate}~${endDate}`;
 
-    const excelData = convertIntoExportDataFormat();
+      const excelData = convertIntoExportDataFormat();
 
-    const ws = XLSX.utils.json_to_sheet(excelData);
-    const wb = { Sheets: { data: ws }, SheetNames: ['data'] };
-    const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-    const blobData = new Blob([excelBuffer], { type: fileType });
+      const ws = XLSX.utils.json_to_sheet(excelData);
+      const wb = { Sheets: { data: ws }, SheetNames: ['data'] };
+      const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+      const blobData = new Blob([excelBuffer], { type: fileType });
 
-    FileSaver.saveAs(blobData, fileName + fileExtension);
+      FileSaver.saveAs(blobData, fileName + fileExtension);
+    }
   };
 
   const convertIntoExportDataFormat = () => {
