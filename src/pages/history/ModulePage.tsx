@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 import typography from 'src/theme/typography';
 import { CARD } from 'src/config-global';
 import { shadows as customShadows } from 'src/theme/shadows';
 // UI
 import { DropDown, LineChart, LoadingIndicator } from 'src/components';
 import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
-import { IAlarmLevel, AlarmLevels } from 'src/@types/alarm';
+import { AlarmLevels } from 'src/@types/alarm';
 import dayjs from 'dayjs';
 import type { RangePickerProps } from 'antd/es/date-picker';
 import { DatePicker } from 'antd';
@@ -27,6 +27,7 @@ export default function HistoryModulePage() {
   const dispatch = useDispatch();
   const { isLoading, history } = useSelector((store) => store.history);
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const shadows = customShadows();
 
   const [string, setString] = useState<IDropdownItem>(InitOption);
@@ -39,17 +40,19 @@ export default function HistoryModulePage() {
   ]);
 
   useEffect(() => {
-    dispatch(
-      getHistoryData(
-        dayjs().subtract(1, 'week').format('YYYY-MM-DD'),
-        dayjs().format('YYYY-MM-DD'),
-      ),
-    );
-  }, [dispatch]);
+    if (string.key && module.key && alarmLevel.key) {
+      dispatch(
+        getHistoryData(
+          dayjs().subtract(1, 'week').format('YYYY-MM-DD'),
+          dayjs().format('YYYY-MM-DD'),
+        ),
+      );
+    }
+  }, [dispatch, string, module, alarmLevel]);
 
   useEffect(() => {
     setModuleOptions(
-      [...Array.from({ length: 20 }, (_, index) => Number(string.key) * 20 + index)].map(
+      [...Array.from({ length: 20 }, (_, index) => (Number(string.key) - 1) * 20 + index)].map(
         (index) => ({
           key: (index + 1).toString(),
           value: `Module ${index + 1}`,
@@ -84,7 +87,22 @@ export default function HistoryModulePage() {
 
   const handleSearch = () => {
     const [startDate, endDate] = dateRange;
-    dispatch(getHistoryData(startDate, endDate));
+    if (string.key && module.key && alarmLevel.key && startDate && endDate) {
+      dispatch(getHistoryData(startDate, endDate));
+    }
+  };
+
+  const gotoExportPage = () => {
+    const [startDate, endDate] = dateRange;
+    navigate({
+      pathname: '/caec/export',
+      search: `?${createSearchParams({
+        string: `${string.key}`,
+        module: `${module.key}`,
+        startDate: `${startDate}`,
+        endDate: `${endDate}`,
+      })}`,
+    });
   };
 
   return (
@@ -152,6 +170,7 @@ export default function HistoryModulePage() {
           <div
             role="button"
             className="flex flex-row items-center justify-center w-full gap-x-2 text-white bg-success-main hover:bg-success-dark focus:ring-4 focus:ring-success-dark font-medium rounded-lg text-sm h-10 text-center focus:outline-none"
+            onClick={gotoExportPage}
           >
             <BsFillPrinterFill />
             Export

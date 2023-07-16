@@ -47,9 +47,10 @@ export default function Pagination({
     <div className="w-full py-3 pl-3 flex flex-row flex-wrap gap-3 items-center justify-between">
       <p className="text-text-secondary" style={typography.body1}>
         Showing{' '}
-        <span className="text-text-primary font-medium">{`${page * limit + 1}-${
-          (page + 1) * limit
-        }`}</span>{' '}
+        <span className="text-text-primary font-medium">{`${page * limit + 1}-${Math.min(
+          (page + 1) * limit,
+          pages,
+        )}`}</span>{' '}
         of <span className="text-text-primary font-medium">{pages}</span>
       </p>
       <div className="flex flex-row items-center gap-x-3">

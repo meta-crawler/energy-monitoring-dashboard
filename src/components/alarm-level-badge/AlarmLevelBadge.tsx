@@ -2,6 +2,23 @@ import React from 'react';
 import { IAlarmLevel } from 'src/@types/alarm';
 import typography from 'src/theme/typography';
 
+export function getAlarmLevelFromNumber(level: number) {
+  let alarmLevel = '';
+  switch (level) {
+    case 0:
+      alarmLevel = IAlarmLevel.NORMAL;
+      break;
+    case 1:
+      alarmLevel = IAlarmLevel.WARNING;
+      break;
+    case 2:
+      alarmLevel = IAlarmLevel.ABNORMAL;
+      break;
+  }
+
+  return alarmLevel as IAlarmLevel;
+}
+
 export default function AlarmLevelBadge({ level }: { level: IAlarmLevel }) {
   let color = '';
   switch (level) {
