@@ -4,7 +4,7 @@ import typography from 'src/theme/typography';
 import { CARD } from 'src/config-global';
 import { shadows as customShadows } from 'src/theme/shadows';
 // UI
-import { DropDown, LineChart } from 'src/components';
+import { DropDown, LineChart, LoadingIndicator } from 'src/components';
 import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
 import { IAlarmLevel, AlarmLevels } from 'src/@types/alarm';
 import dayjs from 'dayjs';
@@ -13,7 +13,8 @@ import { DatePicker } from 'antd';
 import { FiSearch } from 'react-icons/fi';
 import { BsFillPrinterFill } from 'react-icons/bs';
 // Redux
-import { useDispatch } from 'src/redux/store';
+import { useDispatch, useSelector } from 'src/redux/store';
+import { getHistoryData } from 'src/redux/slices/history';
 
 const { RangePicker } = DatePicker;
 const dateFormat = 'YYYY-MM-DD';
@@ -24,6 +25,7 @@ const Strings = [...Array(3)].map((_, index) => ({
 
 export default function HistoryModulePage() {
   const dispatch = useDispatch();
+  const { isLoading, history } = useSelector((store) => store.history);
   const [searchParams] = useSearchParams();
   const shadows = customShadows();
 
@@ -32,9 +34,18 @@ export default function HistoryModulePage() {
   const [moduleOptions, setModuleOptions] = useState<IDropdownItem[]>();
   const [alarmLevel, setAlarmLevel] = useState<IDropdownItem>(InitOption);
   const [dateRange, setDateRange] = useState<string[]>([
-    dayjs().format('YYYY-MM-DD'),
     dayjs().subtract(1, 'week').format('YYYY-MM-DD'),
+    dayjs().format('YYYY-MM-DD'),
   ]);
+
+  useEffect(() => {
+    dispatch(
+      getHistoryData(
+        dayjs().subtract(1, 'week').format('YYYY-MM-DD'),
+        dayjs().format('YYYY-MM-DD'),
+      ),
+    );
+  }, [dispatch]);
 
   useEffect(() => {
     setModuleOptions(
@@ -69,6 +80,11 @@ export default function HistoryModulePage() {
 
   const handleDateChange = (value: RangePickerProps['value'], dateString: [string, string]) => {
     setDateRange(dateString);
+  };
+
+  const handleSearch = () => {
+    const [startDate, endDate] = dateRange;
+    dispatch(getHistoryData(startDate, endDate));
   };
 
   return (
@@ -118,6 +134,7 @@ export default function HistoryModulePage() {
         <div className="col-span-1 md:col-span-2 xl:col-span-1">
           <RangePicker
             size="large"
+            allowClear={false}
             value={[dayjs(dateRange[0], dateFormat), dayjs(dateRange[1], dateFormat)]}
             onChange={handleDateChange}
             className="w-full lounded-lg hover:!border-grey-500"
@@ -127,6 +144,7 @@ export default function HistoryModulePage() {
           <div
             role="button"
             className="flex flex-row items-center justify-center w-full gap-x-2 text-white bg-info-main hover:bg-info-dark focus:ring-4 focus:ring-info-dark font-medium rounded-lg text-sm h-10 text-center focus:outline-none"
+            onClick={handleSearch}
           >
             <FiSearch />
             Search
@@ -141,13 +159,20 @@ export default function HistoryModulePage() {
         </div>
       </div>
 
-      <div className="w-full h-full">
-        <LineChart
-          xAxisData={['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']}
-          seriesName="Module Temperature"
-          seriesData={[10, 11, 13, 11, 12, 12, 9]}
-          yAxisFormatter="{value} °C"
-        />
+      <div className="w-full h-full flex justify-center items-center">
+        {isLoading ? (
+          <LoadingIndicator />
+        ) : (
+          history &&
+          Object.values(history)[0].length && (
+            <LineChart
+              xAxisData={history.times}
+              seriesName="Module Temperature"
+              seriesData={history.values}
+              yAxisFormatter="{value} °C"
+            />
+          )
+        )}
       </div>
     </div>
   );

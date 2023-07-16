@@ -43,7 +43,7 @@ export default function ModulesPage() {
 
   useEffect(() => {
     setModuleOptions(
-      [...Array.from({ length: 20 }, (_, index) => Number(string.key) * 20 + index)].map(
+      [...Array.from({ length: 20 }, (_, index) => (Number(string.key) - 1) * 20 + index)].map(
         (index) => ({
           key: (index + 1).toString(),
           value: `Module ${index + 1}`,

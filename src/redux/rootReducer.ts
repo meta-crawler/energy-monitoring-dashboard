@@ -2,11 +2,11 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 // slices
-
 import alarmReducer from './slices/alarm';
 import systemReducer from './slices/system';
 import stringReducer from './slices/string';
 import moduleReducer from './slices/module';
+import historyReducer from './slices/history';
 import dashboardReducer from './slices/dashboard';
 
 // ----------------------------------------------------------------------
@@ -23,6 +23,7 @@ const rootReducer = combineReducers({
   system: systemReducer,
   string: stringReducer,
   module: moduleReducer,
+  history: historyReducer,
   dashboard: dashboardReducer,
 });
 

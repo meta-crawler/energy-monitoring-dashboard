@@ -46,7 +46,7 @@ mock.onGet('/api/get-module-infos').reply((req: any) => {
       (item) =>
         item.string === Number(string) &&
         item.module === Number(module) &&
-        (item.tempStatus === 'Warning' || item.vStatus === 'Warning'),
+        item.tempStatus === 'Warning',
     )
   ) {
     const id = modules.findIndex(
