@@ -8,3 +8,4 @@ export { default as Logo } from './logo';
 export { default as Pagination } from './pagination';
 export { default as StatusTag } from './status-tag';
 export { default as ThermometerGauge } from './thermometer-gauge';
+export { default as LineChart } from './line-chart';

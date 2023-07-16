@@ -4,7 +4,7 @@ import typography from 'src/theme/typography';
 import { CARD } from 'src/config-global';
 import { shadows as customShadows } from 'src/theme/shadows';
 // UI
-import { DropDown } from 'src/components';
+import { DropDown, LineChart } from 'src/components';
 import { IDropdownItem, InitOption } from 'src/components/dropdown/type';
 import { IAlarmLevel, AlarmLevels } from 'src/@types/alarm';
 import dayjs from 'dayjs';
@@ -84,7 +84,7 @@ export default function HistoryModulePage() {
         History Chart - Module
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 items-center gap-3 pb-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 items-center gap-3 pb-10">
         <div className="col-span-1">
           <DropDown
             name="string"
@@ -139,6 +139,15 @@ export default function HistoryModulePage() {
             Export
           </div>
         </div>
+      </div>
+
+      <div className="w-full h-full">
+        <LineChart
+          xAxisData={['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']}
+          seriesName="Module Temperature"
+          seriesData={[10, 11, 13, 11, 12, 12, 9]}
+          yAxisFormatter="{value} °C"
+        />
       </div>
     </div>
   );

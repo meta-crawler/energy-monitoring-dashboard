@@ -9,7 +9,7 @@ import {
 const getModuleData = () => {
   const status = ['Normal', 'Warning', 'Abnormal'];
   const string = (Math.round(getRandomValue(2, 2)) % 3) + 1;
-  const module = (Math.round(getRandomValue(10, 10)) % 20) + string * 20 + 1;
+  const module = (Math.round(getRandomValue(10, 10)) % 20) + (string - 1) * 20 + 1;
   const time = getRandomTime();
   const percentT = Math.round(Math.random() * 100);
   const percentV = Math.round(Math.random() * 100);
