@@ -60,7 +60,8 @@ export default function LineChart({
           yAxisIndex: 'none',
         },
         dataView: {
-          show: false,
+          show: true,
+          readOnly: true,
         },
         restore: {
           show: false,
