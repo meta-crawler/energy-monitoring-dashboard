@@ -7,6 +7,7 @@ import systemReducer from './slices/system';
 import stringReducer from './slices/string';
 import moduleReducer from './slices/module';
 import historyReducer from './slices/history';
+import exportReducer from './slices/export';
 import dashboardReducer from './slices/dashboard';
 
 // ----------------------------------------------------------------------
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   system: systemReducer,
   string: stringReducer,
   module: moduleReducer,
+  export: exportReducer,
   history: historyReducer,
   dashboard: dashboardReducer,
 });
