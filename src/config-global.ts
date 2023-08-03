@@ -1,6 +1,7 @@
 import { PATH_DASHBOARD } from './routes/paths';
 
-export const HOST_API_KEY = 'http://localhost:3006';
+export const HOST_API_ROUTE = 'http://localhost';
+export const HOST_API_PORT = 8000;
 
 export const PATH_AFTER_LOGIN = PATH_DASHBOARD.dashboard;
 

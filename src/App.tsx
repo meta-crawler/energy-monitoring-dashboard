@@ -6,10 +6,11 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import { store, persistor } from 'src/redux/store';
 import Router from 'src/routes';
 import { SettingsProvider } from 'src/sections/settings';
+import { AuthProvider } from 'src/auth/JwtContext';
 
 function App() {
   return (
-    <div className="App">
+    <AuthProvider>
       <ReduxProvider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <SettingsProvider>
@@ -19,7 +20,7 @@ function App() {
           </SettingsProvider>
         </PersistGate>
       </ReduxProvider>
-    </div>
+    </AuthProvider>
   );
 }
 
