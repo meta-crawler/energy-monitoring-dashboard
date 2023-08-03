@@ -4,7 +4,8 @@ import { useSettingsContext } from 'src/sections/settings';
 import colors from 'src/theme/colors';
 import navConfig from './config-navigation';
 import { NAV } from 'src/config-global';
-import NavToggleButton from 'src/layouts/dashboard/nav/NavToggleButton';
+import NavToggleButton from './NavToggleButton';
+import NavLogoutButton from './NavLogoutButton';
 import NavSection from 'src/sections/nav-section/NavSection';
 import Logo from 'src/components/logo';
 
@@ -14,6 +15,7 @@ export default function NavVertical() {
 
   return (
     <div
+      className="flex flex-col justify-between"
       style={{
         width: themeLayout === 'mini' ? `${NAV.W_DASHBOARD_MINI}px` : `${NAV.W_DASHBOARD}px`,
         height: '100vh',
@@ -37,6 +39,8 @@ export default function NavVertical() {
 
         <NavSection data={navConfig} />
       </div>
+
+      <NavLogoutButton />
     </div>
   );
 }

@@ -3,6 +3,8 @@ import { Navigate, useRoutes } from 'react-router-dom';
 
 import { PATH_AFTER_LOGIN } from 'src/config-global';
 import DashboardLayout from 'src/layouts/dashboard';
+import AuthGuard from 'src/auth/AuthGuard';
+import GuestGuard from 'src/auth/GuestGuard';
 
 import {
   DashboardPage,
@@ -16,13 +18,32 @@ import {
   SystemPage,
   AlarmPage,
   ExportPage,
+  LoginPage,
 } from './elements';
+import { PATH_AUTH } from 'src/routes/paths';
 
 export default function Router() {
   return useRoutes([
     {
+      path: 'auth',
+      children: [
+        {
+          path: 'login',
+          element: (
+            <GuestGuard>
+              <LoginPage />
+            </GuestGuard>
+          ),
+        },
+      ],
+    },
+    {
       path: 'caec',
-      element: <DashboardLayout />,
+      element: (
+        <AuthGuard>
+          <DashboardLayout />
+        </AuthGuard>
+      ),
       children: [
         { element: <Navigate to={PATH_AFTER_LOGIN} replace />, index: true },
         { path: 'dashboard', element: <DashboardPage /> },
@@ -48,6 +69,6 @@ export default function Router() {
         { path: 'export', element: <ExportPage /> },
       ],
     },
-    { path: '*', element: <Navigate to={PATH_AFTER_LOGIN} replace /> },
+    { path: '*', element: <Navigate to={PATH_AUTH.login} replace /> },
   ]);
 }

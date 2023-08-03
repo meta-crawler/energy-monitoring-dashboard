@@ -20,3 +20,4 @@ export const HistorySystemPage = Loadable(lazy(() => import('src/pages/ComingSoo
 export const HistoryStringPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
 export const HistoryModulePage = Loadable(lazy(() => import('src/pages/history/ModulePage')));
 export const HistoryCellPage = Loadable(lazy(() => import('src/pages/ComingSoonPage')));
+export const LoginPage = Loadable(lazy(() => import('src/pages/auth/LoginPage')));

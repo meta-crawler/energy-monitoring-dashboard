@@ -24,6 +24,7 @@
     "date-fns": "^2.30.0",
     "echarts": "^5.4.2",
     "file-saver": "^2.0.5",
+    "formik": "^2.4.3",
     "framer-motion": "^10.12.17",
     "history": "^5.3.0",
     "i18next": "^23.2.3",
