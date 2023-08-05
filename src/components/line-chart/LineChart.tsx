@@ -7,7 +7,7 @@ type ILineChartProps = {
   title?: string;
   xAxisData: string[];
   seriesName: string;
-  seriesData: number[] | string[];
+  seriesData: number[];
   yAxisFormatter: string;
 };
 
@@ -18,6 +18,9 @@ export default function LineChart({
   seriesData,
   seriesName,
 }: ILineChartProps) {
+  const min = Math.min(...seriesData);
+  const max = Math.max(...seriesData);
+
   const [chartHeight, setChartHeight] = useState(600);
   const [legendSize, setLegendSize] = useState(24);
 
@@ -79,6 +82,11 @@ export default function LineChart({
       axisLabel: {
         formatter: yAxisFormatter,
       },
+      axisLine: {
+        onZero: false,
+      },
+      min: min - 1,
+      max: max + 1,
     },
     series: [
       {
