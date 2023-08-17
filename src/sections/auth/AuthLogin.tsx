@@ -25,8 +25,8 @@ const AuthLogin = () => {
   };
 
   const initialValues: FormValuesProps = {
-    email: '',
-    password: '',
+    email: 'admin@test.com',
+    password: '12345678',
   };
 
   const validationSchema = Yup.object().shape({

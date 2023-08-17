@@ -7,9 +7,10 @@ import typography from 'src/theme/typography';
 export interface LogoProps {
   disabledLink?: boolean;
   size?: number;
+  dark?: boolean;
 }
 
-const Logo = ({ disabledLink, size }: LogoProps) => {
+const Logo = ({ disabledLink, size, dark = false }: LogoProps) => {
   const assets = useAssets();
   const logo = (
     <img
@@ -20,7 +21,7 @@ const Logo = ({ disabledLink, size }: LogoProps) => {
   );
 
   const textLogo = (
-    <span className="text-grey-300" style={typography.h3}>
+    <span className={dark ? 'text-text-primary' : 'text-grey-300'} style={typography.h3}>
       BMS
     </span>
   );
