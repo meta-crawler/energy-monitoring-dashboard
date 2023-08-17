@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PATH_AUTH } from 'src/routes/paths';
+import { PATH_AUTH, PATH_DASHBOARD } from 'src/routes/paths';
 // third party
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
@@ -41,7 +41,9 @@ const AuthLogin = () => {
 
   const onSubmit = async () => {
     try {
-      await login(formik.values.email, formik.values.password);
+      setTimeout(() => {
+        navigate(PATH_DASHBOARD.dashboard);
+      }, 1000);
     } catch (error) {
       navigate(PATH_AUTH.login);
     }
