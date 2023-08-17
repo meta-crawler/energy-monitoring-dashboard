@@ -21,7 +21,7 @@ const Logo = ({ disabledLink, size }: LogoProps) => {
 
   const textLogo = (
     <span className="text-grey-300" style={typography.h3}>
-      CAEC BMS
+      BMS
     </span>
   );
 

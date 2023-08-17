@@ -33,7 +33,7 @@ export default function NavVertical() {
             themeLayout === 'mini' ? 'justify-center' : 'justify-between pl-6 pr-3'
           }`}
         >
-          {themeLayout !== 'mini' && <Logo />}
+          {themeLayout !== 'mini' && <Logo disabledLink={true} />}
           <NavToggleButton />
         </div>
 

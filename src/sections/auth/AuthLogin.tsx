@@ -43,7 +43,7 @@ const AuthLogin = () => {
     try {
       setTimeout(() => {
         navigate(PATH_DASHBOARD.dashboard);
-      }, 1000);
+      }, 500);
     } catch (error) {
       navigate(PATH_AUTH.login);
     }

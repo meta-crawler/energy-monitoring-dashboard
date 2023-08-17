@@ -8,7 +8,7 @@ const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="bg-background-neutral min-h-screen">
       <div className="pl-6 pt-6">
-        <Logo />
+        <Logo disabledLink={true} />
       </div>
       <div
         className="w-full flex flex-col justify-center"
