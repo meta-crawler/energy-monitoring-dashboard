@@ -1,6 +1,6 @@
 # If this repository helped you even a little, please give a star⭐
-![image](https://github.com/meta-crawler/energy-monitoring-dashboard/assets/114304642/0d781a73-5358-4042-af4b-bbf69af1e506)
-![image](https://github.com/meta-crawler/energy-monitoring-dashboard/assets/114304642/7a64fb29-ac84-41d5-9990-1f30c268285a)
+![image](https://github.com/meta-crawler/energy-monitoring-dashboard/assets/114304642/048be4a1-5fd7-4cf8-9ea6-fc565dbd6aab)
+![image](https://github.com/meta-crawler/energy-monitoring-dashboard/assets/114304642/eb8d36c5-eca2-4aa0-a34d-1cd611985df6)
 
 # Getting Started with Create React App
  
